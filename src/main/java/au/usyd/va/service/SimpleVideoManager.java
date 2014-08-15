@@ -1,0 +1,42 @@
+package au.usyd.va.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import au.usyd.va.domain.Video;
+
+@Service(value="videoManager")
+public class SimpleVideoManager implements VideoManager{
+
+	@Override
+	public List<Video> getVideos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addVideo(Video Video) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Video getVideoById(long id) {
+		Video v = new Video();
+		return v;
+	}
+
+	@Override
+	public void updateVideo(Video Video) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteVideo(long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
