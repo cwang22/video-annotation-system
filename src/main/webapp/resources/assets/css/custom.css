@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+
+/* reset bootstrap style */
+.progress-bar {
+	background-color:#00b3fe;
+}
+
+/*Color class*/
+.gray {
+	color:#bfc9d3;
+}
+
+/*watch page*/
+#videowarp {
+	padding-top:100px;
+	min-height:550px;
+}
+
+#bottom-nav {
+	padding-top:50px;
+	padding-bottom:30px;
+}

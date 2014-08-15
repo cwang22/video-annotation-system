@@ -1,85 +1,64 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<%@ include file="header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
+<%@ include file="header.jsp"%>
 
-	<!-- *****************************************************************************************************************
-	 HEADERWRAP
-	 ***************************************************************************************************************** -->
-	<div id="headerwrap">
-	    <div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2">
-					<h3>watch smarter</h3>
-					<h1>Video Annotation System</h1>
-					<h5>Easy 3 Steps to mark Annotations</h5>
-					<h5>to change the way interact with video</h5>				
+
+<div id="videowarp">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>Title of Video</h1>
+				<h4>18:16 15 Aug 2014</h4>
+				<div class="progress">
+					<div class="progress-bar" role="progressbar" aria-valuenow="60"
+						aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+					</div>
 				</div>
-			
-			</div><!-- /row -->
-	    </div> <!-- /container -->
-	</div><!-- /headerwrap -->
+				
+				<!-- annotation navigation -->
+				
+				<div class="row">
+				<div class="col-lg-4">
+				<h4 class="text-center">Watching</h4>
+				</div>
+				<div class="col-lg-4 gray">
+				<h4 class="text-center">Marking</h4>
+				</div>
+				<div class="col-lg-4 gray">
+				<h4 class="text-center">Ranking</h4>
+				</div>
+				</div>
+				
+				<!-- video player -->
+				
+				<video id="example_video_1" class="video-js vjs-default-skin"
+					controls preload="auto" width="1140" height="460"
+					poster="http://video-js.zencoder.com/oceans-clip.png"
+					data-setup='{"example_option":true}'>
+					<source src="http://video-js.zencoder.com/oceans-clip.mp4"
+						type='video/mp4' />
+					<source src="http://video-js.zencoder.com/oceans-clip.webm"
+						type='video/webm' />
+					<source src="http://video-js.zencoder.com/oceans-clip.ogv"
+						type='video/ogg' />
+					<p class="vjs-no-js">
+						To view this video please enable JavaScript, and consider
+						upgrading to a web browser that <a
+							href="http://videojs.com/html5-video-support/" target="_blank">supports
+							HTML5 video</a>
+					</p>
+				</video>
+				
+				<!--  -->
+				<div id="bottom-nav">
+				<div class="row">
+				<div class="col-lg-2 pull-right"><a href="#"></a><button type="button" class="btn btn-primary btn-lg">Start Marking</button></a></div>
+				</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
 
-	<!-- *****************************************************************************************************************
-	 SERVICE LOGOS
-	 ***************************************************************************************************************** -->
-	 <div id="service">
-	 	<div class="container">
- 			<div class="row centered">
- 				<div class="col-md-4">
- 					<i class="fa fa-heart-o"></i>
- 					<h4>Watching</h4>
- 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
- 				</div>
- 				<div class="col-md-4">
-					<i class="fa fa-comment-o"></i>
- 					<h4>Marking</h4>
- 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
- 				</div>
- 				<div class="col-md-4">
- 					<i class="fa fa-trophy"></i>
- 					<h4>Ranking</h4>
- 					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
- 				
- 				</div>		 				
-	 		</div>
-	 	</div><! --/container -->
-	 </div><! --/service -->
-	<!-- *****************************************************************************************************************
-	 TESTIMONIALS
-	 ***************************************************************************************************************** -->
-	 <div id="twrap">
-	 	<div class="container centered">
-	 		<div class="row">
-	 			<div class="col-lg-8 col-lg-offset-2">
-	 			<i class="fa fa-comment-o"></i>
-	 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-	 			<h4><br/>Marcel Newman</h4>
-	 			<p>WEB DESIGNER - BLACKTIE.CO</p>
-	 			</div>
-	 		</div><! --/row -->
-	 	</div><! --/container -->
-	 </div><! --/twrap -->
-	 
-	<!-- *****************************************************************************************************************
-	 OUR CLIENTS
-	 ***************************************************************************************************************** -->
-	 <div id="cwrap">
-		 <div class="container">
-		 	<div class="row centered">
-			 	<h3>OUR CLIENTS</h3>
-			 	<div class="col-lg-3 col-md-3 col-sm-3">
-			 		<img src="resources/assets/img/clients/client01.png" class="img-responsive">
-			 	</div>
-			 	<div class="col-lg-3 col-md-3 col-sm-3">
-			 		<img src="resources/assets/img/clients/client02.png" class="img-responsive">
-			 	</div>
-			 	<div class="col-lg-3 col-md-3 col-sm-3">
-			 		<img src="resources/assets/img/clients/client03.png" class="img-responsive">
-			 	</div>
-			 	<div class="col-lg-3 col-md-3 col-sm-3">
-			 		<img src="resources/assets/img/clients/client04.png" class="img-responsive">
-			 	</div>
-		 	</div><! --/row -->
-		 </div><! --/container -->
-	 </div><! --/cwrap -->
-<%@ include file="footer.jsp" %>
+<%@ include file="footer.jsp"%>
