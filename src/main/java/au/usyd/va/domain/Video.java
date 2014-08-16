@@ -1,9 +1,20 @@
 package au.usyd.va.domain;
-public class Video {
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Video")
+public class Video {
+	
+	@Id
+	@Column(name= "Id")
+	@GeneratedValue
 	private long id;
+	
+	@Column(name = "Title")
 	private String title;
 
+	@Column(name = "Source")
 	private String source;
 
 	public long getId() {
@@ -29,7 +40,11 @@ public class Video {
 	public void setSource(String source) {
 		this.source = source;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Video [id=" + id + ", title=" + title + ", source=" + source
+				+ "]";
+	}
 }
 

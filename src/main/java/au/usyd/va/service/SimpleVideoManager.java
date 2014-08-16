@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import au.usyd.va.domain.Video;
 
-@Service(value="videoManager")
 public class SimpleVideoManager implements VideoManager{
 
 	@Override

@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1>Title of Video</h1>
+				<h1>${video.title}</h1>
 				<h4>18:16 15 Aug 2014</h4>
 				<div class="progress">
 					<div class="progress-bar" role="progressbar" aria-valuenow="60"
@@ -35,12 +35,8 @@
 					controls preload="auto" width="1140" height="460"
 					poster="http://video-js.zencoder.com/oceans-clip.png"
 					data-setup='{"example_option":true}'>
-					<source src="http://video-js.zencoder.com/oceans-clip.mp4"
+					<source src="${video.source}"
 						type='video/mp4' />
-					<source src="http://video-js.zencoder.com/oceans-clip.webm"
-						type='video/webm' />
-					<source src="http://video-js.zencoder.com/oceans-clip.ogv"
-						type='video/ogg' />
 					<p class="vjs-no-js">
 						To view this video please enable JavaScript, and consider
 						upgrading to a web browser that <a
