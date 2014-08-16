@@ -44,5 +44,14 @@ public class VideoController {
 		return "redirect:/";
 		
 	}
+	
+	@RequestMapping(value="/mark/{id}")
+	public String markVideo(@PathVariable("id") Long id, Model uiModel) {
+		Video video = this.videoManager.getVideoById(id);
+		System.out.println(video.toString());
+		uiModel.addAttribute("video",video);
+		return "mark";
+		
+	}
 
 }

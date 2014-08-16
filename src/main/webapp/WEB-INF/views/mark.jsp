@@ -11,17 +11,17 @@
 				<h4>18:16 15 Aug 2014</h4>
 				<div class="progress">
 					<div class="progress-bar" role="progressbar" aria-valuenow="60"
-						aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+						aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
 					</div>
 				</div>
 				
 				<!-- annotation navigation -->
 				
 				<div class="row">
-				<div class="col-lg-4">
+				<div class="col-lg-4 gray">
 				<h4 class="text-center">Watching</h4>
 				</div>
-				<div class="col-lg-4 gray">
+				<div class="col-lg-4">
 				<h4 class="text-center">Marking</h4>
 				</div>
 				<div class="col-lg-4 gray">
@@ -48,7 +48,7 @@
 				<!--  -->
 				<div id="bottom-nav">
 				<div class="row">
-				<div class="col-lg-2 pull-right"><a href="<c:url value="/video/mark/${video.id}" /> "><button type="button" class="btn btn-primary btn-lg">Start Marking</button></a></div>
+				<div class="col-lg-2"><button type="button" class="btn btn-primary btn-lg">Start</button></div>
 				</div>
 				</div>
 				
