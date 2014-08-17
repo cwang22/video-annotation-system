@@ -11,32 +11,30 @@
 				<h4>18:16 15 Aug 2014</h4>
 				<div class="progress">
 					<div class="progress-bar" role="progressbar" aria-valuenow="60"
-						aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+						aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
+				</div>
+
+				<!-- annotation navigation -->
+
+				<div class="row">
+					<div class="col-lg-4 gray">
+						<h4 class="text-center">Watching</h4>
+					</div>
+					<div class="col-lg-4">
+						<h4 class="text-center">Marking</h4>
+					</div>
+					<div class="col-lg-4 gray">
+						<h4 class="text-center">Ranking</h4>
 					</div>
 				</div>
-				
-				<!-- annotation navigation -->
-				
-				<div class="row">
-				<div class="col-lg-4 gray">
-				<h4 class="text-center">Watching</h4>
-				</div>
-				<div class="col-lg-4">
-				<h4 class="text-center">Marking</h4>
-				</div>
-				<div class="col-lg-4 gray">
-				<h4 class="text-center">Ranking</h4>
-				</div>
-				</div>
-				
+
 				<!-- video player -->
-				
+
 				<video id="example_video_1" class="video-js vjs-default-skin"
 					controls preload="auto" width="1140" height="460"
 					poster="http://video-js.zencoder.com/oceans-clip.png"
 					data-setup='{"example_option":true}'>
-					<source src="${video.source}"
-						type='video/mp4' />
+					<source src="${video.source}" type='video/mp4' />
 					<p class="vjs-no-js">
 						To view this video please enable JavaScript, and consider
 						upgrading to a web browser that <a
@@ -44,14 +42,42 @@
 							HTML5 video</a>
 					</p>
 				</video>
-				
+
 				<!--  -->
 				<div id="bottom-nav">
-				<div class="row">
-				<div class="col-lg-2"><button type="button" class="btn btn-primary btn-lg">Start</button></div>
+					<div class="row">
+						<div class="col-lg-2">
+							<button id="start-button" type="button"
+								class="btn btn-primary btn-lg">Start</button>
+						</div>
+						<div class="col-lg-2">
+							<button id="end-button" type="button"
+								class="btn btn-primary btn-lg disabled">End</button>
+						</div>
+						<div class="col-lg-8">
+							<form action="<c:url value="/video/mark"/>" method="get">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Start</th>
+											<th>End</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody id="result"></tbody>
+									<tfoot>
+									<tr>
+									<td><input type="hidden" name="id" value="${video.id}"/></td>
+									<td></td>
+									<td><input class="btn btn-xs btn-success" type="submit" value="submit" /></td>
+									</tr>
+									</tfoot>
+								</table>
+							</form>
+						</div>
+					</div>
 				</div>
-				</div>
-				
+
 			</div>
 		</div>
 	</div>
