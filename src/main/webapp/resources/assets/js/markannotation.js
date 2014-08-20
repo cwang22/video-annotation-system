@@ -1,6 +1,10 @@
 /**
  * 
  */
+$(document).ready(function(){
+	$("#sort").dragsort({ dragSelector: "li", dragEnd: function() { }, dragBetween: false, placeHolderTemplate: "<li></li>" });
+});
+
 myPlayer = videojs("example_video_1");
 startTime = 0;
 endTimer = 0;
@@ -24,8 +28,6 @@ $(document).ready(function(){
 		$('#result').append('<tr><td><input name="time[][start]" value="' + startTime + '" /></td><td><input name="time[][end]" value="' + endTime + '"/></td><td><button class="delete-button btn btn-xs btn-danger">delete</button></td></tr>');
 		addDeleteButtonListener();
 	});
-	
-	
 });
 function addDeleteButtonListener() {
 	$('.delete-button').each(function(){
@@ -36,3 +38,8 @@ function addDeleteButtonListener() {
 		});
 	});
 }
+
+
+
+
+

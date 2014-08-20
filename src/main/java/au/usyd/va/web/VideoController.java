@@ -1,5 +1,7 @@
 package au.usyd.va.web;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,7 +27,6 @@ public class VideoController {
 	@RequestMapping(value="/watch/{id}")
 	public String watchVideo(@PathVariable("id") Long id, Model uiModel) {
 		Video video = this.videoManager.getVideoById(id);
-		System.out.println(video.toString());
 		uiModel.addAttribute("video",video);
 		return "watch";
 	}
@@ -38,6 +39,7 @@ public class VideoController {
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String addVideo(HttpServletRequest httpServletRequest) {
 		Video video = new Video();
+		
 		video.setTitle(httpServletRequest.getParameter("title"));
 		video.setSource(httpServletRequest.getParameter("source"));
 		videoManager.addVideo(video);
@@ -48,10 +50,26 @@ public class VideoController {
 	@RequestMapping(value="/mark/{id}")
 	public String markVideo(@PathVariable("id") Long id, Model uiModel) {
 		Video video = this.videoManager.getVideoById(id);
-		System.out.println(video.toString());
 		uiModel.addAttribute("video",video);
 		return "mark";
 		
+	}
+	
+	@RequestMapping(value="/mark",method=RequestMethod.POST)
+	public String addAnnotation(HttpServletRequest httpServletRequest) {
+		long id = Long.parseLong(httpServletRequest.getParameter("id"));
+		String time[] = httpServletRequest.getParameterValues("time");
+		System.out.println(time);
+ 		Video video = this.videoManager.getVideoById(id);
+		return "redirect:rank/" + id;
+		
+	}
+	
+	@RequestMapping(value="/rank/{id}")
+	public String rankVido(@PathVariable("id") Long id, Model uiModel) {
+		Video video = this.videoManager.getVideoById(id);
+		uiModel.addAttribute(video);
+		return "rank";
 	}
 
 }

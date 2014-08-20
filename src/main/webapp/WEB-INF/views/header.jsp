@@ -39,7 +39,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">VIDEO ANNOTATION SYSTEM</a>
+          <a class="navbar-brand" href="/va/">VIDEO ANNOTATION SYSTEM</a>
         </div>
         <div class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav">

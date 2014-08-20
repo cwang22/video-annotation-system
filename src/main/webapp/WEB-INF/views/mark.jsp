@@ -55,7 +55,7 @@
 								class="btn btn-primary btn-lg disabled">End</button>
 						</div>
 						<div class="col-lg-8">
-							<form action="<c:url value="/video/mark"/>" method="get">
+							<form action="<c:url value="/video/mark"/>" method="post">
 								<table class="table table-hover">
 									<thead>
 										<tr>

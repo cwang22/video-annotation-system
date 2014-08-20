@@ -46,6 +46,7 @@
 	<script src="<c:url value="/resources/assets/js/jquery.prettyPhoto.js" />"></script>
   	<script src="<c:url value="/resources/assets/js/jquery.isotope.min.js" />"></script>
   	<script src="<c:url value="/resources/assets/js/custom.js" />"></script>
+	<script src="<c:url value="/resources/assets/js/jquery.dragsort-0.5.2.min.js" />"></script>
 	<script src="<c:url value="/resources/assets/js/markannotation.js" />"></script>
   </body>
 </html>
