@@ -20,3 +20,15 @@
 	padding-top:50px;
 	padding-bottom:30px;
 }
+
+/*side bar*/
+#sidebar{
+	z-index: 1040;
+}
+
+#sidebar-button{
+	position: fixed;
+	top: 123px;
+	z-index: 500;
+	width: 111px;
+}

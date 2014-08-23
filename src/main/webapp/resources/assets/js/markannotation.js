@@ -1,9 +1,7 @@
 /**
  * 
  */
-$(document).ready(function(){
-	$("#sort").dragsort({ dragSelector: "li", dragEnd: function() { }, dragBetween: false, placeHolderTemplate: "<li></li>" });
-});
+
 
 myPlayer = videojs("example_video_1");
 startTime = 0;
@@ -29,6 +27,7 @@ $(document).ready(function(){
 		addDeleteButtonListener();
 	});
 });
+
 function addDeleteButtonListener() {
 	$('.delete-button').each(function(){
 		//alert("each");

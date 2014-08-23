@@ -160,5 +160,10 @@
 
 	<%@ include file="include/footer.jsp"%>
 	<%@ include file="include/script.jsp"%>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#sort").dragsort({ dragSelector: "li", dragEnd: function() { }, dragBetween: false, placeHolderTemplate: "<li></li>" });
+	});
+	</script>
 </body>
 </html>
