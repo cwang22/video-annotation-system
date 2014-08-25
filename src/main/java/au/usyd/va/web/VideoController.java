@@ -22,6 +22,11 @@ public class VideoController {
 	@Resource(name="videoManager")
 	private VideoManager videoManager;
 	
+	@RequestMapping(value="/all")
+	public String videoPage(Model uiModel){
+		
+		return "video";
+	}
 	
 	
 	@RequestMapping(value="/watch/{id}")

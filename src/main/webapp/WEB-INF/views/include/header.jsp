@@ -1,3 +1,4 @@
+
 <!-- Fixed navbar -->
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
@@ -12,7 +13,7 @@
 		</div>
 		<div class="navbar-collapse collapse navbar-right">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="index.html">VIDEO</a></li>
+				<li><a href="<c:url value="/video/all" />">VIDEO</a></li>
 				<li><a href="about.html">MY ANNOTATION</a></li>
 				<li><a href="contact.html">ABOUT</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"

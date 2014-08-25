@@ -22,26 +22,23 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>${video.title}</h1>
-					<h4>18:16 15 Aug 2014</h4>
-					<div class="progress">
-						<div class="progress-bar" role="progressbar" aria-valuenow="60"
-							aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
-					</div>
-
-					<!-- annotation navigation -->
-
-					<div class="row">
-						<div class="col-lg-4">
-							<h4 class="text-center">Marking</h4>
-						</div>
-						<div class="col-lg-4 gray">
-							<h4 class="text-center">Selecting</h4>
-						</div>
-						<div class="col-lg-4 gray">
-							<h4 class="text-center">Ranking</h4>
-						</div>
-					</div>
+				<div class="ui three huge steps text-center">
+  <div class="ui active step">
+    Marking
+  </div>
+  <div class="ui disabled step">
+    Selecting
+  </div>
+  <div class="ui disabled step">
+    Ranking
+  </div>
+</div>
+<h1 class="ui huge header">
+ ${video.title}
+  
+</h1>
+<i class="time icon"></i>11 Aug 2014
+<hr>
 
 					<!-- video player -->
 
