@@ -70,8 +70,15 @@ public class VideoController {
 		
 	}
 	
+	@RequestMapping(value="/select/{id}")
+	public String selectKeyFrame(@PathVariable("id") Long id, Model uiModel) {
+		Video video = this.videoManager.getVideoById(id);
+		uiModel.addAttribute(video);
+		return "select";
+	}
+	
 	@RequestMapping(value="/rank/{id}")
-	public String rankVido(@PathVariable("id") Long id, Model uiModel) {
+	public String rankAnnotation(@PathVariable("id") Long id, Model uiModel) {
 		Video video = this.videoManager.getVideoById(id);
 		uiModel.addAttribute(video);
 		return "rank";

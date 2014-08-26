@@ -41,3 +41,16 @@
 #videowarp .thumbnail {
 	position: relative;
 }
+
+/**/
+.slide div {
+	position: relative;
+}
+
+.slide div img {
+	cursor: pointer;
+}
+
+.slideshow .carousel {
+	position: inherit; 
+} 

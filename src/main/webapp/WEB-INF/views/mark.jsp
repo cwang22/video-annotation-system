@@ -37,7 +37,7 @@
  ${video.title}
   
 </h1>
-<i class="time icon"></i>11 Aug 2014
+<i class="time icon"></i>11 Aug 2014<i class="time icon"></i>11 Aug 2014
 <hr>
 
 					<!-- video player -->
@@ -117,6 +117,7 @@
 	</div>
 	<%@ include file="include/footer.jsp"%>
 	<%@ include file="include/script.jsp"%>
+	<script src="<c:url value="/resources/assets/js/markannotation.js" />"></script>
 
 </body>
 </html>
