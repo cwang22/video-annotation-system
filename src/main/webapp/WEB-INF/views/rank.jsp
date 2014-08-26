@@ -22,9 +22,9 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="ui three huge steps text-center">
-						<div class="ui step">Marking</div>
-						<div class="ui step">Selecting</div>
-						<div class="ui active step">Ranking</div>
+						<a class="ui step" href="<c:url value="/video/mark/${video.id}" />" >Marking</a>
+						<a class="ui step" href="<c:url value="/video/select/${video.id}" />" >Selecting</a>
+						<a class="ui active step">Ranking</a>
 					</div>
 					<h1 class="ui huge header">${video.title} - Rank Segments</h1>
 					<i class="time icon"></i>11 Aug 2014
@@ -35,40 +35,18 @@
 								<div class="col-lg-12">
 									<ol id="sort" class="ui list-unstyled">
 										<li class="ui segment">
-											<h2 class="ui header">segment 1</h2>
-											<div class="sub header">
-												<i class="time icon"></i>0:00 - 0.3021
+											<div class="row">
+												<div class="col-lg-6">
+													<h2 class="ui header">segment 1</h2>
+													<div class="sub header">
+														<i class="time icon"></i>0:00 - 0.3021
+													</div>
+													<p>some text description could go here</p>
+												</div>
+												<div class="col-lg-6">
+													<img src="holder.js/400x200" />
+												</div>
 											</div>
-											<img src="holder.js/240x240" />
-										</li>
-										<li class="ui segment">
-											<h2 class="ui header">segment 2</h2>
-											<div class="sub header">
-												<i class="time icon"></i>0:00 - 0.3021
-											</div>
-											<img src="holder.js/240x240" />
-										</li>
-										<li class="ui segment">
-											<h2 class="ui header">segment 3</h2>
-											<div class="sub header">
-												<i class="time icon"></i>0:00 - 0.3021
-											</div>
-											<img src="holder.js/240x240" />
-										</li>
-										
-										<li class="ui segment">
-											<h2 class="ui header">segment 4</h2>
-											<div class="sub header">
-												<i class="time icon"></i>0:00 - 0.3021
-											</div>
-											<img src="holder.js/240x240" />
-										</li>
-										<li class="ui segment">
-											<h2 class="ui header">segment 5	</h2>
-											<div class="sub header">
-												<i class="time icon"></i>0:00 - 0.3021
-											</div>
-											<img src="holder.js/240x240" />
 										</li>
 									</ol>
 

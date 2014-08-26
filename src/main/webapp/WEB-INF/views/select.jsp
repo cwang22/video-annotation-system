@@ -23,9 +23,9 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="ui three huge steps text-center">
-						<div class="ui step">Marking</div>
-						<div class="ui active step">Selecting</div>
-						<div class="ui disabled step">Ranking</div>
+						<a class="ui step" href="<c:url value="/video/mark/${video.id}" /> ">Marking</a>
+						<a class="ui active step">Selecting</a>
+						<a class="ui disabled step">Ranking</a>
 					</div>
 					<h1 class="ui huge header">${video.title} - Select Key Frames</h1>
 					<i class="time icon"></i>11 Aug 2014

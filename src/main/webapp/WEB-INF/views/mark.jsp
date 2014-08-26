@@ -22,23 +22,15 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-				<div class="ui three huge steps text-center">
-  <div class="ui active step">
-    Marking
-  </div>
-  <div class="ui disabled step">
-    Selecting
-  </div>
-  <div class="ui disabled step">
-    Ranking
-  </div>
-</div>
-<h1 class="ui huge header">
- ${video.title}
-  
-</h1>
-<i class="time icon"></i>11 Aug 2014<i class="time icon"></i>11 Aug 2014
-<hr>
+					<div class="ui three huge steps text-center">
+						<a class="ui active step" href="<c:url value="/video/mark/${video.id}" /> ">Marking</a>
+						<a class="ui disabled step">Selecting</a>
+						<a class="ui disabled step">Ranking</a>
+					</div>
+					<h1 class="ui huge header">${video.title}</h1>
+					<i class="time icon"></i>11 Aug 2014<i class="time icon"></i>11 Aug
+					2014
+					<hr>
 
 					<!-- video player -->
 

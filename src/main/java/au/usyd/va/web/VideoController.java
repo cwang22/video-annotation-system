@@ -66,7 +66,7 @@ public class VideoController {
 		String time[] = httpServletRequest.getParameterValues("time");
 		System.out.println(time);
  		Video video = this.videoManager.getVideoById(id);
-		return "redirect:rank/" + id;
+		return "redirect:select/" + id;
 		
 	}
 	
