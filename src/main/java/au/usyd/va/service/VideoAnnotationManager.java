@@ -9,6 +9,6 @@ public interface VideoAnnotationManager {
 	public List<VideoAnnotation> getAnnotations(Video video);
 	public void addVideoAnnotation(VideoAnnotation va);
 	public VideoAnnotation getVideoAnnotationById(long id);
-	public void updateVideoAnnotation(Video video);
+	public void updateVideoAnnotation(VideoAnnotation va);
 	public void deleteVideoAnnoation(long id);
 }

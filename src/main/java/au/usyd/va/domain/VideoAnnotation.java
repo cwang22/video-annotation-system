@@ -1,11 +1,36 @@
 package au.usyd.va.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Annotation")
 public class VideoAnnotation {
+	
+	@Id
+	@Column(name="id")
+	@GeneratedValue
 	private long id;
+	
+	@ManyToOne
+	@JoinColumn(name="video_id")
 	private Video video;
+	
+	@Column(name="start")
 	private long start;
+	
+	@Column(name="end")
 	private long end;
+	
+	@Column(name="keyframe")
 	private long keyFrame;
+	
+	@Column(name="rank")
 	private int rank;
 	
 	public long getId() {
