@@ -93,7 +93,7 @@
 							<ul class="ss-carousel">
 								<li class="slide">
 									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
+										<img data-src="holder.js/240x240" alt="" width="240" height="240" />
 									</div>
 								</li>
 								<li class="slide">
@@ -191,7 +191,9 @@
 					<div id="bottom-nav">
 						<div class="row">
 							<div class="col-lg-2 pull-right">
-								<input type="submit" value="sumbit" class="ui blue large button" />
+							<form >
+								<input type="submit" value="sumbit" class="btn btn-primary btn-lg" />
+							</form>
 							</div>
 						</div>
 					</div>
@@ -227,8 +229,6 @@
 		$(function(){
 			var $slideshow = $('.slideshow').slides();
 		});
-		
-
 
 		$(function() {
 			$(".slide img").each(function() {
@@ -236,6 +236,14 @@
 					$(this).parent().parent().parent().children().children().children(".selected").remove();
 					$(this).parent().append('<span class="ui right green corner label selected"><i class="checkmark icon"></i></span>');
 				});
+			});
+			
+			$("form").submit(function(){
+				alert("hi");
+				$(".selected").parent().children("img").each(function(){
+					alert($(this).attr("src"));
+				});
+				return true;
 			});
 		});
 	</script>

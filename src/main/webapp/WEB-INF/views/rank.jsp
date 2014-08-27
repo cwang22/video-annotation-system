@@ -48,6 +48,62 @@
 												</div>
 											</div>
 										</li>
+										<li class="ui segment">
+											<div class="row">
+												<div class="col-lg-6">
+													<h2 class="ui header">segment 0</h2>
+													<div class="sub header">
+														<i class="time icon"></i>0:00 - 0.3021
+													</div>
+													<p>some text description could go here</p>
+												</div>
+												<div class="col-lg-6">
+													<img src="holder.js/400x200" />
+												</div>
+											</div>
+										</li>
+										<li class="ui segment">
+											<div class="row">
+												<div class="col-lg-6">
+													<h2 class="ui header">segment 1</h2>
+													<div class="sub header">
+														<i class="time icon"></i>0:00 - 0.3021
+													</div>
+													<p>some text description could go here</p>
+												</div>
+												<div class="col-lg-6">
+													<img src="holder.js/400x200" />
+												</div>
+											</div>
+										</li>
+										<li class="ui segment">
+											<div class="row">
+												<div class="col-lg-6">
+													<h2 class="ui header">segment 2</h2>
+													<div class="sub header">
+														<i class="time icon"></i>0:00 - 0.3021
+													</div>
+													<p>some text description could go here</p>
+												</div>
+												<div class="col-lg-6">
+													<img src="holder.js/400x200" />
+												</div>
+											</div>
+										</li>
+										<li class="ui segment">
+											<div class="row">
+												<div class="col-lg-6">
+													<h2 class="ui header">segment 3</h2>
+													<div class="sub header">
+														<i class="time icon"></i>0:00 - 0.3021
+													</div>
+													<p>some text description could go here</p>
+												</div>
+												<div class="col-lg-6">
+													<img src="holder.js/400x200" />
+												</div>
+											</div>
+										</li>
 									</ol>
 
 									<!-- <ol id="sort" class="list-unstyled">
@@ -150,15 +206,38 @@
 								<div class="row">
 									<div class="col-lg-2 pull-right">
 										<input type="submit" value="sumbit"
-											class="ui blue large button" />
+											class="btn btn-primary btn-lg" />
 									</div>
 								</div>
 							</div>
 						</div>
 					</form>
-				</div>
+					</div>
+					</div>
+					</div>
+					<!-- sidebar -->
+		<div id="sidebar" class="ui red vertical large sidebar menu">
+			<a class="item"> <i class="home large icon"></i> Home
+			</a> <a class="item"> <i class="video large icon"></i>All Videos
+			</a>
+			<div class="item">
+				<b>More</b>
+			</div>
+			<div class="item">
+				<a href="#" class="thumbnail"> <img src="holder.js/240x240" />
+				</a> <a href="#" class="thumbnail"> <img src="holder.js/240x240" />
+				</a><a href="#" class="thumbnail"> <img src="holder.js/240x240" />
+				</a>
 			</div>
 		</div>
+		<div id="sidebar-button"
+			class="ui black huge launch right attached button">
+			<i class="icon video"></i> <span class="text">Videos</span>
+		</div>
+	</div>
+				
+			
+		
 	</div>
 
 	<%@ include file="include/footer.jsp"%>

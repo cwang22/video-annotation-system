@@ -71,10 +71,17 @@ public class VideoController {
 	}
 	
 	@RequestMapping(value="/select/{id}")
-	public String selectKeyFrame(@PathVariable("id") Long id, Model uiModel) {
+	public String selectKeyFrame(@PathVariable("id") Long id, HttpServletRequest httpServletRequest, Model uiModel) {
 		Video video = this.videoManager.getVideoById(id);
 		uiModel.addAttribute(video);
 		return "select";
+	}
+	
+	@RequestMapping(value="/select/{id}",method=RequestMethod.POST)
+	public String selectKeyFrame(@PathVariable("id") Long id, Model uiModel) {
+		Video video = this.videoManager.getVideoById(id);
+		uiModel.addAttribute(video);
+		return "redirect:rank/" + id;
 	}
 	
 	@RequestMapping(value="/rank/{id}")
