@@ -23,177 +23,82 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="ui three huge steps text-center">
-						<a class="ui step" href="<c:url value="/video/mark/${video.id}" /> ">Marking</a>
-						<a class="ui active step">Selecting</a>
-						<a class="ui disabled step">Ranking</a>
+						<a class="ui step"
+							href="<c:url value="/video/mark/${video.id}" /> ">Marking</a> <a
+							class="ui active step">Selecting</a> <a class="ui disabled step">Ranking</a>
 					</div>
-					<h1 class="ui huge header">${video.title} - Select Key Frames</h1>
+					<h1 class="ui huge header">${video.title}-Select Key Frames</h1>
 					<i class="time icon"></i>11 Aug 2014
 					<hr>
-					<section class="ui segment">
-						<h2 class="ui header">segment 1</h2>
-						<div class="sub header">
-							<i class="time icon"></i>0:00 - 0.3021
-						</div>
-						<hr>
-						<div class="slideshow" data-pagination="false" data-auto="0">
-							<ul class="ss-carousel">
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-							</ul>
-						</div>
-					</section>
 
-					<section class="ui segment">
-						<h2 class="ui header">segment 2</h2>
-						<div class="sub header">
-							<i class="time icon"></i>0:00 - 0.3021
-						</div>
-						<hr>
-						<div class="slideshow" data-visible="4" data-pagination="false"
-							data-auto="0">
-							<ul class="ss-carousel">
-								<li class="slide">
-									<div>
-										<img data-src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-							</ul>
-						</div>
-					</section>
+					<c:forEach items="${vas}" var="vas" varStatus="status">
 
-					<section class="ui segment">
-						<h2 class="ui header">segment 3</h2>
-						<div class="sub header">
-							<i class="time icon"></i>0:00 - 0.3021
-						</div>
-						<hr>
-						<div class="slideshow" data-visible="4" data-pagination="false"
-							data-auto="0">
-							<ul class="ss-carousel">
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-								<li class="slide">
-									<div>
-										<img src="holder.js/240x240" alt="" width="240" height="240" />
-									</div>
-								</li>
-							</ul>
-						</div>
-					</section>
+						<section class="ui segment">
+							<h2 class="ui header">
+								segment
+								<c:out value="${status.count}" />
+							</h2>
+							<div class="sub header">
+								<i class="time icon"></i>
+								<c:out value="${vas.starttime}" />
+								-
+								<c:out value="${vas.endtime}" />
+							</div>
+							<hr>
+							<div class="slideshow" data-pagination="false" data-auto="0">
+								<ul class="ss-carousel">
+									<li class="slide">
+										<div>
+											<img src="holder.js/240x240" alt="" width="240" height="240" />
+										</div>
+									</li>
+									<li class="slide">
+										<div>
+											<img src="holder.js/240x240" alt="" width="240" height="240" />
+										</div>
+									</li>
+									<li class="slide">
+										<div>
+											<img src="holder.js/240x240" alt="" width="240" height="240" />
+										</div>
+									</li>
+									<li class="slide">
+										<div>
+											<img src="holder.js/240x240" alt="" width="240" height="240" />
+										</div>
+									</li>
+									<li class="slide">
+										<div>
+											<img src="holder.js/240x240" alt="" width="240" height="240" />
+										</div>
+									</li>
+									<li class="slide">
+										<div>
+											<img src="holder.js/240x240" alt="" width="240" height="240" />
+										</div>
+									</li>
+									<li class="slide">
+										<div>
+											<img src="holder.js/240x240" alt="" width="240" height="240" />
+										</div>
+									</li>
+									<li class="slide">
+										<div>
+											<img src="holder.js/240x240" alt="" width="240" height="240" />
+										</div>
+									</li>
+								</ul>
+							</div>
+						</section>
+					</c:forEach>
 
 					<div id="bottom-nav">
 						<div class="row">
 							<div class="col-lg-2 pull-right">
-							<form >
-								<input type="submit" value="sumbit" class="btn btn-primary btn-lg" />
-							</form>
+								<form>
+									<input type="submit" value="sumbit"
+										class="btn btn-primary btn-lg" />
+								</form>
 							</div>
 						</div>
 					</div>
@@ -226,21 +131,36 @@
 	<script src="<c:url value="/resources/assets/js/slideshow.js"/>"></script>
 	<script type="text/javascript">
 		// Create slideshow instances
-		$(function(){
+		$(function() {
 			var $slideshow = $('.slideshow').slides();
 		});
 
 		$(function() {
-			$(".slide img").each(function() {
-				$(this).click(function() {
-					$(this).parent().parent().parent().children().children().children(".selected").remove();
-					$(this).parent().append('<span class="ui right green corner label selected"><i class="checkmark icon"></i></span>');
-				});
-			});
-			
-			$("form").submit(function(){
+			$(".slide img")
+					.each(
+							function() {
+								$(this)
+										.click(
+												function() {
+													$(this)
+															.parent()
+															.parent()
+															.parent()
+															.children()
+															.children()
+															.children(
+																	".selected")
+															.remove();
+													$(this)
+															.parent()
+															.append(
+																	'<span class="ui right green corner label selected"><i class="checkmark icon"></i></span>');
+												});
+							});
+
+			$("form").submit(function() {
 				alert("hi");
-				$(".selected").parent().children("img").each(function(){
+				$(".selected").parent().children("img").each(function() {
 					alert($(this).attr("src"));
 				});
 				return true;
