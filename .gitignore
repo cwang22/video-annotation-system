@@ -34,4 +34,4 @@ out
 test-output
 atlassian-ide-plugin.xml
 .gradletasknamecache
-/videoframe
+/src/main/webapp/resources/videoframe
