@@ -26,6 +26,11 @@ $(document).ready(function(){
 		$('#result').append('<tr><td><input name="time[][start]" value="' + startTime + '" /></td><td><input name="time[][end]" value="' + endTime + '"/></td><td><button class="delete-button btn btn-xs btn-danger">delete</button></td></tr>');
 		addDeleteButtonListener();
 	});
+	
+	$("form").submit(function(){
+		$('form').append('<textarea type="hidden" name="json">' + JSON.stringify($("form").serializeJSON()) + '</textarea>');
+		return
+	});
 });
 
 function addDeleteButtonListener() {

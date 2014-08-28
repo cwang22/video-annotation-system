@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import au.usyd.va.domain.Video;
 
-@Service(value="videoManager")
+@Service(value="VideoManager")
 @Transactional
 public class DatabaseVideoManager implements VideoManager {
 	

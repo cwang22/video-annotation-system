@@ -9,65 +9,84 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Annotation")
+@Table(name="VideoAnnotation")
 public class VideoAnnotation {
 	
 	@Id
-	@Column(name="id")
+	@Column(name="Id")
 	@GeneratedValue
 	private long id;
 	
 	@ManyToOne
-	@JoinColumn(name="video_id")
+	@JoinColumn(name="Videoid")
 	private Video video;
 	
-	@Column(name="start")
-	private long start;
+	@Column(name="Starttime")
+	private double starttime;
 	
-	@Column(name="end")
-	private long end;
+	@Column(name="Endtime")
+	private double endtime;
 	
-	@Column(name="keyframe")
-	private long keyFrame;
+	@Column(name="Keyframe")
+	private double keyFrame;
 	
-	@Column(name="rank")
+	@Column(name="Rank")
 	private int rank;
-	
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	public Video getVideo() {
 		return video;
 	}
+
 	public void setVideo(Video video) {
 		this.video = video;
 	}
-	public long getStart() {
-		return start;
+
+	public double getStarttime() {
+		return starttime;
 	}
-	public void setStart(long start) {
-		this.start = start;
+
+	public void setStarttime(double starttime) {
+		this.starttime = starttime;
 	}
-	public long getEnd() {
-		return end;
+
+	public double getEndtime() {
+		return endtime;
 	}
-	public void setEnd(long end) {
-		this.end = end;
+
+	public void setEndtime(double endtime) {
+		this.endtime = endtime;
 	}
-	public long getKeyFrame() {
+
+	public double getKeyFrame() {
 		return keyFrame;
 	}
-	public void setKeyFrame(long keyFrame) {
+
+	public void setKeyFrame(double keyFrame) {
 		this.keyFrame = keyFrame;
 	}
+
 	public int getRank() {
 		return rank;
 	}
+
 	public void setRank(int rank) {
 		this.rank = rank;
 	}
+
+	@Override
+	public String toString() {
+		return "VideoAnnotation [id=" + id + ", video=" + video
+				+ ", starttime=" + starttime + ", endtime=" + endtime
+				+ ", keyFrame=" + keyFrame + ", rank=" + rank + "]";
+	}
+	
 	
 }

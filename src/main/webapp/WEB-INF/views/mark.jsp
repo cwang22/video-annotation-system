@@ -71,7 +71,7 @@
 										<tbody id="result"></tbody>
 										<tfoot>
 											<tr>
-												<td><input type="hidden" name="id" value="${video.id}" /></td>
+												<td><input id="id" type="hidden" name="id" value="${video.id}" /></td>
 												<td></td>
 												<td><input class="btn btn-xs btn-success" type="submit"
 													value="submit" /></td>
@@ -109,6 +109,7 @@
 	</div>
 	<%@ include file="include/footer.jsp"%>
 	<%@ include file="include/script.jsp"%>
+	<script src="<c:url value="/resources/assets/js/jquery.serializejson.min.js" />"></script>
 	<script src="<c:url value="/resources/assets/js/markannotation.js" />"></script>
 
 </body>

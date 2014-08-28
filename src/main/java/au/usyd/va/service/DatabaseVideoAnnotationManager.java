@@ -26,7 +26,7 @@ public class DatabaseVideoAnnotationManager implements VideoAnnotationManager{
 	@Override
 	public List<VideoAnnotation> getAnnotations(Video video) {
 		long id = video.getId();
-		return this.sessionFactory.getCurrentSession().createQuery("FROM Video where video_id = " + id).list();
+		return this.sessionFactory.getCurrentSession().createQuery("FROM VideoAnnotation as vid where vid.video.id = " + id).list();
 	
 	}
 
@@ -53,9 +53,5 @@ public class DatabaseVideoAnnotationManager implements VideoAnnotationManager{
 		Session currentSession = this.sessionFactory.getCurrentSession();
 		VideoAnnotation va = (VideoAnnotation) currentSession.get(VideoAnnotation.class, id);
 		currentSession.delete(va);
-		
 	}
-
-	
-
 }
