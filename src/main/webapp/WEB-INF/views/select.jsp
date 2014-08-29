@@ -23,8 +23,8 @@
 
   <%
     Video video = (Video) request.getAttribute("video");
-      long id = video.getId();
-      ArrayList<VideoAnnotation> vas = (ArrayList<VideoAnnotation>) request.getAttribute("vas");
+    long id = video.getId();
+    ArrayList<VideoAnnotation> vas = (ArrayList<VideoAnnotation>) request.getAttribute("vas");
   %>
   <%@ include file="include/header.jsp"%>
   <div id="main">
@@ -45,12 +45,12 @@
 
           <%
             int count = 0;
-                                              for(VideoAnnotation va : vas){
-                                                double startTime = va.getStarttime();
-                                                double endTime = va.getEndtime();
-                                                int startFrame = (int) Math.floor(startTime * 24);
-                                                int endFrame = (int) Math.floor(endTime * 24);
-                                                count++;
+                                                                for(VideoAnnotation va : vas){
+                                                                  double startTime = va.getStarttime();
+                                                                  double endTime = va.getEndtime();
+                                                                  int startFrame = (int) Math.floor(startTime * 24);
+                                                                  int endFrame = (int) Math.floor(endTime * 24);
+                                                                  count++;
           %>
           <section class="ui segment">
             <h2 class="ui header">
@@ -68,7 +68,7 @@
               <ul class="ss-carousel">
                 <%
                   for(int i = startFrame; i< endFrame; i++) {
-                                String result = String.format("%04d", i);
+                                                                    String result = String.format("%04d", i);
                 %>
                 <li class="slide">
                   <div>
@@ -132,22 +132,12 @@
       });
 
       $(function() {
-        $(".slide img")
-                .each(
-                        function() {
-                          $(this)
-                                  .click(
-                                          function() {
-                                            $(this).parent().parent().parent()
-                                                    .children().children()
-                                                    .children(".selected")
-                                                    .remove();
-                                            $(this)
-                                                    .parent()
-                                                    .append(
-                                                            '<span class="ui right green corner label selected"><i class="checkmark icon"></i></span>');
-                                          });
-                        });
+        $(".slide img").each(function() {
+          $(this).click(function() {
+            $(this).parent().parent().parent().children().children().children(".selected").remove();
+            $(this).parent().append('<span class="ui right green corner label selected"><i class="checkmark icon"></i></span>');
+          });
+        });
 
         $("form").submit(function() {
           alert("hi");
