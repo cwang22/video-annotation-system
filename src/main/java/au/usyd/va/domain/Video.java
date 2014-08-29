@@ -1,50 +1,52 @@
 package au.usyd.va.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "Video")
 public class Video {
-	
-	@Id
-	@Column(name= "Id")
-	@GeneratedValue
-	private long id;
-	
-	@Column(name = "Title")
-	private String title;
 
-	@Column(name = "Source")
-	private String source;
+  @Id
+  @Column(name = "Id")
+  @GeneratedValue
+  private long id;
 
-	public long getId() {
-		return id;
-	}
+  @Column(name = "Title")
+  private String title;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+  @Column(name = "Source")
+  private String source;
 
-	public String getTitle() {
-		return title;
-	}
+  public long getId() {
+    return id;
+  }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+  public void setId(long id) {
+    this.id = id;
+  }
 
-	public String getSource() {
-		return source;
-	}
+  public String getTitle() {
+    return title;
+  }
 
-	public void setSource(String source) {
-		this.source = source;
-	}
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-	@Override
-	public String toString() {
-		return "Video [id=" + id + ", title=" + title + ", source=" + source
-				+ "]";
-	}
+  public String getSource() {
+    return source;
+  }
+
+  public void setSource(String source) {
+    this.source = source;
+  }
+
+  @Override
+  public String toString() {
+    return "Video [id=" + id + ", title=" + title + ", source=" + source + "]";
+  }
 }
-

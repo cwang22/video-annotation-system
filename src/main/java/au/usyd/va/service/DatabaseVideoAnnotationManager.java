@@ -11,47 +11,46 @@ import org.springframework.transaction.annotation.Transactional;
 import au.usyd.va.domain.Video;
 import au.usyd.va.domain.VideoAnnotation;
 
-
-@Service(value="VideoAnnotationManager")
+@Service(value = "VideoAnnotationManager")
 @Transactional
-public class DatabaseVideoAnnotationManager implements VideoAnnotationManager{
-	
-	private SessionFactory sessionFactory;
+public class DatabaseVideoAnnotationManager implements VideoAnnotationManager {
 
-	@Autowired
-	public void setSeesionFactory(SessionFactory seesionFactory) {
-		this.sessionFactory = seesionFactory;
-	}
+  private SessionFactory sessionFactory;
 
-	@Override
-	public List<VideoAnnotation> getAnnotations(Video video) {
-		long id = video.getId();
-		return this.sessionFactory.getCurrentSession().createQuery("FROM VideoAnnotation as vid where vid.video.id = " + id).list();
-	
-	}
+  @Autowired
+  public void setSeesionFactory(SessionFactory seesionFactory) {
+    this.sessionFactory = seesionFactory;
+  }
 
-	@Override
-	public void addVideoAnnotation(VideoAnnotation va) {
-		this.sessionFactory.getCurrentSession().save(va);
-	}
+  @Override
+  public List<VideoAnnotation> getAnnotations(Video video) {
+    long id = video.getId();
+    return this.sessionFactory.getCurrentSession()
+            .createQuery("FROM VideoAnnotation as vid where vid.video.id = " + id).list();
 
-	@Override
-	public VideoAnnotation getVideoAnnotationById(long id) {
-		Session currentSession = this.sessionFactory.getCurrentSession();
-		VideoAnnotation va = (VideoAnnotation) currentSession.get(VideoAnnotation.class, id);
-		return va;
-	}
+  }
 
-	@Override
-	public void updateVideoAnnotation(VideoAnnotation va) {
-		this.sessionFactory.getCurrentSession().merge(va);
-		
-	}
+  @Override
+  public void addVideoAnnotation(VideoAnnotation va) {
+    this.sessionFactory.getCurrentSession().save(va);
+  }
 
-	@Override
-	public void deleteVideoAnnoation(long id) {
-		Session currentSession = this.sessionFactory.getCurrentSession();
-		VideoAnnotation va = (VideoAnnotation) currentSession.get(VideoAnnotation.class, id);
-		currentSession.delete(va);
-	}
+  @Override
+  public VideoAnnotation getVideoAnnotationById(long id) {
+    Session currentSession = this.sessionFactory.getCurrentSession();
+    VideoAnnotation va = (VideoAnnotation) currentSession.get(VideoAnnotation.class, id);
+    return va;
+  }
+
+  @Override
+  public void updateVideoAnnotation(VideoAnnotation va) {
+    this.sessionFactory.getCurrentSession().merge(va);
+  }
+
+  @Override
+  public void deleteVideoAnnoation(long id) {
+    Session currentSession = this.sessionFactory.getCurrentSession();
+    VideoAnnotation va = (VideoAnnotation) currentSession.get(VideoAnnotation.class, id);
+    currentSession.delete(va);
+  }
 }

@@ -6,9 +6,13 @@ import au.usyd.va.domain.Video;
 import au.usyd.va.domain.VideoAnnotation;
 
 public interface VideoAnnotationManager {
-	public List<VideoAnnotation> getAnnotations(Video video);
-	public void addVideoAnnotation(VideoAnnotation va);
-	public VideoAnnotation getVideoAnnotationById(long id);
-	public void updateVideoAnnotation(VideoAnnotation va);
-	public void deleteVideoAnnoation(long id);
+  public List<VideoAnnotation> getAnnotations(Video video);
+
+  public void addVideoAnnotation(VideoAnnotation va);
+
+  public VideoAnnotation getVideoAnnotationById(long id);
+
+  public void updateVideoAnnotation(VideoAnnotation va);
+
+  public void deleteVideoAnnoation(long id);
 }

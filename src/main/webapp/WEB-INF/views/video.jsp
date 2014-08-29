@@ -10,89 +10,97 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="shortcut icon"
-	href="<c:url value="/resources/assets/ico/favicon.ico"/>">
+  href="<c:url value="/resources/assets/ico/favicon.ico"/>">
 <%@ include file="include/stylesheet.jsp"%>
 
 </head>
 <body>
 
 
-	<%@ include file="include/header.jsp"%>
-	<div id="videowarp">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1>Videos</h1>
-					<hr>
-					<div class="row">
-						<div class="col-lg-3">
-							<a href="#" class="thumbnail">
-							<span class="ui right green corner label">
-    							<i class="checkmark icon"></i>
- 							</span>
-								<img src="holder.js/260x260" />
-							</a>
-						</div>
-						<div class="col-lg-3">
-							<a href="#" class="thumbnail"><span class="ui right blue corner label">
-    							<i class="exclamation icon"></i>
- 							</span> <img src="holder.js/260x260" />
-							</a>
-						</div>
-						<div class="col-lg-3">
-							
-							<a href="#" class="thumbnail"><span class="ui right red corner label">
-    							<i class="question icon"></i>
- 							</span> <img src="holder.js/260x260" />
-							</a>
-						</div>
-						<div class="col-lg-3">
-							<a href="#" class="thumbnail"> <img src="holder.js/260x260" />
-							</a>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-3">
-							<a href="#" class="thumbnail"> <img src="holder.js/260x260" />
-							</a>
-						</div>
-						<div class="col-lg-3">
-							<a href="#" class="thumbnail"> <img src="holder.js/260x260" />
-							</a>
-						</div>
-						<div class="col-lg-3">
-							<a href="#" class="thumbnail"> <img src="holder.js/260x260" />
-							</a>
-						</div>
-						<div class="col-lg-3">
-							<a href="#" class="thumbnail"> <img src="holder.js/260x260" />
-							</a>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-3">
-							<a href="#" class="thumbnail"> <img src="holder.js/260x260" />
-							</a>
-						</div>
-						<div class="col-lg-3">
-							<a href="#" class="thumbnail"> <img src="holder.js/260x260" />
-							</a>
-						</div>
-						<div class="col-lg-3">
-							<a href="#" class="thumbnail"> <img src="holder.js/260x260" />
-							</a>
-						</div>
-						<div class="col-lg-3">
-							<a href="#" class="thumbnail"> <img src="holder.js/260x260" />
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<%@ include file="include/footer.jsp"%>
-	<%@ include file="include/script.jsp"%>
+  <%@ include file="include/header.jsp"%>
+  <div id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1>Videos</h1>
+          <hr>
+          <div class="row">
+            <div class="col-lg-3">
+              <a href="#" class="thumbnail"> <span
+                class="ui right green corner label"> <i
+                  class="checkmark icon"></i>
+              </span> <img src="holder.js/260x260" />
+              </a>
+            </div>
+            <div class="col-lg-3">
+              <a href="#" class="thumbnail"><span
+                class="ui right blue corner label"> <i
+                  class="exclamation icon"></i>
+              </span> <img src="holder.js/260x260" /> </a>
+            </div>
+            <div class="col-lg-3">
+
+              <a href="#" class="thumbnail"><span
+                class="ui right red corner label"> <i
+                  class="question icon"></i>
+              </span> <img src="holder.js/260x260" /> </a>
+            </div>
+            <div class="col-lg-3">
+              <a href="#" class="thumbnail"> <img
+                src="holder.js/260x260" />
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+              <a href="#" class="thumbnail"> <img
+                src="holder.js/260x260" />
+              </a>
+            </div>
+            <div class="col-lg-3">
+              <a href="#" class="thumbnail"> <img
+                src="holder.js/260x260" />
+              </a>
+            </div>
+            <div class="col-lg-3">
+              <a href="#" class="thumbnail"> <img
+                src="holder.js/260x260" />
+              </a>
+            </div>
+            <div class="col-lg-3">
+              <a href="#" class="thumbnail"> <img
+                src="holder.js/260x260" />
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+              <a href="#" class="thumbnail"> <img
+                src="holder.js/260x260" />
+              </a>
+            </div>
+            <div class="col-lg-3">
+              <a href="#" class="thumbnail"> <img
+                src="holder.js/260x260" />
+              </a>
+            </div>
+            <div class="col-lg-3">
+              <a href="#" class="thumbnail"> <img
+                src="holder.js/260x260" />
+              </a>
+            </div>
+            <div class="col-lg-3">
+              <a href="#" class="thumbnail"> <img
+                src="holder.js/260x260" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%@ include file="include/footer.jsp"%>
+  <%@ include file="include/script.jsp"%>
 
 </body>
 </html>

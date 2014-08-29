@@ -11,7 +11,7 @@
 }
 
 /*watch page*/
-#videowarp {
+#main {
 	padding-top:100px;
 	min-height:550px;
 }
@@ -49,8 +49,4 @@
 
 .slide div img {
 	cursor: pointer;
-}
-
-.slideshow .carousel {
-	position: inherit; 
 } 

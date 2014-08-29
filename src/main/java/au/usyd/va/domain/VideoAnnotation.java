@@ -9,84 +9,82 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="VideoAnnotation")
+@Table(name = "VideoAnnotation")
 public class VideoAnnotation {
-	
-	@Id
-	@Column(name="Id")
-	@GeneratedValue
-	private long id;
-	
-	@ManyToOne
-	@JoinColumn(name="Videoid")
-	private Video video;
-	
-	@Column(name="Starttime")
-	private double starttime;
-	
-	@Column(name="Endtime")
-	private double endtime;
-	
-	@Column(name="Keyframe")
-	private double keyFrame;
-	
-	@Column(name="Rank")
-	private int rank;
 
-	public long getId() {
-		return id;
-	}
+  @Id
+  @Column(name = "Id")
+  @GeneratedValue
+  private long id;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+  @ManyToOne
+  @JoinColumn(name = "Videoid")
+  private Video video;
 
-	public Video getVideo() {
-		return video;
-	}
+  @Column(name = "Starttime")
+  private double starttime;
 
-	public void setVideo(Video video) {
-		this.video = video;
-	}
+  @Column(name = "Endtime")
+  private double endtime;
 
-	public double getStarttime() {
-		return starttime;
-	}
+  @Column(name = "Keyframe")
+  private double keyFrame;
 
-	public void setStarttime(double starttime) {
-		this.starttime = starttime;
-	}
+  @Column(name = "Rank")
+  private int rank;
 
-	public double getEndtime() {
-		return endtime;
-	}
+  public long getId() {
+    return id;
+  }
 
-	public void setEndtime(double endtime) {
-		this.endtime = endtime;
-	}
+  public void setId(long id) {
+    this.id = id;
+  }
 
-	public double getKeyFrame() {
-		return keyFrame;
-	}
+  public Video getVideo() {
+    return video;
+  }
 
-	public void setKeyFrame(double keyFrame) {
-		this.keyFrame = keyFrame;
-	}
+  public void setVideo(Video video) {
+    this.video = video;
+  }
 
-	public int getRank() {
-		return rank;
-	}
+  public double getStarttime() {
+    return starttime;
+  }
 
-	public void setRank(int rank) {
-		this.rank = rank;
-	}
+  public void setStarttime(double starttime) {
+    this.starttime = starttime;
+  }
 
-	@Override
-	public String toString() {
-		return "VideoAnnotation [id=" + id + ", video=" + video
-				+ ", starttime=" + starttime + ", endtime=" + endtime
-				+ ", keyFrame=" + keyFrame + ", rank=" + rank + "]";
-	}
-	
-	
+  public double getEndtime() {
+    return endtime;
+  }
+
+  public void setEndtime(double endtime) {
+    this.endtime = endtime;
+  }
+
+  public double getKeyFrame() {
+    return keyFrame;
+  }
+
+  public void setKeyFrame(double keyFrame) {
+    this.keyFrame = keyFrame;
+  }
+
+  public int getRank() {
+    return rank;
+  }
+
+  public void setRank(int rank) {
+    this.rank = rank;
+  }
+
+  @Override
+  public String toString() {
+    return "VideoAnnotation [id=" + id + ", video=" + video + ", starttime=" + starttime
+            + ", endtime=" + endtime + ", keyFrame=" + keyFrame + ", rank=" + rank + "]";
+  }
+
 }
