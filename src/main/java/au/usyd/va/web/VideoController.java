@@ -1,6 +1,7 @@
 package au.usyd.va.web;
 
 import java.util.List;
+import java.util.Scanner;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -126,6 +127,31 @@ public class VideoController {
     uiModel.addAttribute(video);
     uiModel.addAttribute("vas", vas);
     return "rank";
+  }
+
+  @RequestMapping(value = "/rank", method = RequestMethod.POST)
+  public String rankSegment(HttpServletRequest httpServletRequest) {
+    long id = Long.parseLong(httpServletRequest.getParameter("id"));
+    Video video = this.videoManager.getVideoById(id);
+    List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video);
+    String order = httpServletRequest.getParameter("order");
+    System.out.println(order);
+    Scanner s = new Scanner(order);
+    s.useDelimiter(",");
+    int count = 0;
+    while (s.hasNext()) {
+      int i = s.nextInt();
+      for (VideoAnnotation va : vas) {
+        if (va.getId() == i) {
+          va.setRank(count);
+          this.videoAnnotationManager.updateVideoAnnotation(va);
+        }
+      }
+      count++;
+    }
+    s.close();
+    System.out.println(vas);
+    return "redirect:/";
   }
 
 }

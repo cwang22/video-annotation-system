@@ -32,7 +32,7 @@
           <h1 class="ui huge header">${video.title}-RankSegments</h1>
           <i class="time icon"></i>11 Aug 2014
           <hr>
-          <form>
+          <form method="post" action='<c:url value="/video/rank" />'>
             <div id="sortwarp">
               <div class="row">
                 <div class="col-lg-12">
@@ -62,8 +62,6 @@
                           </div>
                         </div>
                       </li>
-
-
                     </c:forEach>
                   </ol>
                 </div>
@@ -74,6 +72,7 @@
                     <input type="submit" value="sumbit"
                       class="btn btn-primary btn-lg" /> <input
                       type="hidden" name="order" value="" />
+                      <input type="hidden" name="id" value="<c:url value='${video.id}'  />" />
                   </div>
                 </div>
               </div>
