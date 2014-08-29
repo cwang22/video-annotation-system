@@ -20,6 +20,8 @@ public class Video {
 
   @Column(name = "Source")
   private String source;
+  
+  private double duration;
 
   public long getId() {
     return id;
@@ -48,5 +50,13 @@ public class Video {
   @Override
   public String toString() {
     return "Video [id=" + id + ", title=" + title + ", source=" + source + "]";
+  }
+
+  public double getDuration() {
+    return duration;
+  }
+
+  public void setDuration(double duration) {
+    this.duration = duration;
   }
 }
