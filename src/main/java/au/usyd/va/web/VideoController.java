@@ -91,8 +91,7 @@ public class VideoController {
   }
 
   @RequestMapping(value = "/select/{id}")
-  public String selectPage(@PathVariable("id") Long id, HttpServletRequest httpServletRequest,
-          Model uiModel) {
+  public String selectPage(@PathVariable("id") Long id, Model uiModel) {
     Video video = this.videoManager.getVideoById(id);
     List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video);
     uiModel.addAttribute(video);
@@ -104,7 +103,7 @@ public class VideoController {
   public String selectKeyFrame(HttpServletRequest httpServletRequest) {
     long id = Long.parseLong(httpServletRequest.getParameter("id"));
     Video video = this.videoManager.getVideoById(id);
-    
+
     String jsonString = httpServletRequest.getParameter("json");
     System.out.println(jsonString);
     Gson gson = new Gson();
@@ -123,7 +122,9 @@ public class VideoController {
   @RequestMapping(value = "/rank/{id}")
   public String rankPage(@PathVariable("id") Long id, Model uiModel) {
     Video video = this.videoManager.getVideoById(id);
+    List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video);
     uiModel.addAttribute(video);
+    uiModel.addAttribute("vas", vas);
     return "rank";
   }
 

@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +29,7 @@
               href="<c:url value="/video/select/${video.id}" />">Selecting</a>
             <a class="ui active step">Ranking</a>
           </div>
-          <h1 class="ui huge header">${video.title}- Rank Segments</h1>
+          <h1 class="ui huge header">${video.title}-RankSegments</h1>
           <i class="time icon"></i>11 Aug 2014
           <hr>
           <form>
@@ -36,179 +37,43 @@
               <div class="row">
                 <div class="col-lg-12">
                   <ol id="sort" class="ui list-unstyled">
-                    <li class="ui segment">
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <h2 class="ui header">segment 1</h2>
-                          <div class="sub header">
-                            <i class="time icon"></i>0:00 - 0.3021
+
+                    <c:forEach items="${vas}" var="va"
+                      varStatus="status">
+                      <li id="${va.id}" class="ui segment">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <h2 class="ui header">
+                              segment
+                              <c:out value="${status.count}" />
+                            </h2>
+                            <div class="sub header">
+                              <i class="time icon"></i>
+                              <c:out value="${va.starttime}" />
+                              -
+                              <c:out value="${va.endtime}" />
+                            </div>
+                            <p>some text description could go here</p>
                           </div>
-                          <p>some text description could go here</p>
-                        </div>
-                        <div class="col-lg-6">
-                          <img src="holder.js/400x200" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="ui segment">
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <h2 class="ui header">segment 0</h2>
-                          <div class="sub header">
-                            <i class="time icon"></i>0:00 - 0.3021
+                          <div class="col-lg-6">
+                            <img
+                              src="<c:url value='/resources/videoframe/v${video.id}/v${video.id}' /><fmt:formatNumber type="number" 
+            pattern = "0000" value="${va.keyFrame}" />.jpg" />
                           </div>
-                          <p>some text description could go here</p>
                         </div>
-                        <div class="col-lg-6">
-                          <img src="holder.js/400x200" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="ui segment">
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <h2 class="ui header">segment 1</h2>
-                          <div class="sub header">
-                            <i class="time icon"></i>0:00 - 0.3021
-                          </div>
-                          <p>some text description could go here</p>
-                        </div>
-                        <div class="col-lg-6">
-                          <img src="holder.js/400x200" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="ui segment">
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <h2 class="ui header">segment 2</h2>
-                          <div class="sub header">
-                            <i class="time icon"></i>0:00 - 0.3021
-                          </div>
-                          <p>some text description could go here</p>
-                        </div>
-                        <div class="col-lg-6">
-                          <img src="holder.js/400x200" />
-                        </div>
-                      </div>
-                    </li>
-                    <li class="ui segment">
-                      <div class="row">
-                        <div class="col-lg-6">
-                          <h2 class="ui header">segment 3</h2>
-                          <div class="sub header">
-                            <i class="time icon"></i>0:00 - 0.3021
-                          </div>
-                          <p>some text description could go here</p>
-                        </div>
-                        <div class="col-lg-6">
-                          <img src="holder.js/400x200" />
-                        </div>
-                      </div>
-                    </li>
+                      </li>
+
+
+                    </c:forEach>
                   </ol>
-
-                  <!-- <ol id="sort" class="list-unstyled">
-										<li>
-											<div class="jumbotron">
-												<div class="row">
-													<div class="col-lg-6">
-														<p>text descritions bla bla bla</p>
-														<p>start: 0.12313</p>
-														<p>end: 5.3123</p>
-													</div>
-													<div class="col-lg-6">
-														<img class="img-responsive"
-															src="http://video-js.zencoder.com/oceans-clip.png" />
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="jumbotron">
-												<div class="row">
-													<div class="col-lg-6">
-														<p>text descritions bla bla bla</p>
-														<p>start: 0.12313</p>
-														<p>end: 5.3123</p>
-													</div>
-													<div class="col-lg-6">
-														<img class="img-responsive"
-															src="http://video-js.zencoder.com/oceans-clip.png" />
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="jumbotron">
-												<div class="row">
-													<div class="col-lg-6">
-														<p>text descritions bla bla bla</p>
-														<p>start: 0.12313</p>
-														<p>end: 5.3123</p>
-													</div>
-													<div class="col-lg-6">
-														<img class="img-responsive"
-															src="http://video-js.zencoder.com/oceans-clip.png" />
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="jumbotron">
-												<div class="row">
-													<div class="col-lg-6">
-														<p>text descritions bla bla bla</p>
-														<p>start: 0.12313</p>
-														<p>end: 5.3123</p>
-													</div>
-													<div class="col-lg-6">
-														<img class="img-responsive"
-															src="http://video-js.zencoder.com/oceans-clip.png" />
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="jumbotron">
-												<div class="row">
-													<div class="col-lg-6">
-														<p>text descritions bla bla bla</p>
-														<p>start: 0.12313</p>
-														<p>end: 5.3123</p>
-													</div>
-													<div class="col-lg-6">
-														<img class="img-responsive"
-															src="http://video-js.zencoder.com/oceans-clip.png" />
-													</div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="jumbotron">
-												<div class="row">
-													<div class="col-lg-6">
-														<p>text descritions bla bla bla</p>
-														<p>start: 0.12313</p>
-														<p>end: 5.3123</p>
-													</div>
-													<div class="col-lg-6">
-														<img class="img-responsive"
-															src="http://video-js.zencoder.com/oceans-clip.png" />
-													</div>
-												</div>
-											</div>
-										</li>
-									</ol>
- -->
-
                 </div>
               </div>
               <div id="bottom-nav">
                 <div class="row">
                   <div class="col-lg-2 pull-right">
                     <input type="submit" value="sumbit"
-                      class="btn btn-primary btn-lg" />
+                      class="btn btn-primary btn-lg" /> <input
+                      type="hidden" name="order" value="" />
                   </div>
                 </div>
               </div>
@@ -245,15 +110,24 @@
   <%@ include file="include/footer.jsp"%>
   <%@ include file="include/script.jsp"%>
   <script type="text/javascript">
-		$(document).ready(function() {
-			$("#sort").dragsort({
-				dragSelector : "li",
-				dragEnd : function() {
-				},
-				dragBetween : false,
-				placeHolderTemplate : "<li></li>"
-			});
-		});
-	</script>
+      $(document).ready(function() {
+        $("#sort").dragsort({
+          dragSelector: "li",
+          dragEnd: function() {
+          },
+          dragBetween: false,
+          placeHolderTemplate: "<li></li>"
+        });
+
+        $('form').submit(function() {
+          var serialString = "";
+          $('#sort li').each(function(i, element) {
+            serialString += (i > 0 ? "," : "") + $(element).attr("id");
+          });
+          $('input[name="order"]').val(serialString);
+          return;
+        });
+      });
+    </script>
 </body>
 </html>

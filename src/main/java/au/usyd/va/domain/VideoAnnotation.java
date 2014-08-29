@@ -28,7 +28,7 @@ public class VideoAnnotation {
   private double endTime;
 
   @Column(name = "Keyframe")
-  private double keyFrame;
+  private int keyFrame;
 
   @Column(name = "Rank")
   private int rank;
@@ -65,11 +65,11 @@ public class VideoAnnotation {
     this.endTime = endtime;
   }
 
-  public double getKeyFrame() {
+  public int getKeyFrame() {
     return keyFrame;
   }
 
-  public void setKeyFrame(double keyFrame) {
+  public void setKeyFrame(int keyFrame) {
     this.keyFrame = keyFrame;
   }
 
