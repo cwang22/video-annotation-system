@@ -61,7 +61,7 @@ public class VideoController {
   }
 
   @RequestMapping(value = "/mark/{id}")
-  public String markVideo(@PathVariable("id") Long id, Model uiModel) {
+  public String markPage(@PathVariable("id") Long id, Model uiModel) {
     Video video = this.videoManager.getVideoById(id);
     uiModel.addAttribute("video", video);
     return "mark";
@@ -72,11 +72,12 @@ public class VideoController {
   public String addAnnotation(HttpServletRequest httpServletRequest) {
     long id = Long.parseLong(httpServletRequest.getParameter("id"));
     String jsonString = httpServletRequest.getParameter("json");
+    System.out.println(jsonString);
     Gson gson = new Gson();
     JsonParser parser = new JsonParser();
 
     Video video = this.videoManager.getVideoById(id);
-    JsonArray array = parser.parse(jsonString).getAsJsonObject().getAsJsonArray("time");
+    JsonArray array = parser.parse(jsonString).getAsJsonObject().getAsJsonArray("va");
     System.out.println(array);
     for (int i = 0; i < array.size(); i++) {
       VideoAnnotation va = gson.fromJson(array.get(i), VideoAnnotation.class);
@@ -90,7 +91,7 @@ public class VideoController {
   }
 
   @RequestMapping(value = "/select/{id}")
-  public String selectKeyFrame(@PathVariable("id") Long id, HttpServletRequest httpServletRequest,
+  public String selectPage(@PathVariable("id") Long id, HttpServletRequest httpServletRequest,
           Model uiModel) {
     Video video = this.videoManager.getVideoById(id);
     List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video);
@@ -99,15 +100,28 @@ public class VideoController {
     return "select";
   }
 
-  @RequestMapping(value = "/select/{id}", method = RequestMethod.POST)
-  public String selectKeyFrame(@PathVariable("id") Long id, Model uiModel) {
+  @RequestMapping(value = "/select", method = RequestMethod.POST)
+  public String selectKeyFrame(HttpServletRequest httpServletRequest) {
+    long id = Long.parseLong(httpServletRequest.getParameter("id"));
     Video video = this.videoManager.getVideoById(id);
-    uiModel.addAttribute(video);
+    
+    String jsonString = httpServletRequest.getParameter("json");
+    System.out.println(jsonString);
+    Gson gson = new Gson();
+    JsonParser parser = new JsonParser();
+    JsonArray array = parser.parse(jsonString).getAsJsonObject().getAsJsonArray("va");
+    System.out.println(array);
+    for (int i = 0; i < array.size(); i++) {
+      VideoAnnotation va = gson.fromJson(array.get(i), VideoAnnotation.class);
+      va.setVideo(video);
+      System.out.println(va);
+      this.videoAnnotationManager.updateVideoAnnotation(va);
+    }
     return "redirect:rank/" + id;
   }
 
   @RequestMapping(value = "/rank/{id}")
-  public String rankAnnotation(@PathVariable("id") Long id, Model uiModel) {
+  public String rankPage(@PathVariable("id") Long id, Model uiModel) {
     Video video = this.videoManager.getVideoById(id);
     uiModel.addAttribute(video);
     return "rank";

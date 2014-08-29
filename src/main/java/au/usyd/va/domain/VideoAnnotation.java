@@ -22,10 +22,10 @@ public class VideoAnnotation {
   private Video video;
 
   @Column(name = "Starttime")
-  private double starttime;
+  private double startTime;
 
   @Column(name = "Endtime")
-  private double endtime;
+  private double endTime;
 
   @Column(name = "Keyframe")
   private double keyFrame;
@@ -50,19 +50,19 @@ public class VideoAnnotation {
   }
 
   public double getStarttime() {
-    return starttime;
+    return startTime;
   }
 
   public void setStarttime(double starttime) {
-    this.starttime = starttime;
+    this.startTime = starttime;
   }
 
   public double getEndtime() {
-    return endtime;
+    return endTime;
   }
 
   public void setEndtime(double endtime) {
-    this.endtime = endtime;
+    this.endTime = endtime;
   }
 
   public double getKeyFrame() {
@@ -83,8 +83,8 @@ public class VideoAnnotation {
 
   @Override
   public String toString() {
-    return "VideoAnnotation [id=" + id + ", video=" + video + ", starttime=" + starttime
-            + ", endtime=" + endtime + ", keyFrame=" + keyFrame + ", rank=" + rank + "]";
+    return "VideoAnnotation [id=" + id + ", video=" + video + ", starttime=" + startTime
+            + ", endtime=" + endTime + ", keyFrame=" + keyFrame + ", rank=" + rank + "]";
   }
 
 }

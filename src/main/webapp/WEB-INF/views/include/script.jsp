@@ -10,3 +10,4 @@
 <script src="<c:url value="/resources/assets/js/semantic.min.js" />"></script>
 <script src="<c:url value="/resources/assets/js/holder.js" />"></script>
 <script src="<c:url value="/resources/assets/js/custom.js" />"></script>
+<script src="<c:url value="/resources/assets/js/jquery.serializejson.min.js" />"></script>

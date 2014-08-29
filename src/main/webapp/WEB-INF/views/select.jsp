@@ -45,13 +45,15 @@
 
           <%
             int count = 0;
-                                                                for(VideoAnnotation va : vas){
-                                                                  double startTime = va.getStarttime();
-                                                                  double endTime = va.getEndtime();
-                                                                  int startFrame = (int) Math.floor(startTime * 24);
-                                                                  int endFrame = (int) Math.floor(endTime * 24);
-                                                                  count++;
+            for(VideoAnnotation va : vas){
+              long vaid = va.getId();
+              double startTime = va.getStarttime();
+              double endTime = va.getEndtime();
+              int startFrame = (int) Math.floor(startTime * 24);
+              int endFrame = (int) Math.floor(endTime * 24);
+              count++;
           %>
+          <form method="post" action="<c:url value="/video/select"/>">
           <section class="ui segment">
             <h2 class="ui header">
               segment
@@ -68,13 +70,12 @@
               <ul class="ss-carousel">
                 <%
                   for(int i = startFrame; i< endFrame; i++) {
-                                                                    String result = String.format("%04d", i);
+                    String result = String.format("%04d", i);
                 %>
                 <li class="slide">
                   <div>
-                    <img
-                      src="/va/resources/videoframe/v<%=id%>/v<%=id%><%=result%>.jpg"
-                      alt="" width="240" height="240" />
+                    <img src="/va/resources/videoframe/v<%=id%>/v<%=id%><%=result%>.jpg"
+                      data-frame="<%=i%>" width="240" height="240" />
                   </div>
                 </li>
                 <%
@@ -83,6 +84,11 @@
 
               </ul>
             </div>
+            <input type="hidden" name="va[][id]" value="<%=vaid %>"/>
+            <input type="hidden" name="va[][startTime]" value="<%=startTime %>"/>
+            <input type="hidden" name="va[][endTime]" value="<%=endTime %>"/>
+            <input type="hidden" name="va[][keyFrame]" value="" />
+            
           </section>
           <%
             }
@@ -91,13 +97,14 @@
           <div id="bottom-nav">
             <div class="row">
               <div class="col-lg-2 pull-right">
-                <form>
+                
                   <input type="submit" value="sumbit"
                     class="btn btn-primary btn-lg" />
-                </form>
               </div>
             </div>
           </div>
+          <input type="hidden" name="id" value="${video.id}" />
+          </form>
         </div>
       </div>
     </div>
@@ -135,16 +142,19 @@
         $(".slide img").each(function() {
           $(this).click(function() {
             $(this).parent().parent().parent().children().children().children(".selected").remove();
-            $(this).parent().append('<span class="ui right green corner label selected"><i class="checkmark icon"></i></span>');
+            $(this).parent().append('<span class="ui left green corner label selected"><i class="checkmark icon"></i></span>');
           });
         });
 
         $("form").submit(function() {
-          alert("hi");
           $(".selected").parent().children("img").each(function() {
-            alert($(this).attr("src"));
+            alert($(this).attr('data-frame'));
+            $(this).parent().parent().parent().parent().parent().parent().children('input[name="va[][keyFrame]"]').val($(this).attr('data-frame'));
           });
-          return true;
+          
+          $('form').append('<textarea class="hidden" name="json">' + JSON.stringify($("form").serializeJSON()) + '</textarea>');
+		  return;
+
         });
       });
     </script>

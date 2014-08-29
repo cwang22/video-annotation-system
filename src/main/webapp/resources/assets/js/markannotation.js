@@ -23,7 +23,7 @@ $(document).ready(function(){
 		//alert(startTime + " " + endTime);
 		$(this).addClass("disabled");
 		$("#start-button").removeClass("disabled");
-		$('#result').append('<tr><td><input name="time[][starttime]" value="' + startTime + '" /></td><td><input name="time[][endtime]" value="' + endTime + '"/></td><td><button class="delete-button btn btn-xs btn-danger">delete</button></td></tr>');
+		$('#result').append('<tr><td><input name="va[][startTime]" value="' + startTime + '" /></td><td><input name="va[][endTime]" value="' + endTime + '"/></td><td><button class="delete-button btn btn-xs btn-danger">delete</button></td></tr>');
 		addDeleteButtonListener();
 	});
 	

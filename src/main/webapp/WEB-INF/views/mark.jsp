@@ -112,8 +112,7 @@
   </div>
   <%@ include file="include/footer.jsp"%>
   <%@ include file="include/script.jsp"%>
-  <script
-    src="<c:url value="/resources/assets/js/jquery.serializejson.min.js" />"></script>
+  
   <script src="<c:url value="/resources/assets/js/markannotation.js" />"></script>
 
 </body>
