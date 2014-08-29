@@ -1,4 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="au.usyd.va.domain.Video"%>
+<%@ page import="au.usyd.va.domain.VideoAnnotation"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,12 +18,14 @@
 <link href="<c:url value="/resources/assets/css/slideshow.css"/>"
   rel="stylesheet">
 
-<%
-  
-%>
-
 </head>
 <body>
+
+  <%
+    Video video = (Video) request.getAttribute("video");
+      long id = video.getId();
+      ArrayList<VideoAnnotation> vas = (ArrayList<VideoAnnotation>) request.getAttribute("vas");
+  %>
   <%@ include file="include/header.jsp"%>
   <div id="main">
     <div class="container">
@@ -37,75 +42,51 @@
           <i class="time icon"></i>11 Aug 2014
           <hr>
 
-          <c:forEach items="${vas}" var="vas" varStatus="status">
 
-            <section class="ui segment">
-              <h2 class="ui header">
-                segment
-                <c:out value="${status.count}" />
-              </h2>
-              <div class="sub header">
-                <i class="time icon"></i>
-                <c:out value="${vas.starttime}" />
-                -
-                <c:out value="${vas.endtime}" />
-              </div>
-              <hr>
-              <div class="slideshow" data-pagination="false"
-                data-auto="0">
-                <ul class="ss-carousel">
-                  <li class="slide">
-                    <div>
-                      <img src="holder.js/240x240" alt="" width="240"
-                        height="240" />
-                    </div>
-                  </li>
-                  <li class="slide">
-                    <div>
-                      <img src="holder.js/240x240" alt="" width="240"
-                        height="240" />
-                    </div>
-                  </li>
-                  <li class="slide">
-                    <div>
-                      <img src="holder.js/240x240" alt="" width="240"
-                        height="240" />
-                    </div>
-                  </li>
-                  <li class="slide">
-                    <div>
-                      <img src="holder.js/240x240" alt="" width="240"
-                        height="240" />
-                    </div>
-                  </li>
-                  <li class="slide">
-                    <div>
-                      <img src="holder.js/240x240" alt="" width="240"
-                        height="240" />
-                    </div>
-                  </li>
-                  <li class="slide">
-                    <div>
-                      <img src="holder.js/240x240" alt="" width="240"
-                        height="240" />
-                    </div>
-                  </li>
-                  <li class="slide">
-                    <div>
-                      <img src="holder.js/240x240" alt="" width="240"
-                        height="240" />
-                    </div>
-                  </li>
-                  <li class="slide">
-                    <div>
-                      <img src="holder.js/240x240" alt="" width="240"
-                        height="240" />
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </section>
-          </c:forEach>
+          <%
+            int count = 0;
+                                              for(VideoAnnotation va : vas){
+                                                double startTime = va.getStarttime();
+                                                double endTime = va.getEndtime();
+                                                int startFrame = (int) Math.floor(startTime * 24);
+                                                int endFrame = (int) Math.floor(endTime * 24);
+                                                count++;
+          %>
+          <section class="ui segment">
+            <h2 class="ui header">
+              segment
+              <%=count%>
+            </h2>
+            <div class="sub header">
+              <i class="time icon"></i>
+              <%=startTime%>
+              -
+              <%=endTime%>
+            </div>
+            <hr>
+            <div class="slideshow" data-pagination="false" data-auto="0">
+              <ul class="ss-carousel">
+                <%
+                  for(int i = startFrame; i< endFrame; i++) {
+                                String result = String.format("%04d", i);
+                %>
+                <li class="slide">
+                  <div>
+                    <img
+                      src="/va/resources/videoframe/v<%=id%>/v<%=id%><%=result%>.jpg"
+                      alt="" width="240" height="240" />
+                  </div>
+                </li>
+                <%
+                  }
+                %>
+
+              </ul>
+            </div>
+          </section>
+          <%
+            }
+          %>
 
           <div id="bottom-nav">
             <div class="row">
@@ -151,12 +132,22 @@
       });
 
       $(function() {
-        $(".slide img").each(function() {
-          $(this).click( function() {
-            $(this).parent().parent().parent().children().children().children(".selected").remove();
-            $(this).parent().append('<span class="ui right green corner label selected"><i class="checkmark icon"></i></span>');
-        });
-        });
+        $(".slide img")
+                .each(
+                        function() {
+                          $(this)
+                                  .click(
+                                          function() {
+                                            $(this).parent().parent().parent()
+                                                    .children().children()
+                                                    .children(".selected")
+                                                    .remove();
+                                            $(this)
+                                                    .parent()
+                                                    .append(
+                                                            '<span class="ui right green corner label selected"><i class="checkmark icon"></i></span>');
+                                          });
+                        });
 
         $("form").submit(function() {
           alert("hi");

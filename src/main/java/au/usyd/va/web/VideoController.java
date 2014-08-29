@@ -56,7 +56,7 @@ public class VideoController {
     video.setSource(httpServletRequest.getParameter("source"));
     video.setDuration(Double.parseDouble(httpServletRequest.getParameter("duration")));
     videoManager.addVideo(video);
-    return "redirect:/video/mark/1";
+    return "redirect:mark/1";
 
   }
 
