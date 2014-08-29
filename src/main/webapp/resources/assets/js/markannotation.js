@@ -28,7 +28,7 @@ $(document).ready(function(){
 	});
 	
 	$("form").submit(function(){
-		$('form').append('<textarea type="hidden" name="json">' + JSON.stringify($("form").serializeJSON()) + '</textarea>');
+		$('form').append('<textarea class="hidden" name="json">' + JSON.stringify($("form").serializeJSON()) + '</textarea>');
 		return
 	});
 });
