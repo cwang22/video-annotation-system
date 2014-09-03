@@ -33,7 +33,8 @@ public class VideoController {
 
   @RequestMapping(value = "/all")
   public String videoPage(Model uiModel) {
-
+    List<Video> videos = this.videoManager.getVideos();
+    uiModel.addAttribute("videos",videos);
     return "video";
   }
 

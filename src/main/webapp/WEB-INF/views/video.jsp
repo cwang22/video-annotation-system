@@ -20,83 +20,21 @@
   <%@ include file="include/header.jsp"%>
   <div id="main">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <h1>Videos</h1>
-          <hr>
-          <div class="row">
-            <div class="col-lg-3">
-              <a href="#" class="thumbnail"> <span
-                class="ui right green corner label"> <i
-                  class="checkmark icon"></i>
-              </span> <img src="holder.js/260x260" />
-              </a>
-            </div>
-            <div class="col-lg-3">
-              <a href="#" class="thumbnail"><span
-                class="ui right blue corner label"> <i
-                  class="exclamation icon"></i>
-              </span> <img src="holder.js/260x260" /> </a>
-            </div>
-            <div class="col-lg-3">
-
-              <a href="#" class="thumbnail"><span
-                class="ui right red corner label"> <i
-                  class="question icon"></i>
-              </span> <img src="holder.js/260x260" /> </a>
-            </div>
-            <div class="col-lg-3">
-              <a href="#" class="thumbnail"> <img
-                src="holder.js/260x260" />
-              </a>
-            </div>
+      <h1>Videos</h1>
+      <hr>
+      <c:forEach items="${videos}" var="video" varStatus="status">
+        <div class="row">
+          <div class="col-lg-3">
+            <a class="thumbnail" href="<c:url value="video/mark/${video.id}" />"> <img
+              src="/va/resources/videoframe/v${video.id}/v10100.jpg" />
+            </a>
           </div>
-          <div class="row">
-            <div class="col-lg-3">
-              <a href="#" class="thumbnail"> <img
-                src="holder.js/260x260" />
-              </a>
-            </div>
-            <div class="col-lg-3">
-              <a href="#" class="thumbnail"> <img
-                src="holder.js/260x260" />
-              </a>
-            </div>
-            <div class="col-lg-3">
-              <a href="#" class="thumbnail"> <img
-                src="holder.js/260x260" />
-              </a>
-            </div>
-            <div class="col-lg-3">
-              <a href="#" class="thumbnail"> <img
-                src="holder.js/260x260" />
-              </a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-3">
-              <a href="#" class="thumbnail"> <img
-                src="holder.js/260x260" />
-              </a>
-            </div>
-            <div class="col-lg-3">
-              <a href="#" class="thumbnail"> <img
-                src="holder.js/260x260" />
-              </a>
-            </div>
-            <div class="col-lg-3">
-              <a href="#" class="thumbnail"> <img
-                src="holder.js/260x260" />
-              </a>
-            </div>
-            <div class="col-lg-3">
-              <a href="#" class="thumbnail"> <img
-                src="holder.js/260x260" />
-              </a>
-            </div>
-          </div>
+          <c:if test="${(status.index)%4 == 0}">
         </div>
-      </div>
+        <div class="row">
+          </c:if>
+        </div>
+      </c:forEach>
     </div>
   </div>
   <%@ include file="include/footer.jsp"%>
