@@ -20,7 +20,13 @@
   <%@ include file="include/header.jsp"%>
   <div id="main">
     <div class="container">
-      <h1>Videos</h1>
+      
+      <h1 class="ui huge header">
+      <i class="checkmark icon"></i>
+      <div class="content">More<div class="sub header">Congratulations you have finish work
+        on this Video</div></div>
+      </h1>
+      
       <hr>
       <div class="row">
         <c:forEach items="${videos}" var="video" varStatus="status">
@@ -31,9 +37,9 @@
             </a>
           </div>
           <c:if test="${ (status.index+1) % 4 == 0}">
-            </div>
-            <div class="row">
-          </c:if>
+      </div>
+      <div class="row">
+        </c:if>
         </c:forEach>
       </div>
     </div>

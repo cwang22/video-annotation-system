@@ -34,7 +34,7 @@ public class VideoController {
   @RequestMapping(value = "/all")
   public String videoPage(Model uiModel) {
     List<Video> videos = this.videoManager.getVideos();
-    uiModel.addAttribute("videos",videos);
+    uiModel.addAttribute("videos", videos);
     return "video";
   }
 
@@ -152,7 +152,13 @@ public class VideoController {
     }
     s.close();
     System.out.println(vas);
-    return "redirect:/";
+    return "redirect:success";
   }
-
+  
+  @RequestMapping(value="/success")
+  public String successPage(Model uiModel) {
+    List<Video> videos = this.videoManager.getVideos();
+    uiModel.addAttribute("videos", videos);
+    return "success";
+  }
 }
