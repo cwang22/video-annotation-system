@@ -45,8 +45,8 @@ $(document).ready(function(){
 		// alert(startTime + " " + endTime);
 		$(this).addClass("disabled");
 		$("#start-button").removeClass("disabled");
-		$('#result').append('<tr><td><input name="va[][startTime]" value="' + startTime.toFixed(3).toString().toHHMMSS() + '" disabled /></td><td><input name="va[][endTime]" value="' + endTime.toFixed(3).toString().toHHMMSS() + '" disabled /></td><td><button class="delete-button btn btn-xs btn-danger">delete</button></td></tr>');
-		addDeleteButtonListener();
+		$('#result').append('<tr><td><input name="va[][startTime]" value="' + startTime.toFixed(3).toString().toHHMMSS() + '" disabled /></td><td><input name="va[][endTime]" value="' + endTime.toFixed(3).toString().toHHMMSS() + '" disabled /></td><td><button type="button" class="play-button btn btn-xs btn-primary">play</button>&nbsp;<button class="delete-button btn btn-xs btn-danger">delete</button></td></tr>');
+		addButtonListener();
 	});
 	
 	$("form").submit(function(){
@@ -55,14 +55,35 @@ $(document).ready(function(){
 	});
 });
 
-function addDeleteButtonListener() {
+function addButtonListener() {
 	$('.delete-button').each(function(){
 		// alert("each");
-		$(this).click(function(){
+		$(this).click(function(e){
+		  e.preventDefault();
 			// alert("delete");
 			$(this).parent().parent().remove();
 		});
 	});
+	
+	$('.play-button').each(function(){
+    $(this).click(function(){
+      var startAt = $(this).parent().parent().children().children("input[name='va[][startTime]']").val().toSeconds();
+      var stopAt  = $(this).parent().parent().children().children("input[name='va[][endTime]']").val().toSeconds();
+      myPlayer.currentTime(startAt).play();
+      
+      alert(stopAt);
+      
+      var pausePlayer = function(){
+        if(Math.abs( myPlayer.currentTime() - stopAt ) < 0.1){
+          myPlayer.pause();
+          myPlayer.off('timeupdate',pausePlayer);
+        }
+      };
+      
+      myPlayer.on('timeupdate',pausePlayer);
+      
+      });
+    });
 }
 
 
