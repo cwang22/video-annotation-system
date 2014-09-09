@@ -12,7 +12,8 @@
 <link rel="shortcut icon"
   href="<c:url value="/resources/assets/ico/favicon.ico"/>">
 <%@ include file="include/stylesheet.jsp"%>
-
+<link href="<c:url value="/resources/assets/css/videojs.markers.css"/>"
+  rel="stylesheet">
 </head>
 <body>
 
@@ -113,7 +114,8 @@
   <%@ include file="include/footer.jsp"%>
   <%@ include file="include/script.jsp"%>
   
+  <script src="<c:url value="/resources/assets/js/videojs.markers.js" />"></script>
   <script src="<c:url value="/resources/assets/js/markannotation.js" />"></script>
-
+  
 </body>
 </html>
