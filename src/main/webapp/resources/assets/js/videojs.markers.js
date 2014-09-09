@@ -54,11 +54,21 @@
                console.log("[videojs-markers] creating markers");
                duration = player.duration();
                $.each(options.marker_breaks, function(key,time){
+                 var isArray = false,end,width;
+                 if(time instanceof Array){
+                   isArray = true;
+                   end = time[1];
+                   time = time[0];
+                   width = 100 * (end - time) / duration; 
+                 }
                   pos = (time/duration)*100;
                   m = $("<div class='vjs-marker'  id='"+ video_wrapper[0].id + MARKER_ID_DELIMITER + key+"'></div>");
                   m.css(setting.markerStyle)
                      .css({"margin-left"   : -parseFloat(m.css("width"))/2 +'px',
                         "left"          : pos+ '%'});
+                  if(isArray){
+                    m.css({"width":width+'%'});
+                  }
                   
                   video_wrapper.find('.vjs-progress-control').append(m);
                   text = options.marker_text[key] || "";

@@ -71,8 +71,6 @@ function addButtonListener() {
       var stopAt  = $(this).parent().parent().children().children("input[name='va[][endTime]']").val().toSeconds();
       myPlayer.currentTime(startAt).play();
       
-      alert(stopAt);
-      
       var pausePlayer = function(){
         if(Math.abs( myPlayer.currentTime() - stopAt ) < 0.1){
           myPlayer.pause();
@@ -84,8 +82,31 @@ function addButtonListener() {
       
       });
     });
+	
+	$("#result tr").each(function(){
+	  $(this).hover(function(){
+	    console.log("hoveron");
+	    var startAt = $(this).children().children("input[name='va[][startTime]']").val().toSeconds();
+	    var endAt = $(this).children().children("input[name='va[][endTime]']").val().toSeconds();
+	    console.log(startAt + "," + endAt);
+	    myPlayer.markers({
+	      setting: {
+	        forceInitialization:true,
+	        markerStyle:{
+	          'width':'7px',
+	          'border-radius': '0',
+	          'background-color': 'white',
+	          'opcity': '15%'
+	        }
+	      },
+	      
+	      marker_breaks:[[startAt, endAt]],
+	      marker_text:["start","end"]
+	   });
+	  },function(){$(".vjs-marker").remove();});
+	});
+	
 }
-
 
 
 
