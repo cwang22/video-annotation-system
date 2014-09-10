@@ -49,9 +49,9 @@
                             </h2>
                             <div class="sub header">
                               <i class="time icon"></i>
-                              <c:out value="${va.starttime}" />
+                             <span class="time"><c:out value="${va.starttime}" /></span>
                               -
-                              <c:out value="${va.endtime}" />
+                              <span class="time"><c:out value="${va.endtime}" /></span>
                             </div>
                             <p>some text description could go here</p>
                           </div>
