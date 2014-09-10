@@ -53,6 +53,14 @@ $(document).ready(function(){
 		$('form').append('<textarea class="hidden" name="json">' + JSON.stringify($("form").serializeJSON()) + '</textarea>');
 		return
 	});
+	
+	$("#prev-button").click(function(){
+	  myPlayer.currentTime(myPlayer.currentTime()-0.04);
+	});
+	
+	$("#next-button").click(function(){
+    myPlayer.currentTime(myPlayer.currentTime()+0.04);
+  });
 });
 
 function addButtonListener() {
