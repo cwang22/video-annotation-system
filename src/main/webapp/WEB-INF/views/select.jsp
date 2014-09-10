@@ -61,9 +61,9 @@
             </h2>
             <div class="sub header">
               <i class="time icon"></i>
-              <%=startTime%>
+              <span class="time"><%=startTime%></span>
               -
-              <%=endTime%>
+              <span class="time"><%=endTime%></span>
             </div>
             <hr>
             <div class="slideshow" data-pagination="false" data-auto="0">
