@@ -74,8 +74,10 @@
                 %>
                 <li class="slide">
                   <div>
+                  
                     <img src="/va/resources/videoframe/v<%=id%>/v<%=id%><%=result%>.jpg"
                       data-frame="<%=i%>" width="240" height="240" />
+                      <span class="ui left green corner label hide"><i class="checkmark icon"></i></span>
                   </div>
                 </li>
                 <%
@@ -141,19 +143,25 @@
       $(function() {
         $(".slide img").each(function() {
           $(this).click(function() {
-            $(this).parent().parent().parent().children().children().children(".selected").remove();
-            $(this).parent().append('<span class="ui left green corner label selected"><i class="checkmark icon"></i></span>');
+            if($(this).hasClass("selected")){
+              $(this).removeClass("selected");
+              $(this).siblings().addClass("hide");
+            } else {
+              $(this).addClass("selected");
+              $(this).siblings().removeClass("hide");
+            }
           });
         });
 
         $("form").submit(function() {
-          $(".selected").parent().children("img").each(function() {
-            alert($(this).attr('data-frame'));
-            $(this).parent().parent().parent().parent().parent().parent().children('input[name="va[][keyFrame]"]').val($(this).attr('data-frame'));
+          $(".selected").each(function() {
+            
+            var input = $(this).parents("section").children('input[name="va[][keyFrame]"]');
+            input.val(input.val() == "" ? $(this).attr("data-frame") : input.val() + "," + $(this).attr("data-frame"));
           });
           
           $('form').append('<textarea class="hidden" name="json">' + JSON.stringify($("form").serializeJSON()) + '</textarea>');
-		  return;
+		  event.preventDefault();
 
         });
       });
