@@ -52,13 +52,18 @@
           <!--  -->
           <div id="bottom-nav">
             <div class="row">
-              <div class="col-lg-2">
+              <div class="col-lg-4">
                 <button id="start-button" type="button"
-                  class="btn btn-primary btn-lg">Start</button>
-              </div>
-              <div class="col-lg-2">
+                  class="btn btn-primary">Start</button>
+              
                 <button id="end-button" type="button"
-                  class="btn btn-primary btn-lg disabled">End</button>
+                  class="btn btn-primary disabled">End</button>
+                  
+                  <button id="prev-button" type="button"
+                  class="btn btn-primary">Previous Frame</button>
+              
+                <button id="next-button" type="button"
+                  class="btn btn-primary">Next Frame</button>
               </div>
               <div class="col-lg-8">
                 <form action="<c:url value="/video/mark"/>"
