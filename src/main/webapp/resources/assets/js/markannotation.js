@@ -45,13 +45,15 @@ $(document).ready(function(){
 		// alert(startTime + " " + endTime);
 		$(this).addClass("disabled");
 		$("#start-button").removeClass("disabled");
-		$('#result').append('<tr><td><input name="va[][startTime]" value="' + startTime.toFixed(3).toString().toHHMMSS() + '" disabled /></td><td><input name="va[][endTime]" value="' + endTime.toFixed(3).toString().toHHMMSS() + '" disabled /></td><td><button type="button" class="play-button btn btn-xs btn-primary">play</button>&nbsp;<button class="delete-button btn btn-xs btn-danger">delete</button></td></tr>');
+		$('#result').append('<tr><td><input name="va[][startTime]" data-seconds="'+startTime.toFixed(3)+'" value="' + startTime.toFixed(3).toString().toHHMMSS() + '" disabled /></td><td><input name="va[][endTime]" data-seconds="'+endTime.toFixed(3)+'" value="' + endTime.toFixed(3).toString().toHHMMSS() + '" disabled /></td><td><button type="button" class="play-button btn btn-xs btn-primary">play</button>&nbsp;<button class="delete-button btn btn-xs btn-danger">delete</button></td></tr>');
 		addButtonListener();
 	});
 	
 	$("form").submit(function(){
+	  $(this).find('input[name^="va"]').removeAttr('disabled').each(function(){
+	    $(this).val($(this).attr('data-seconds'));
+	  });
 		$('form').append('<textarea class="hidden" name="json">' + JSON.stringify($("form").serializeJSON()) + '</textarea>');
-		return
 	});
 	
 	$("#prev-button").click(function(){
