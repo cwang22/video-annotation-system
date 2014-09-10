@@ -1,6 +1,10 @@
 package au.usyd.va.domain;
 
+import java.util.List;
+
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -32,6 +36,11 @@ public class VideoAnnotation {
 
   @Column(name = "Rank")
   private int rank;
+  
+  @ElementCollection
+  @CollectionTable(name="Frame",joinColumns=@JoinColumn(name="videoAnnotationid"))
+  @Column(name = "Keyframes")
+  private List<Frame> keyFrames;
 
   public long getId() {
     return id;
