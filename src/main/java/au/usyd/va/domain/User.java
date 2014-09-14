@@ -2,9 +2,17 @@ package au.usyd.va.domain;
 
 import java.util.Collection;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+@Entity
+@Table(name="User")
 public class User implements UserDetails {
   
   /**
@@ -12,21 +20,28 @@ public class User implements UserDetails {
    */
   private static final long serialVersionUID = -3904938781686891076L;
   
-  private long id;
+  @Id
+  @Column(name="Username")
   private String username;
-  private String password;
-  private boolean enabled;  
-  private boolean accountNonExpired;  
-  private boolean accountNonLocked;  
-  private boolean credentialsNonExpired;  
-  private Collection<GrantedAuthority>  authorities;
   
-  public long getId() {
-    return id;
-  }
-  public void setId(long id) {
-    this.id = id;
-  }
+  @Column(name="Password")
+  private String password;
+  
+  @Column(name="Enabled")
+  private boolean enabled;
+  
+  @Column(name="AccountNonExpired")
+  private boolean accountNonExpired;
+  
+  @Column(name="AccountNonLocked")
+  private boolean accountNonLocked;
+  
+  @Column(name="CredentialsNonExpired")
+  private boolean credentialsNonExpired;
+  
+  @OneToMany
+  private Collection<UserRole>  authorities;
+  
   public String getUsername() {
     return username;
   }
@@ -63,14 +78,12 @@ public class User implements UserDetails {
   public void setCredentialsNonExpired(boolean credentialsNonExpired) {
     this.credentialsNonExpired = credentialsNonExpired;
   }
-  public Collection<GrantedAuthority> getAuthorities() {
-    return authorities;
-  }
-  public void setAuthorities(Collection<GrantedAuthority> authorities) {
-    this.authorities = authorities;
-  }
   public static long getSerialversionuid() {
     return serialVersionUID;
+  }
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return authorities;
   }
   
   
