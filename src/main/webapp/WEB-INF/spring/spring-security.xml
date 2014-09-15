@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
@@ -15,9 +14,9 @@
 	<security:http pattern="/js/*.js" security="none"></security:http>
 
 	<security:http pattern="/login.jsp" security="none"></security:http>
-	<security:http pattern="/getCode" security="none" /><!-- 不过滤验证码 -->
-	<security:http pattern="/test/**" security="none"></security:http><!-- 
-		不过滤测试内容 -->
+	<security:http pattern="/register*" security="none"></security:http>
+	<security:http pattern="/getCode" security="none" />
+	<security:http pattern="/test/**" security="none"></security:http>
 
 	<security:http auto-config="true">
 
@@ -28,14 +27,11 @@
 	</security:http>
 
 	<security:authentication-manager>
-		<security:authentication-provider
-			user-service-ref="DefaultUserDetailsService">
-			<!-- <security:user-service> <security:user name="admin" password="admin" 
+		<security:authentication-provider user-service-ref="userDAO">
+			<!-- <security:user-service><security:user name="admin" password="admin" 
 				authorities="ROLE_ADMIN" /> </security:user-service> -->
 		</security:authentication-provider>
 	</security:authentication-manager>
-
-    <bean id="DefaultUserDetailsService" class="au.usyd.va.service.DefaultUserDetailsService"/>
 	
 </beans>
 
