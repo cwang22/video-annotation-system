@@ -9,6 +9,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/spring/root-context.xml
+			/WEB-INF/spring/persistence-context.xml
 			/WEB-INF/spring/spring-security.xml
 		</param-value>
 	</context-param>
@@ -37,7 +38,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
 				/WEB-INF/spring/appServlet/servlet-context.xml
-				/WEB-INF/spring/appServlet/persistence-context.xml
+				
 				
 			</param-value>
 		</init-param>
