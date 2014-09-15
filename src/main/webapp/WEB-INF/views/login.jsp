@@ -18,45 +18,56 @@
 
   <%@ include file="include/header.jsp"%>
   <div id="main" class="container">
-  <div class="row">
-  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset3">
+        <c:if test="${not empty param.error}">
 
-<form name="f" class="form-horizontal" role="form" action="<c:url value="/j_spring_security_check" />" method="post">
-  <div class="form-group">
-    <label for="j_username" class="col-sm-2 control-label">Username</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="j_username" name="j_username" placeholder="username">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="j_password" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="j_password" name="j_password" placeholder="Password">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" id="_spring_security_remember_me" name="_spring_security_remember_me"> Remember me
-        </label>
+          <div class="alert alert-danger alert-dismissible"
+            role="alert">
+            <strong>Error</strong> - Login failed
+          </div>
+        </c:if>
+        <form name="f" class="form-horizontal" role="form"
+          action="<c:url value="/j_spring_security_check" />"
+          method="post">
+          <div class="form-group">
+            <label for="j_username" class="col-sm-2 control-label">Username</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="j_username"
+                name="j_username" placeholder="username">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="j_password" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control"
+                id="j_password" name="j_password" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label> <input type="checkbox"
+                  id="_spring_security_remember_me"
+                  name="_spring_security_remember_me"> Remember
+                  me
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">Sign
+                in</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Sign in</button>
-    </div>
-  </div>
-</form>
-  </div>
-  
-  <div class="col-lg-6">some text</div>
-  </div>
-    
+
   </div>
   <%@ include file="include/footer.jsp"%>
   <%@ include file="include/script.jsp"%>
-  
+
 </body>
 </html>
