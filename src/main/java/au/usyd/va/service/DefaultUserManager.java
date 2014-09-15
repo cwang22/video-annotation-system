@@ -13,10 +13,9 @@ import au.usyd.va.domain.User;
 @Transactional
 public class DefaultUserManager implements UserManager {
   
-  @Resource(name="")
+  @Autowired
   private UserDao userDao;
   
-  @Autowired
   public UserDao getUserDao() {
     return userDao;
   }
