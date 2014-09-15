@@ -13,25 +13,25 @@
 	<security:http pattern="/**/*.png" security="none"></security:http>
 	<security:http pattern="/js/*.js" security="none"></security:http>
 
-	<security:http pattern="/login.jsp" security="none"></security:http>
+	<security:http pattern="/login" security="none"></security:http>
 	<security:http pattern="/register*" security="none"></security:http>
 	<security:http pattern="/getCode" security="none" />
 	<security:http pattern="/test/**" security="none"></security:http>
 
 	<security:http auto-config="true">
-
-		<security:intercept-url pattern="/app.jsp"
-			access="ROLE_SERVICE" />
 		<security:intercept-url pattern="/**" access="ROLE_ADMIN" />
+		<security:form-login login-page="/login"
+			authentication-failure-url="/login?error=ture" default-target-url="/" />
 
 	</security:http>
 
 	<security:authentication-manager>
-		<security:authentication-provider user-service-ref="userDAO">
+		<security:authentication-provider
+			user-service-ref="userDAO">
 			<!-- <security:user-service><security:user name="admin" password="admin" 
 				authorities="ROLE_ADMIN" /> </security:user-service> -->
 		</security:authentication-provider>
 	</security:authentication-manager>
-	
+
 </beans>
 
