@@ -1,11 +1,11 @@
 package au.usyd.va.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -39,9 +39,11 @@ public class User implements UserDetails {
   @Column(name="CredentialsNonExpired")
   private boolean credentialsNonExpired;
   
-  @OneToMany
-  private Collection<UserRole>  authorities;
+  @Column(name="role")
+  private int role;
   
+
+
   public String getUsername() {
     return username;
   }
@@ -81,10 +83,34 @@ public class User implements UserDetails {
   public static long getSerialversionuid() {
     return serialVersionUID;
   }
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return authorities;
+  
+  public void setRole(int role) {
+    this.role = role;
   }
   
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    Collection<Role> auth = new ArrayList<Role>();
+    if(role == 0)
+      auth.add(new Role("ROLE_USER"));
+    if(role == 1)
+      auth.add(new Role("ROLE_ADMIN"));
+    return auth;
+  }
   
+  private class Role implements GrantedAuthority{
+
+    private static final long serialVersionUID = 1L;
+    String authority;
+    
+    
+    public Role(String authority) {
+      this.authority = authority;
+    }
+
+    public String getAuthority() {
+      return authority;
+    }
+    
+  }
 }
