@@ -1,5 +1,6 @@
 package au.usyd.va.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,14 +13,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import au.usyd.va.domain.Frame;
+import au.usyd.va.domain.Video;
+import au.usyd.va.domain.VideoAnnotation;
+import au.usyd.va.service.FrameManager;
+import au.usyd.va.service.VideoAnnotationManager;
+import au.usyd.va.service.VideoManager;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
-
-import au.usyd.va.domain.Video;
-import au.usyd.va.domain.VideoAnnotation;
-import au.usyd.va.service.VideoAnnotationManager;
-import au.usyd.va.service.VideoManager;
 
 @Controller
 @RequestMapping(value = "/video/**")
@@ -30,6 +33,9 @@ public class VideoController {
 
   @Resource(name = "VideoAnnotationManager")
   private VideoAnnotationManager videoAnnotationManager;
+  
+  @Resource(name = "frameManager")
+  private FrameManager frameManager;
 
   @RequestMapping(value = "/all")
   public String videoPage(Model uiModel) {
@@ -104,54 +110,60 @@ public class VideoController {
   @RequestMapping(value = "/select", method = RequestMethod.POST)
   public String selectKeyFrame(HttpServletRequest httpServletRequest) {
     long id = Long.parseLong(httpServletRequest.getParameter("id"));
-    Video video = this.videoManager.getVideoById(id);
 
     String jsonString = httpServletRequest.getParameter("json");
     System.out.println(jsonString);
-    Gson gson = new Gson();
     JsonParser parser = new JsonParser();
+    
     JsonArray array = parser.parse(jsonString).getAsJsonObject().getAsJsonArray("va");
-    System.out.println(array);
     for (int i = 0; i < array.size(); i++) {
-      VideoAnnotation va = gson.fromJson(array.get(i), VideoAnnotation.class);
-      va.setVideo(video);
-      System.out.println(va);
-      this.videoAnnotationManager.updateVideoAnnotation(va);
+      long vaid = array.get(i).getAsJsonObject().get("id").getAsLong();
+      VideoAnnotation va = this.videoAnnotationManager.getVideoAnnotationById(vaid);
+      
+      String keyFramesString = array.get(i).getAsJsonObject().get("keyFrame").getAsString();
+      Scanner s = new Scanner(keyFramesString);
+      s.useDelimiter(",");
+      while(s.hasNext()) {
+        int sequence = s.nextInt();
+        Frame frame = new Frame();
+        frame.setVa(va);
+        frame.setSequence(sequence);
+        this.frameManager.addFrame(frame);
+      }
+      s.close();
+      
     }
     return "redirect:rank/" + id;
   }
 
   @RequestMapping(value = "/rank/{id}")
   public String rankPage(@PathVariable("id") Long id, Model uiModel) {
+    List<Frame> returnFrames = new ArrayList<Frame>();
     Video video = this.videoManager.getVideoById(id);
     List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video);
+    for(VideoAnnotation va : vas) {
+      List<Frame> frames = this.frameManager.getFrames(va);
+      returnFrames.addAll(frames);
+    }
     uiModel.addAttribute(video);
-    uiModel.addAttribute("vas", vas);
+    uiModel.addAttribute("frames", returnFrames);
     return "rank";
   }
 
   @RequestMapping(value = "/rank", method = RequestMethod.POST)
   public String rankSegment(HttpServletRequest httpServletRequest) {
-    long id = Long.parseLong(httpServletRequest.getParameter("id"));
-    Video video = this.videoManager.getVideoById(id);
-    List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video);
     String order = httpServletRequest.getParameter("order");
     System.out.println(order);
     Scanner s = new Scanner(order);
     s.useDelimiter(",");
     int count = 0;
     while (s.hasNext()) {
-      int i = s.nextInt();
-      for (VideoAnnotation va : vas) {
-        if (va.getId() == i) {
-          va.setRank(count);
-          this.videoAnnotationManager.updateVideoAnnotation(va);
-        }
-      }
-      count++;
+      long id = s.nextLong();
+      Frame frame = this.frameManager.getFrameById(id);
+      frame.setRank(count++);
+      this.frameManager.updateFrame(frame);
     }
     s.close();
-    System.out.println(vas);
     return "redirect:success";
   }
   

@@ -38,27 +38,25 @@
                 <div class="col-lg-12">
                   <ol id="sort" class="ui list-unstyled">
 
-                    <c:forEach items="${vas}" var="va"
+                    <c:forEach items="${frames}" var="frame"
                       varStatus="status">
-                      <li id="${va.id}" class="ui segment">
+                      <li id="${frame.id}" class="ui segment">
                         <div class="row">
                           <div class="col-lg-6">
                             <h2 class="ui header">
-                              segment
+                              KeyFrame
                               <c:out value="${status.count}" />
                             </h2>
                             <div class="sub header">
                               <i class="time icon"></i>
-                             <span class="time"><c:out value="${va.starttime}" /></span>
-                              -
-                              <span class="time"><c:out value="${va.endtime}" /></span>
+                                <c:out value="${frame.sequence}" />
                             </div>
                             <p>some text description could go here</p>
                           </div>
                           <div class="col-lg-6">
                             <img
                               src="<c:url value='/resources/videoframe/v${video.id}/v${video.id}' /><fmt:formatNumber type="number" 
-            pattern = "0000" value="${va.keyFrame}" />.jpg" />
+            pattern = "0000" value="${frame.sequence}" />.jpg" />
                           </div>
                         </div>
                       </li>

@@ -47,8 +47,8 @@
             int count = 0;
             for(VideoAnnotation va : vas){
               long vaid = va.getId();
-              double startTime = va.getStarttime();
-              double endTime = va.getEndtime();
+              double startTime = va.getStartTime();
+              double endTime = va.getEndTime();
               int startFrame = (int) Math.floor(startTime * 24);
               int endFrame = (int) Math.floor(endTime * 24);
               count++;
@@ -87,9 +87,8 @@
               </ul>
             </div>
             <input type="hidden" name="va[][id]" value="<%=vaid %>"/>
-            <input type="hidden" name="va[][startTime]" value="<%=startTime %>"/>
-            <input type="hidden" name="va[][endTime]" value="<%=endTime %>"/>
             <input type="hidden" name="va[][keyFrame]" value="" />
+
             
           </section>
           <%
@@ -161,8 +160,6 @@
           });
           
           $('form').append('<textarea class="hidden" name="json">' + JSON.stringify($("form").serializeJSON()) + '</textarea>');
-		  event.preventDefault();
-
         });
       });
     </script>
