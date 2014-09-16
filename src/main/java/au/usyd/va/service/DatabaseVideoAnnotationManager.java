@@ -26,7 +26,7 @@ public class DatabaseVideoAnnotationManager implements VideoAnnotationManager {
   public List<VideoAnnotation> getAnnotations(Video video) {
     long id = video.getId();
     return this.sessionFactory.getCurrentSession()
-            .createQuery("FROM VideoAnnotation as vid where vid.video.id = " + id).list();
+            .createQuery("FROM VideoAnnotation as vid where vid.video.id = :id").setLong("id", id).list();
 
   }
 

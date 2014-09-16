@@ -52,7 +52,7 @@ public class DefaultFrameDao implements FrameDao{
     List<Frame> frames = new ArrayList<Frame>();
     long id = va.getId();
     frames = this.sessionFactory.getCurrentSession()
-            .createQuery("FROM Frame as frame where frame.va.id = " + id).list();
+            .createQuery("FROM Frame as frame where frame.va.id = :id").setLong("id", id).list();
     return frames;
   }
 }
