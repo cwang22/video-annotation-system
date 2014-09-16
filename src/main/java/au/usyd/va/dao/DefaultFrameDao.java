@@ -6,11 +6,13 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import au.usyd.va.domain.Frame;
 import au.usyd.va.domain.VideoAnnotation;
 
 @Repository(value="frameDao")
+@Transactional
 public class DefaultFrameDao implements FrameDao{
   
   private SessionFactory sessionFactory;
@@ -50,7 +52,7 @@ public class DefaultFrameDao implements FrameDao{
     List<Frame> frames = new ArrayList<Frame>();
     long id = va.getId();
     frames = this.sessionFactory.getCurrentSession()
-            .createQuery("FROM Frame as frame where vid.video.id = " + id).list();
+            .createQuery("FROM Frame as frame where frame.va.id = " + id).list();
     return frames;
   }
 }

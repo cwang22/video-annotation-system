@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import au.usyd.va.dao.FrameDao;
 import au.usyd.va.domain.Frame;
 import au.usyd.va.domain.VideoAnnotation;
 
 @Service(value="frameManager")
+@Transactional 
 public class DefaultFrameManager implements FrameManager{
   
   private FrameDao frameDao;
