@@ -65,7 +65,7 @@ $(document)
                                                             + endTime.toFixed(3)
                                                             + '" value="'
                                                             + endTime.toFixed(3).toString().toHHMMSS()
-                                                            + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><button type="button" class="play-button btn btn-xs btn-primary">play</button>&nbsp;<button class="delete-button btn btn-xs btn-danger">delete</button></td></tr>');
+                                                            + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><button type="button" class="play-button btn btn-primary">play</button>&nbsp;<button class="delete-button btn btn-danger">delete</button></td></tr>');
                                     addButtonListener();
                                   });
 
