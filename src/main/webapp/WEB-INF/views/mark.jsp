@@ -71,9 +71,9 @@
                   <table class="table table-hover">
                     <thead>
                       <tr>
-                        <th>Start</th>
-                        <th>End</th>
-                        <th></th>
+                        <th class="col-lg-4">Start</th>
+                        <th class="col-lg-4">End</th>
+                        <th class="col-lg-4"></th>
                       </tr>
                     </thead>
                     <tbody id="result"></tbody>
@@ -82,7 +82,7 @@
                         <td><input id="id" type="hidden" name="id"
                           value="${video.id}" /></td>
                         <td></td>
-                        <td><input class="btn btn-xs btn-success"
+                        <td><input class="btn btn-success pull-right"
                           type="submit" value="submit" /></td>
                       </tr>
                     </tfoot>
