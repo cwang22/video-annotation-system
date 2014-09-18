@@ -16,13 +16,21 @@
         <li><a href="<c:url value="/video/all" />">VIDEO</a></li>
         <li><a href="about.html">MY ANNOTATION</a></li>
         <li><a href="contact.html">ABOUT</a></li>
-        <li class="dropdown"><a href="#" class="dropdown-toggle"
-          data-toggle="dropdown">USERS<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="blog.html">MY PROFILE</a></li>
-            <li><a href="single-post.html">SETTING</a></li>
-            <li><a href="portfolio.html">LOG OUT</a></li>
-          </ul></li>
+
+        <sec:authorize access="isAuthenticated()" var="isAuthenticated">
+          <sec:authentication var="user" property="principal" />
+          <li class="dropdown"><a href="#" class="dropdown-toggle"
+            data-toggle="dropdown"><span class="text-uppercase">${user.username}</span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="blog.html">MY PROFILE</a></li>
+              <li><a href="single-post.html">SETTING</a></li>
+              <li><a href="<c:url value="/j_spring_security_logout" />">LOG OUT</a></li>
+            </ul></li>
+        </sec:authorize>
+        
+        <c:if test="${not isAuthenticated}">
+          <li><a href="<c:url value="/login" />">LOGIN</a></li>
+        </c:if>
       </ul>
     </div>
     <!--/.nav-collapse -->
