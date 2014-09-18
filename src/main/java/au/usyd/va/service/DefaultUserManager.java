@@ -35,5 +35,9 @@ public class DefaultUserManager implements UserManager {
   public void deleteUserByUsername(String username) {
     userDao.deleteUserByUsername(username);
   }
+  
+  public User getUserByUsername(String username) {
+    return (User) userDao.loadUserByUsername(username);
+  }
 
 }
