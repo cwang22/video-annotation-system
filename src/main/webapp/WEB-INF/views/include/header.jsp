@@ -22,8 +22,7 @@
           <li class="dropdown"><a href="#" class="dropdown-toggle"
             data-toggle="dropdown"><span class="text-uppercase">${user.username}</span><b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="blog.html">MY PROFILE</a></li>
-              <li><a href="single-post.html">SETTING</a></li>
+              <li><a href="<c:url value="/profile" />" >PROFILE</a></li>
               <li><a href="<c:url value="/j_spring_security_logout" />">LOG OUT</a></li>
             </ul></li>
         </sec:authorize>
