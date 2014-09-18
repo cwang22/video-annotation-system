@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,9 +23,11 @@ public class User implements UserDetails {
   
   @Id
   @Column(name="Username")
+  @NotNull
   private String username;
   
   @Column(name="Password")
+  @NotNull
   private String password;
   
   @Column(name="Enabled")
@@ -39,10 +42,15 @@ public class User implements UserDetails {
   @Column(name="CredentialsNonExpired")
   private boolean credentialsNonExpired;
   
-  @Column(name="role")
+  @Column(name="Role")
   private int role;
   
-
+  @Column(name="Name")
+  private String name;
+  
+  @Column(name="Institution")
+  private String institution;
+  
 
   public String getUsername() {
     return username;
@@ -96,6 +104,19 @@ public class User implements UserDetails {
     if(role == 1)
       auth.add(new Role("ROLE_ADMIN"));
     return auth;
+  }
+  
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
+  public String getInstitution() {
+    return institution;
+  }
+  public void setInstitution(String institution) {
+    this.institution = institution;
   }
   
   private class Role implements GrantedAuthority{
