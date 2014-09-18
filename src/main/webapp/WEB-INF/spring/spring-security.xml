@@ -18,10 +18,10 @@
 	<security:http pattern="/getCode" security="none" />
 	<security:http pattern="/test/**" security="none"></security:http>
 
-	<security:http auto-config="true">
-		<security:intercept-url pattern="/**" access="ROLE_ADMIN" />
+	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')" />
 		<security:form-login login-page="/login"
-			authentication-failure-url="/login?error=ture" default-target-url="/" />
+			authentication-failure-url="/login?error=ture" default-target-url="/home" />
 
 	</security:http>
 
