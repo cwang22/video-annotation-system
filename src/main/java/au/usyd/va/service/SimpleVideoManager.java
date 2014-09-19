@@ -2,6 +2,7 @@ package au.usyd.va.service;
 
 import java.util.List;
 
+import au.usyd.va.domain.User;
 import au.usyd.va.domain.Video;
 
 public class SimpleVideoManager implements VideoManager {
@@ -33,6 +34,24 @@ public class SimpleVideoManager implements VideoManager {
   @Override
   public void deleteVideo(long id) {
     // TODO Auto-generated method stub
+  }
+
+  @Override
+  public List<Video> getFinishedVideos(User user) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<Video> getStartedVideos(User user) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<Video> getNewVideos(User user) {
+    // TODO Auto-generated method stub
+    return null;
   }
 
 }
