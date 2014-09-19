@@ -21,11 +21,18 @@ public class VideoAnnotation {
   @JoinColumn(name = "Videoid")
   private Video video;
 
+  @ManyToOne
+  @JoinColumn(name = "Username")
+  private User user;
+  
   @Column(name = "Starttime")
   private double startTime;
 
   @Column(name = "Endtime")
   private double endTime;
+  
+  @Column(name = "IsFinished")
+  private boolean isFinished;
 
   public long getId() {
     return id;
@@ -58,4 +65,22 @@ public class VideoAnnotation {
   public void setEndTime(double endTime) {
     this.endTime = endTime;
   }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  public boolean isFinished() {
+    return isFinished;
+  }
+
+  public void setFinished(boolean isFinished) {
+    this.isFinished = isFinished;
+  }
+  
+  
 }
