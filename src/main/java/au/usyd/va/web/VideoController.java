@@ -7,6 +7,8 @@ import java.util.Scanner;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import au.usyd.va.domain.Frame;
+import au.usyd.va.domain.User;
 import au.usyd.va.domain.Video;
 import au.usyd.va.domain.VideoAnnotation;
 import au.usyd.va.service.FrameManager;
@@ -39,8 +42,14 @@ public class VideoController {
 
   @RequestMapping(value = "/all")
   public String videoPage(Model uiModel) {
-    List<Video> videos = this.videoManager.getVideos();
-    uiModel.addAttribute("videos", videos);
+    User user = this.getCurrentUser();
+    List<Video> newVideos = this.videoManager.getNewVideos(user);
+    List<Video> startedVideos = this.videoManager.getStartedVideos(user);
+    List<Video> finishedVideos = this.videoManager.getFinishedVideos(user);
+    
+    uiModel.addAttribute("newvideos", newVideos);
+    uiModel.addAttribute("startedvideos", startedVideos);
+    uiModel.addAttribute("finishedvideos", finishedVideos);
     return "video";
   }
 
@@ -85,11 +94,15 @@ public class VideoController {
     JsonParser parser = new JsonParser();
 
     Video video = this.videoManager.getVideoById(id);
+    User user = this.getCurrentUser();
     JsonArray array = parser.parse(jsonString).getAsJsonObject().getAsJsonArray("va");
     System.out.println(array);
+    
     for (int i = 0; i < array.size(); i++) {
       VideoAnnotation va = gson.fromJson(array.get(i), VideoAnnotation.class);
       va.setVideo(video);
+      va.setUser(user);
+      va.setFinished(false);
       System.out.println(va);
       this.videoAnnotationManager.addVideoAnnotation(va);
     }
@@ -101,7 +114,8 @@ public class VideoController {
   @RequestMapping(value = "/select/{id}")
   public String selectPage(@PathVariable("id") Long id, Model uiModel) {
     Video video = this.videoManager.getVideoById(id);
-    List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video);
+    User user = this.getCurrentUser();
+    List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video, user);
     uiModel.addAttribute(video);
     uiModel.addAttribute("vas", vas);
     return "select";
@@ -140,7 +154,8 @@ public class VideoController {
   public String rankPage(@PathVariable("id") Long id, Model uiModel) {
     List<Frame> returnFrames = new ArrayList<Frame>();
     Video video = this.videoManager.getVideoById(id);
-    List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video);
+    User user = this.getCurrentUser();
+    List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video, user);
     for(VideoAnnotation va : vas) {
       List<Frame> frames = this.frameManager.getFrames(va);
       returnFrames.addAll(frames);
@@ -153,17 +168,29 @@ public class VideoController {
   @RequestMapping(value = "/rank", method = RequestMethod.POST)
   public String rankSegment(HttpServletRequest httpServletRequest) {
     String order = httpServletRequest.getParameter("order");
-    System.out.println(order);
+    long vid = Long.parseLong(httpServletRequest.getParameter("id"));
+
     Scanner s = new Scanner(order);
     s.useDelimiter(",");
     int count = 0;
+    
     while (s.hasNext()) {
       long id = s.nextLong();
       Frame frame = this.frameManager.getFrameById(id);
       frame.setRank(count++);
       this.frameManager.updateFrame(frame);
     }
+    
+    Video video = this.videoManager.getVideoById(vid);
+    User user = this.getCurrentUser();
+    List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video, user);
+    for(VideoAnnotation va : vas) {
+      va.setFinished(true);
+      this.videoAnnotationManager.updateVideoAnnotation(va);
+    }
+    
     s.close();
+    
     return "redirect:success";
   }
   
@@ -172,5 +199,11 @@ public class VideoController {
     List<Video> videos = this.videoManager.getVideos();
     uiModel.addAttribute("videos", videos);
     return "success";
+  }
+  
+  private User getCurrentUser() {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    User user = (User) auth.getPrincipal();
+    return user;
   }
 }

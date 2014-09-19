@@ -47,6 +47,7 @@ public class DefaultFrameDao implements FrameDao{
     return frame;
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public List<Frame> getFrames(VideoAnnotation va) {
     List<Frame> frames = new ArrayList<Frame>();

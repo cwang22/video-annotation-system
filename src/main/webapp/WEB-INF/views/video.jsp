@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec"
+  uri="http://www.springframework.org/security/tags"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,20 +22,43 @@
   <%@ include file="include/header.jsp"%>
   <div id="main">
     <div class="container">
-      <h1>Videos</h1>
-      <hr>
+      <div class="page-header">
+        <h1>
+          <span class="glyphicon glyphicon-film"></span> New Videos
+        </h1>
+      </div>
       <div class="row">
-        <c:forEach items="${videos}" var="video" varStatus="status">
+        <c:forEach items="${newvideos}" var="nvideo" varStatus="status">
           <div class="col-lg-3">
             <a class="thumbnail"
-              href="<c:url value="video/mark/${video.id}" />"> <img
-              src="/va/resources/videoframe/v${video.id}/v10100.jpg" />
+              href="<c:url value="video/mark/${nvideo.id}" />"> <img
+              src="/va/resources/videoframe/v${nvideo.id}/v10100.jpg" />
             </a>
           </div>
-          <c:if test="${ (status.index+1) % 4 == 0}">
+        </c:forEach>
+        <c:forEach items="${startedvideos}" var="svideo"
+          varStatus="status">
+          <div class="col-lg-3">
+            <a class="thumbnail" href="<c:url value="video/mark/${svideo.id}" />">
+              <span class="ui left blue corner label">
+                <i class="exclamation icon"></i>
+              </span>
+              <img src="/va/resources/videoframe/v${svideo.id}/v10100.jpg" />
+            </a>
+          </div>
+        </c:forEach>
+        <c:forEach items="${finishedvideos}" var="fvideo"
+          varStatus="status">
+          <div class="col-lg-3">
+            <div>
+            <a class="thumbnail"
+              href="<c:url value="video/mark/${fvideo.id}" />"> <span
+              class="ui left green corner label"> <i
+                class="checkmark icon"></i>
+            </span><img src="/va/resources/videoframe/v${fvideo.id}/v10100.jpg" />
+            </a>
             </div>
-            <div class="row">
-          </c:if>
+          </div>
         </c:forEach>
       </div>
     </div>
