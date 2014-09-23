@@ -18,15 +18,17 @@
 </head>
 <body>
 
-
+  <div id="blue">
+    <div class="container">
+      <div class="row">
+        <h3><span class="glyphicon glyphicon-user"></span> Profile</h3>
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
   <%@ include file="include/header.jsp"%>
   <div id="main" class="container">
-    
-        <div class="page-header">
-          <h1>
-            <span class="glyphicon glyphicon-user"></span> Profile
-          </h1>
-        </div>
         <div class="row">
       <div class="col-lg-6 col-lg-offset-3">
         <c:url value="/profile" var="action" />

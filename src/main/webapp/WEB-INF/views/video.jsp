@@ -17,16 +17,19 @@
 
 </head>
 <body>
-
+<div id="blue">
+    <div class="container">
+      <div class="row">
+        <h3><span class="glyphicon glyphicon-film"></span>Videos</h3>
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
 
   <%@ include file="include/header.jsp"%>
   <div id="main">
     <div class="container">
-      <div class="page-header">
-        <h1>
-          <span class="glyphicon glyphicon-film"></span> New Videos
-        </h1>
-      </div>
       <div class="row">
         <c:forEach items="${newvideos}" var="nvideo" varStatus="status">
           <div class="col-lg-3">

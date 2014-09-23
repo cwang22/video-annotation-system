@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec"
+  uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
@@ -19,20 +20,29 @@
 
 
   <%@ include file="include/header.jsp"%>
+  <div id="blue">
+    <div class="container">
+      <div class="row">
+        <h3>
+          <span class="text-capitalize">${video.title}</span>
+        </h3>
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
   <div id="main">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <div class="ui three huge steps text-center">
+          <div class="ui three huge steps text-center margin-bottom">
             <a class="ui step"
               href="<c:url value="/video/mark/${video.id}" />">Marking</a>
             <a class="ui step"
               href="<c:url value="/video/select/${video.id}" />">Selecting</a>
             <a class="ui active step">Ranking</a>
           </div>
-          <h1 class="ui huge header">${video.title}-RankSegments</h1>
-          <i class="time icon"></i>11 Aug 2014
-          <hr>
+
           <form method="post" action='<c:url value="/video/rank" />'>
             <div id="sortwarp">
               <div class="row">
@@ -50,7 +60,7 @@
                             </h2>
                             <div class="sub header">
                               <i class="time icon"></i>
-                                <c:out value="${frame.sequence}" />
+                              <c:out value="${frame.sequence}" />
                             </div>
                             <p>some text description could go here</p>
                           </div>
@@ -70,8 +80,9 @@
                   <div class="col-lg-2 pull-right">
                     <input type="submit" value="sumbit"
                       class="btn btn-primary btn-lg" /> <input
-                      type="hidden" name="order" value="" />
-                      <input type="hidden" name="id" value="<c:url value='${video.id}'  />" />
+                      type="hidden" name="order" value="" /> <input
+                      type="hidden" name="id"
+                      value="<c:url value='${video.id}'  />" />
                   </div>
                 </div>
               </div>
