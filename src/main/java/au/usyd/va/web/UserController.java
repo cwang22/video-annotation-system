@@ -55,7 +55,7 @@ public class UserController {
       this.userManager.addUser(user);
     }
 
-    return "home";
+    return "redirect:/login";
   }
   
   @RequestMapping(value="/profile", method = RequestMethod.GET)
