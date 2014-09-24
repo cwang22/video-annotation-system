@@ -18,6 +18,15 @@
 
 
   <%@ include file="include/header.jsp"%>
+  <div id="blue">
+    <div class="container">
+      <div class="row">
+        <h3><span class="text-capitalize">Login</span></h3>
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
   <div id="main" class="container">
     <div class="row">
       <div class="col-lg-6 col-lg-offset3">
@@ -58,7 +67,9 @@
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-default">Sign
+            <a class="btn btn-default" href="<c:url value="/register" />">Register
+                </a>
+              <button type="submit" class="btn btn-theme">Sign
                 in</button>
             </div>
           </div>

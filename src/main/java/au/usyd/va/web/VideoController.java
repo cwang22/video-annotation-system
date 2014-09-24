@@ -78,15 +78,20 @@ public class VideoController {
   }
 
   @RequestMapping(value = "/mark/{id}")
-  public String markPage(@PathVariable("id") Long id, Model uiModel) {
+  public String markPage(@PathVariable("id") Long id, Model model) {
+    User user = this.getCurrentUser();
+    List<Video> newVideos = this.videoManager.getNewVideos(user);
+    model.addAttribute("newvideos", newVideos);
+    
     Video video = this.videoManager.getVideoById(id);
-    uiModel.addAttribute("video", video);
+    model.addAttribute("video", video);
     return "mark";
 
   }
 
   @RequestMapping(value = "/mark", method = RequestMethod.POST)
-  public String addAnnotation(HttpServletRequest httpServletRequest) {
+  public String addAnnotation(Model model, HttpServletRequest httpServletRequest) {
+    User user = this.getCurrentUser();
     long id = Long.parseLong(httpServletRequest.getParameter("id"));
     String jsonString = httpServletRequest.getParameter("json");
     System.out.println(jsonString);
@@ -94,7 +99,6 @@ public class VideoController {
     JsonParser parser = new JsonParser();
 
     Video video = this.videoManager.getVideoById(id);
-    User user = this.getCurrentUser();
     JsonArray array = parser.parse(jsonString).getAsJsonObject().getAsJsonArray("va");
     System.out.println(array);
     
@@ -112,12 +116,15 @@ public class VideoController {
   }
 
   @RequestMapping(value = "/select/{id}")
-  public String selectPage(@PathVariable("id") Long id, Model uiModel) {
-    Video video = this.videoManager.getVideoById(id);
+  public String selectPage(@PathVariable("id") Long id, Model model) {
     User user = this.getCurrentUser();
+    List<Video> newVideos = this.videoManager.getNewVideos(user);
+    model.addAttribute("newvideos", newVideos);
+    
+    Video video = this.videoManager.getVideoById(id);
     List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video, user);
-    uiModel.addAttribute(video);
-    uiModel.addAttribute("vas", vas);
+    model.addAttribute(video);
+    model.addAttribute("vas", vas);
     return "select";
   }
 
@@ -151,17 +158,20 @@ public class VideoController {
   }
 
   @RequestMapping(value = "/rank/{id}")
-  public String rankPage(@PathVariable("id") Long id, Model uiModel) {
+  public String rankPage(@PathVariable("id") Long id, Model model) {
+    User user = this.getCurrentUser();
+    List<Video> newVideos = this.videoManager.getNewVideos(user);
+    model.addAttribute("newvideos", newVideos);
+    
     List<Frame> returnFrames = new ArrayList<Frame>();
     Video video = this.videoManager.getVideoById(id);
-    User user = this.getCurrentUser();
     List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video, user);
     for(VideoAnnotation va : vas) {
       List<Frame> frames = this.frameManager.getFrames(va);
       returnFrames.addAll(frames);
     }
-    uiModel.addAttribute(video);
-    uiModel.addAttribute("frames", returnFrames);
+    model.addAttribute(video);
+    model.addAttribute("frames", returnFrames);
     return "rank";
   }
 

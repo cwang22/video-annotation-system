@@ -16,19 +16,18 @@
 
 </head>
 <body>
-
-
+<div id="blue">
+    <div class="container">
+      <div class="row">
+        <h3><span class="text-capitalize">Success</span></h3>
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
   <%@ include file="include/header.jsp"%>
   <div id="main">
     <div class="container">
-      
-      <h1 class="ui huge header">
-      <i class="checkmark icon"></i>
-      <div class="content">More<div class="sub header">Congratulations you have finish work
-        on this Video</div></div>
-      </h1>
-      
-      <hr>
       <div class="row">
         <c:forEach items="${videos}" var="video" varStatus="status">
           <div class="col-lg-3">
@@ -37,10 +36,6 @@
               src="/va/resources/videoframe/v${video.id}/v10100.jpg" />
             </a>
           </div>
-          <c:if test="${ (status.index+1) % 4 == 0}">
-      </div>
-      <div class="row">
-        </c:if>
         </c:forEach>
       </div>
     </div>

@@ -34,6 +34,7 @@ String.prototype.toSeconds = function() {
 myPlayer = videojs("example_video_1");
 startTime = 0;
 endTimer = 0;
+
 $(document)
         .ready(
                 function() {
@@ -66,6 +67,8 @@ $(document)
                                                             + '" value="'
                                                             + endTime.toFixed(3).toString().toHHMMSS()
                                                             + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><button type="button" class="play-button btn btn-primary">play</button>&nbsp;<button class="delete-button btn btn-danger">delete</button></td></tr>');
+                                    addSegment(startTime,endTime);
+
                                     addButtonListener();
                                   });
 
@@ -75,8 +78,6 @@ $(document)
                     });
                     $('form').append('<textarea class="hidden" name="json">' + JSON.stringify($("form").serializeJSON()) + '</textarea>');
                   });
-                  
-                  
 
                   $("#prev-button").click(function() {
                     myPlayer.currentTime(myPlayer.currentTime() - 0.04);
@@ -85,7 +86,22 @@ $(document)
                   $("#next-button").click(function() {
                     myPlayer.currentTime(myPlayer.currentTime() + 0.04);
                   });
+                  
+                  myPlayer.on("timeupdate", function(){
+                    $(".vjs-current-time-display span:first")[0].nextSibling.data = myPlayer.currentTime().toString().toHHMMSS()
+                    $(".vjs-duration-display span:first")[0].nextSibling.data = myPlayer.duration().toString().toHHMMSS();
+                  });
                 });
+
+
+function addSegment(startTime,endTime){
+  var m = $("<div class=\"segment\"></div>")
+  var duration = myPlayer.duration();
+  var width = 100 * (endTime - startTime) / duration;
+  var pos = (startTime/duration)*100;
+  m.css({"margin-left":-parseFloat(m.css("width"))/2 +'px',"width":width+'%',"margin-left":pos+'%'});
+  $(".va-segment").append(m);
+}
 
 function addButtonListener() {
   $('.delete-button').each(function() {
@@ -114,44 +130,44 @@ function addButtonListener() {
 
     });
   });
-  
-  $(".spinner .btn:first-of-type").each(function(){
+
+  $(".spinner .btn:first-of-type").each(function() {
     var intervalReturn;
-    $(this).mousedown(function(){
+    $(this).mousedown(function() {
       var button = $(this);
-      intervalReturn = setInterval(function(){
+      intervalReturn = setInterval(function() {
         var input = button.parents(".spinner").children("input");
         var seconds = parseFloat(input.attr("data-seconds"));
-        console.log("seconds:"+seconds);
-        seconds +=0.04;
-        console.log("seconds:"+seconds);
-        input.attr("data-seconds",seconds)
+        console.log("seconds:" + seconds);
+        seconds += 0.04;
+        console.log("seconds:" + seconds);
+        input.attr("data-seconds", seconds)
         input.val(seconds.toString().toHHMMSS());
-      },100);
+      }, 100);
     });
-    
-    $(this).mouseup(function(){
+
+    $(this).mouseup(function() {
       clearInterval(intervalReturn);
     });
 
   });
-  
-  $(".spinner .btn:last-of-type").each(function(){
+
+  $(".spinner .btn:last-of-type").each(function() {
     var intervalReturn;
-    $(this).mousedown(function(){
+    $(this).mousedown(function() {
       var button = $(this);
-      intervalReturn = setInterval(function(){
+      intervalReturn = setInterval(function() {
         var input = button.parents(".spinner").children("input");
         var seconds = parseFloat(input.attr("data-seconds"));
-        console.log("seconds:"+seconds);
-        seconds -=0.04;
-        console.log("seconds:"+seconds);
-        input.attr("data-seconds",seconds)
+        console.log("seconds:" + seconds);
+        seconds -= 0.04;
+        console.log("seconds:" + seconds);
+        input.attr("data-seconds", seconds)
         input.val(seconds.toString().toHHMMSS());
-      },100);
+      }, 100);
     });
-    
-    $(this).mouseup(function(){
+
+    $(this).mouseup(function() {
       clearInterval(intervalReturn);
     });
 
@@ -180,5 +196,4 @@ function addButtonListener() {
       $(".vjs-marker").remove();
     });
   });
-
 }
