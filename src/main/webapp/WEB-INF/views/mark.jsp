@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec"
+  uri="http://www.springframework.org/security/tags"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,24 +21,28 @@
 
 
   <%@ include file="include/header.jsp"%>
+  <div id="blue">
+    <div class="container">
+      <div class="row">
+        <h3><span class="text-capitalize">${video.title}</span></h3>
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
   <div id="main">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <div class="ui three huge steps text-center">
+          <div class="ui three huge steps text-center margin-bottom">
             <a class="ui active step"
               href="<c:url value="/video/mark/${video.id}" /> ">Marking</a>
             <a class="ui disabled step">Selecting</a> <a
               class="ui disabled step">Ranking</a>
           </div>
-          <h1 class="ui huge header">${video.title}</h1>
-          <i class="time icon"></i>11 Aug 2014<i class="time icon"></i>11
-          Aug 2014
-          <hr>
-
           <!-- video player -->
 
-          <video id="example_video_1" class="video-js vjs-default-skin"
+          <video id="example_video_1" class="video-js vjs-default-skin margin-bottom"
             controls preload="auto" width="1140" height="460"
             poster="http://video-js.zencoder.com/oceans-clip.png"
             data-setup='{"example_option":true}'>
@@ -49,22 +54,28 @@
                 target="_blank">supports HTML5 video</a>
             </p>
           </video>
+          
+           <div class="row">
+          <div class="col-lg-12 va-segment">
+          </div>
+          </div>
+          
 
           <!--  -->
           <div id="bottom-nav">
             <div class="row">
               <div class="col-lg-4">
                 <button id="start-button" type="button"
-                  class="btn btn-primary">Start</button>
-              
+                  class="btn btn-theme">Start</button>
+
                 <button id="end-button" type="button"
-                  class="btn btn-primary disabled">End</button>
-                  
-                  <button id="prev-button" type="button"
-                  class="btn btn-primary">Previous Frame</button>
-              
+                  class="btn btn-theme disabled">End</button>
+
+                <button id="prev-button" type="button"
+                  class="btn btn-theme">Previous Frame</button>
+
                 <button id="next-button" type="button"
-                  class="btn btn-primary">Next Frame</button>
+                  class="btn btn-theme">Next Frame</button>
               </div>
               <div class="col-lg-8">
                 <form action="<c:url value="/video/mark"/>"
@@ -83,7 +94,8 @@
                         <td><input id="id" type="hidden" name="id"
                           value="${video.id}" /></td>
                         <td></td>
-                        <td><input class="btn btn-success pull-right"
+                        <td><input
+                          class="btn btn-theme pull-right"
                           type="submit" value="submit" /></td>
                       </tr>
                     </tfoot>

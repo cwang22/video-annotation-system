@@ -1,25 +1,28 @@
 @CHARSET "UTF-8";
 
-/* reset bootstrap style */
-.progress-bar {
-	background-color:#00b3fe;
-}
-
 /*Color class*/
 .gray {
 	color:#bfc9d3;
 }
 
+.btn-theme{
+	margin:0;
+}
+
 /*watch page*/
 #main {
-	padding-top:100px;
-	min-height:688px;
+	min-height:500px;
+}
+
+.margin-bottom {
+	margin-bottom:3%;
 }
 
 #bottom-nav {
 	padding-top:50px;
 	padding-bottom:30px;
 }
+
 
 /*side bar*/
 #sidebar{
@@ -40,6 +43,15 @@
 
 .thumbnail {
 	position: relative;
+}
+
+/*Select page segments*/
+.va-segment .segment{
+	height:15px;
+	position:relative;
+	background-color:#00b3fe;
+	border-radius:2px;
+	box-shadow:1px 0.5px gray;
 }
 
 /**/
@@ -84,4 +96,9 @@
   position: absolute;
   top: 0;
   left: 4px;
+}
+
+/*custome video.js time*/
+.vjs-default-skin .vjs-control.vjs-time-controls{
+	width:6em;
 }
