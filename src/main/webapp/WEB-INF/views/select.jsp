@@ -118,26 +118,7 @@
       </div>
     </div>
 
-    <!-- sidebar -->
-    <div id="sidebar" class="ui red vertical large sidebar menu">
-      <a class="item"> <i class="home large icon"></i> Home
-      </a> <a class="item"> <i class="video large icon"></i>All Videos
-      </a>
-      <div class="item">
-        <b>More</b>
-      </div>
-      <div class="item">
-        <a href="#" class="thumbnail"> <img src="holder.js/240x240" />
-        </a> <a href="#" class="thumbnail"> <img src="holder.js/240x240" />
-        </a><a href="#" class="thumbnail"> <img src="holder.js/240x240" />
-        </a>
-      </div>
-    </div>
-    <div id="sidebar-button"
-      class="ui black huge launch right attached button">
-      <i class="icon video"></i> <span class="text">Videos</span>
-    </div>
-  </div>
+  <%@ include file="include/sidebar.jsp"%>
   <%@ include file="include/footer.jsp"%>
   <%@ include file="include/script.jsp"%>
   <script src="<c:url value="/resources/assets/js/slideshow.js"/>"></script>
