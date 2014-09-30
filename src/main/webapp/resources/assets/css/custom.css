@@ -55,13 +55,16 @@
 }
 
 /**/
-.slide div {
+.elastislide-list li {
 	position: relative;
 }
 
-.slide div img {
+.elastislide-list li img {
 	cursor: pointer;
 	border: 2px #ddd solid;
+}
+.elastislide-wrapper.elastislide-horizontal {
+	padding: 0;
 }
 
 /*spin-button*/
