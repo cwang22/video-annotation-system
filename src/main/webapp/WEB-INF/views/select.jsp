@@ -14,12 +14,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="shortcut icon"
-  href="<c:url value="/resources/assets/ico/favicon.ico"/>">
+<link rel="shortcut icon" href="<c:url value="/resources/assets/ico/favicon.ico"/>">
 <%@ include file="include/stylesheet.jsp"%>
-<link href="<c:url value="/resources/assets/css/slideshow.css"/>"
-  rel="stylesheet">
-
+<link href="<c:url value="/resources/assets/css/elastislide.css"/>" rel="stylesheet">
 </head>
 <body>
 
@@ -71,29 +68,20 @@
                 - <span class="time"><%=endTime%></span>
               </div>
               <hr>
-              <div class="slideshow" data-pagination="false"
-                data-auto="0">
-                <ul class="ss-carousel">
+                <ul class="elastislide-list">
                   <%
                     for(int i = startFrame; i< endFrame; i++) {
                                   String result = String.format("%04d", i);
                   %>
-                  <li class="slide">
-                    <div>
-
-                      <img
-                        src="/va/resources/videoframe/v<%=id%>/v<%=id%><%=result%>.jpg"
-                        data-frame="<%=i%>" width="240" height="240" />
+                  <li>
+                      <img src="/va/resources/videoframe/v<%=id%>/v<%=id%><%=result%>.jpg" data-frame="<%=i%>" width="240" height="240" />
                       <span class="ui left green corner label hide"><i
                         class="checkmark icon"></i></span>
-                    </div>
                   </li>
                   <%
                     }
                   %>
-
                 </ul>
-              </div>
               <input type="hidden" name="va[][id]" value="<%=vaid%>" />
               <input type="hidden" name="va[][keyFrame]" value="" />
 
@@ -117,19 +105,25 @@
         </div>
       </div>
     </div>
+  </div>
 
   <%@ include file="include/sidebar.jsp"%>
   <%@ include file="include/footer.jsp"%>
   <%@ include file="include/script.jsp"%>
-  <script src="<c:url value="/resources/assets/js/slideshow.js"/>"></script>
+  <script src="<c:url value="/resources/assets/js/modernizr.custom.17475.js" />"></script>
+  <script src="<c:url value="/resources/assets/js/jquerypp.custom.js" />"></script>
+  <script src="<c:url value="/resources/assets/js/jquery.elastislide.js" />"></script>
   <script type="text/javascript">
-      // Create slideshow instances
+      
+      
       $(function() {
-        var $slideshow = $('.slideshow').slides();
-      });
-
-      $(function() {
-        $(".slide img").each(function() {
+        $('.elastislide-list').each(function(){
+          $(this).elastislide({
+            minItems: 2
+          });
+        });
+        
+        $(".elastislide-list img").each(function() {
           $(this).click(function() {
             if ($(this).hasClass("selected")) {
               $(this).removeClass("selected");
@@ -143,7 +137,6 @@
 
         $("form").submit(function() {
           $(".selected").each(function() {
-
             var input = $(this).parents("section").children('input[name="va[][keyFrame]"]');
             input.val(input.val() == "" ? $(this).attr("data-frame") : input.val() + "," + $(this).attr("data-frame"));
           });
