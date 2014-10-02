@@ -81,6 +81,11 @@ public class VideoAnnotation {
   public void setFinished(boolean isFinished) {
     this.isFinished = isFinished;
   }
-  
+
+  @Override
+  public String toString() {
+    return "VideoAnnotation [id=" + id + ", video=" + video + ", user=" + user + ", startTime="
+            + startTime + ", endTime=" + endTime + ", isFinished=" + isFinished + "]";
+  }
   
 }
