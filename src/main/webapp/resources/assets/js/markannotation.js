@@ -67,7 +67,11 @@ $(document)
                                                             + '" value="'
                                                             + endTime.toFixed(3).toString().toHHMMSS()
                                                             + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><button type="button" class="play-button btn btn-primary">play</button>&nbsp;<button class="delete-button btn btn-danger">delete</button></td></tr>');
-                                    addSegment(startTime,endTime);
+                                    $(".timeline").timeline({
+                                      "duration":myPlayer.duration(),
+                                      "start":startTime,
+                                      "end":endTime
+                                    });
 
                                     addButtonListener();
                                   });
@@ -94,14 +98,7 @@ $(document)
                 });
 
 
-function addSegment(startTime,endTime){
-  var m = $("<div class=\"segment\"></div>")
-  var duration = myPlayer.duration();
-  var width = 100 * (endTime - startTime) / duration;
-  var pos = (startTime/duration)*100;
-  m.css({"margin-left":-parseFloat(m.css("width"))/2 +'px',"width":width+'%',"margin-left":pos+'%'});
-  $(".va-segment").append(m);
-}
+
 
 function addButtonListener() {
   $('.delete-button').each(function() {
@@ -196,4 +193,12 @@ function addButtonListener() {
       $(".vjs-marker").remove();
     });
   });
+}
+function addSegment(startTime,endTime){
+  var m = $("<div class=\"segment\"></div>")
+  var duration = myPlayer.duration();
+  var width = 100 * (endTime - startTime) / duration;
+  var pos = (startTime/duration)*100;
+  m.css({"margin-left":-parseFloat(m.css("width"))/2 +'px',"width":width+'%',"margin-left":pos+'%'});
+  $(".va-segment").append(m);
 }

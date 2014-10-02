@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+
+.timeline .segment {
+	height: 10px;
+	position: relative;
+	background-color: #00b3fe;
+	box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.3);
+}
