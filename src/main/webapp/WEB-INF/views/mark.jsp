@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sec"
   uri="http://www.springframework.org/security/tags"%>
+  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +17,7 @@
 <%@ include file="include/stylesheet.jsp"%>
 <link href="<c:url value="/resources/assets/css/videojs.markers.css"/>"
   rel="stylesheet">
-  <link href="<c:url value="/resources/assets/css/jquery.timeline.css"/>"
+<link href="<c:url value="/resources/assets/css/jquery.timeline.css"/>"
   rel="stylesheet">
 </head>
 <body>
@@ -63,17 +64,18 @@
       </div>
       <div class="row">
         <div class="col-lg-12">
-        <h3>result</h3>
-        <div class="timeline"></div></div>
+          <h3>result</h3>
+          <div class="timeline"></div>
+        </div>
       </div>
-      
+
 
 
 
       <!--  -->
       <div id="bottom-nav">
         <div class="row">
-          <div class="col-lg-4">
+          <div class="col-lg-12">
             <button id="start-button" type="button"
               class="btn btn-theme">Start</button>
 
@@ -86,8 +88,11 @@
             <button id="next-button" type="button" class="btn btn-theme">Next
               Frame</button>
           </div>
-          <div class="col-lg-8">
-            <form action="<c:url value="/video/mark"/>" method="post">
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <c:url value="/video/mark" var="action"/>
+            <form:form modelAttribute="markform" method="POST" action="${action}">
               <table class="table table-hover">
                 <thead>
                   <tr>
@@ -96,8 +101,41 @@
                     <th class="col-lg-4"></th>
                   </tr>
                 </thead>
-                <tbody id="result"></tbody>
+                <tbody id="result">
+                <c:forEach items="${markform.vas}" var="vas" varStatus="i">
+                <tr data-id="${i.index}">
+                  <td>
+                    <div class="input-group spinner">
+                      <form:input path="vas[${i.index}].startTime" class="form-control" disabled="true" />
+                      <div class="input-group-btn-vertical">
+                        <button class="btn btn-default" type="button">
+                          <i class="fa fa-caret-up"></i>
+                        </button>
+                        <button class="btn btn-default" type="button">
+                          <i class="fa fa-caret-down"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                <td><div class="input-group spinner">
+                      <form:input path="vas[${i.index}].endTime" class="form-control" disabled="true" />
+                      <div class="input-group-btn-vertical">
+                        <button class="btn btn-default" type="button">
+                          <i class="fa fa-caret-up"></i>
+                        </button>
+                        <button class="btn btn-default" type="button">
+                          <i class="fa fa-caret-down"></i>
+                        </button>
+                      </div>
+                    </div></td>
+                <td><button type="button" class="play-button btn btn-primary">play</button>&nbsp;<button class="delete-button btn btn-danger">delete</button><form:hidden path="vas[${i.index}].id"/></td>
+                </tr>  
+                </c:forEach>
+                
+                
+                </tbody>
                 <tfoot>
+                  
                   <tr>
                     <td><input id="id" type="hidden" name="id"
                       value="${video.id}" /></td>
@@ -107,7 +145,7 @@
                   </tr>
                 </tfoot>
               </table>
-            </form>
+            </form:form>
           </div>
         </div>
       </div>

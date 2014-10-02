@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,11 +20,11 @@ import au.usyd.va.domain.Frame;
 import au.usyd.va.domain.User;
 import au.usyd.va.domain.Video;
 import au.usyd.va.domain.VideoAnnotation;
+import au.usyd.va.form.MarkForm;
 import au.usyd.va.service.FrameManager;
 import au.usyd.va.service.VideoAnnotationManager;
 import au.usyd.va.service.VideoManager;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
@@ -78,27 +79,33 @@ public class VideoController {
   }
 
   @RequestMapping(value = "/mark/{id}")
-  public String markPage(@PathVariable("id") Long id, Model model) {
+  public String mark(@PathVariable("id") Long id, Model model) {
     User user = this.getCurrentUser();
     List<Video> newVideos = this.videoManager.getNewVideos(user);
     model.addAttribute("newvideos", newVideos);
     
     Video video = this.videoManager.getVideoById(id);
     model.addAttribute("video", video);
+    
+    List<VideoAnnotation> vas = this.videoAnnotationManager.getAnnotations(video, user);
+    MarkForm markForm = new MarkForm();
+    markForm.setVas(vas);
+    markForm.setVideo(video);
+    model.addAttribute("markform", markForm);
     return "mark";
 
   }
 
   @RequestMapping(value = "/mark", method = RequestMethod.POST)
-  public String addAnnotation(Model model, HttpServletRequest httpServletRequest) {
-    User user = this.getCurrentUser();
-    long id = Long.parseLong(httpServletRequest.getParameter("id"));
+  public String addAnnotation(@ModelAttribute MarkForm markForm, HttpServletRequest httpServletRequest) {
+    /*
+    
     String jsonString = httpServletRequest.getParameter("json");
     System.out.println(jsonString);
     Gson gson = new Gson();
     JsonParser parser = new JsonParser();
 
-    Video video = this.videoManager.getVideoById(id);
+    
     JsonArray array = parser.parse(jsonString).getAsJsonObject().getAsJsonArray("va");
     System.out.println(array);
     
@@ -110,8 +117,28 @@ public class VideoController {
       System.out.println(va);
       this.videoAnnotationManager.addVideoAnnotation(va);
     }
+    */
+    User user = this.getCurrentUser();
+    long id = Long.parseLong(httpServletRequest.getParameter("id"));
+    Video video = this.videoManager.getVideoById(id);
+    
+    List<VideoAnnotation> vas = markForm.getVas();
+    System.out.println(vas.size());
+    for(int i=0; i<vas.size();i++){
+      VideoAnnotation va = vas.get(i);
+      va.setUser(user);
+      va.setVideo(video);
+      System.out.println(va.toString());
+      if(va.getId() == 0){
+        this.videoAnnotationManager.addVideoAnnotation(va);
+      }else{
+        this.videoAnnotationManager.updateVideoAnnotation(va);
+      }
+    }
+    
 
     return "redirect:select/" + id;
+    
 
   }
 

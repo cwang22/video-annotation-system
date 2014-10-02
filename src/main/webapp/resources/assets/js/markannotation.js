@@ -35,67 +35,76 @@ myPlayer = videojs("example_video_1");
 startTime = 0;
 endTimer = 0;
 
-$(document)
-        .ready(
-                function() {
+$(function(){
+  $("form").find("input[name^='vas']").each(function(){
+    $(this).attr("data-seconds",$(this).val());
+    $(this).val($(this).val().toHHMMSS());
+  });
+});
 
-                  $("#start-button").click(function() {
-                    // alert("start");
+$(document).ready(
+ function(){
+  $("#start-button").click(function() {
+    startTime = myPlayer.currentTime();
+    myPlayer.play();
+    $(this).addClass("disabled");
+    $("#end-button").removeClass("disabled");
+  });
+  
+  $("#end-button").click(
+    function() {
+      endTime = myPlayer.currentTime();
+      $(this).addClass("disabled");
+      $("#start-button").removeClass("disabled");
+      
+      var i;
+      if($("#result").has("tr").length == 0){
+        i = 0;
+      }else{
+        i = parseInt($("#result tr:last-child").attr("data-id")) + 1;
+      }
+      
+      $('#result').append(
+          '<tr data-id="'+i+'"><td><div class="input-group spinner">'
+        + '<input name="vas['+i+'].startTime" class="form-control" data-seconds="'
+        + startTime.toFixed(3)
+        + '" value="'
+        + startTime.toFixed(3).toString().toHHMMSS()
+        + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><div class="input-group spinner"><input name="vas['+i+'].endTime" class="form-control"  data-seconds="'
+        + endTime.toFixed(3)
+        + '" value="'
+        + endTime.toFixed(3).toString().toHHMMSS()
+        + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><button type="button" class="play-button btn btn-primary">play</button>&nbsp;<button class="delete-button btn btn-danger">delete</button></td></tr>');
 
-                    startTime = myPlayer.currentTime();
-                    myPlayer.play();
-                    $(this).addClass("disabled");
-                    $("#end-button").removeClass("disabled");
-                  });
+      $(".timeline").timeline({
+        "duration":myPlayer.duration(),
+        "start":startTime,
+        "end":endTime
+      });
 
-                  $("#end-button")
-                          .click(
-                                  function() {
-                                    // alert("end");
-                                    endTime = myPlayer.currentTime();
-                                    // alert(startTime + " " + endTime);
-                                    $(this).addClass("disabled");
-                                    $("#start-button").removeClass("disabled");
-                                    $('#result')
-                                            .append(
-                                                    '<tr><td><div class="input-group spinner"><input name="va[][startTime]" class="form-control" data-seconds="'
-                                                            + startTime.toFixed(3)
-                                                            + '" value="'
-                                                            + startTime.toFixed(3).toString().toHHMMSS()
-                                                            + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><div class="input-group spinner"><input name="va[][endTime]" class="form-control"  data-seconds="'
-                                                            + endTime.toFixed(3)
-                                                            + '" value="'
-                                                            + endTime.toFixed(3).toString().toHHMMSS()
-                                                            + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><button type="button" class="play-button btn btn-primary">play</button>&nbsp;<button class="delete-button btn btn-danger">delete</button></td></tr>');
-                                    $(".timeline").timeline({
-                                      "duration":myPlayer.duration(),
-                                      "start":startTime,
-                                      "end":endTime
-                                    });
+      addButtonListener();
+    });
 
-                                    addButtonListener();
-                                  });
+    $("form").submit(function(){
+      $(this).find('input[name^="va"]').removeAttr('disabled').each(function() {
+        $(this).val($(this).attr('data-seconds'));
+      });
+      //$('form').append('<textarea class="hidden" name="json">' + JSON.stringify($("form").serializeJSON()) + '</textarea>');
+    });
 
-                  $("form").submit(function() {
-                    $(this).find('input[name^="va"]').removeAttr('disabled').each(function() {
-                      $(this).val($(this).attr('data-seconds'));
-                    });
-                    $('form').append('<textarea class="hidden" name="json">' + JSON.stringify($("form").serializeJSON()) + '</textarea>');
-                  });
+    $("#prev-button").click(function() {
+      myPlayer.currentTime(myPlayer.currentTime() - 0.04);
+    });
 
-                  $("#prev-button").click(function() {
-                    myPlayer.currentTime(myPlayer.currentTime() - 0.04);
-                  });
-
-                  $("#next-button").click(function() {
-                    myPlayer.currentTime(myPlayer.currentTime() + 0.04);
-                  });
-                  
-                  myPlayer.on("timeupdate", function(){
-                    $(".vjs-current-time-display span:first")[0].nextSibling.data = myPlayer.currentTime().toString().toHHMMSS()
-                    $(".vjs-duration-display span:first")[0].nextSibling.data = myPlayer.duration().toString().toHHMMSS();
-                  });
-                });
+    $("#next-button").click(function() {
+      myPlayer.currentTime(myPlayer.currentTime() + 0.04);
+    });
+    
+    myPlayer.on("timeupdate", function(){
+      $(".vjs-current-time-display span:first")[0].nextSibling.data = myPlayer.currentTime().toString().toHHMMSS()
+      $(".vjs-duration-display span:first")[0].nextSibling.data = myPlayer.duration().toString().toHHMMSS();
+    });
+  });
 
 
 
@@ -112,8 +121,8 @@ function addButtonListener() {
 
   $('.play-button').each(function() {
     $(this).click(function() {
-      var startAt = $(this).parent().parent().children().children("input[name='va[][startTime]']").val().toSeconds();
-      var stopAt = $(this).parent().parent().children().children("input[name='va[][endTime]']").val().toSeconds();
+      var startAt = $(this).parent().parent().children().children("input[name='vas[][startTime]']").val().toSeconds();
+      var stopAt = $(this).parent().parent().children().children("input[name='vas[][endTime]']").val().toSeconds();
       myPlayer.currentTime(startAt).play();
 
       var pausePlayer = function() {
@@ -194,11 +203,8 @@ function addButtonListener() {
     });
   });
 }
+
 function addSegment(startTime,endTime){
-  var m = $("<div class=\"segment\"></div>")
-  var duration = myPlayer.duration();
-  var width = 100 * (endTime - startTime) / duration;
-  var pos = (startTime/duration)*100;
-  m.css({"margin-left":-parseFloat(m.css("width"))/2 +'px',"width":width+'%',"margin-left":pos+'%'});
-  $(".va-segment").append(m);
+
+
 }
