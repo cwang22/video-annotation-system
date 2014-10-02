@@ -45,15 +45,6 @@
 	position: relative;
 }
 
-/*Select page segments*/
-.va-segment .segment{
-	height:15px;
-	position:relative;
-	background-color:#00b3fe;
-	border-radius:2px;
-	box-shadow:1px 0.5px gray;
-}
-
 /**/
 .elastislide-list li {
 	position: relative;
