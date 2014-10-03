@@ -31,6 +31,9 @@ public class VideoAnnotation {
   @Column(name = "Endtime")
   private double endTime;
   
+  @Column(name = "Description")
+  private String description;
+  
   @Column(name = "IsFinished")
   private boolean isFinished;
 
@@ -72,6 +75,14 @@ public class VideoAnnotation {
 
   public void setUser(User user) {
     this.user = user;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public boolean isFinished() {
