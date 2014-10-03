@@ -118,12 +118,28 @@ public class User implements UserDetails {
   public void setInstitution(String institution) {
     this.institution = institution;
   }
-  
+ 
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    User other = (User) obj;
+    if (username == null) {
+      if (other.username != null)
+        return false;
+    } else if (!username.equals(other.username))
+      return false;
+    return true;
+  }
+
   private class Role implements GrantedAuthority{
 
     private static final long serialVersionUID = 1L;
     String authority;
-    
     
     public Role(String authority) {
       this.authority = authority;

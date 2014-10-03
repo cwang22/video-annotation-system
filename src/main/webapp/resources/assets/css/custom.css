@@ -18,6 +18,10 @@
 	margin-bottom:3%;
 }
 
+#thumbnail{
+	margin:10px 0;
+}
+
 #bottom-nav {
 	padding-top:50px;
 	padding-bottom:30px;
@@ -52,7 +56,7 @@
 
 .elastislide-list li img {
 	cursor: pointer;
-	border: 2px #ddd solid;
+	border-right: 4px #fff solid;
 }
 .elastislide-wrapper.elastislide-horizontal {
 	padding: 0;

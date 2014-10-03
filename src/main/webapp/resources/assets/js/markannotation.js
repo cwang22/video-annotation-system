@@ -33,87 +33,162 @@ String.prototype.toSeconds = function() {
 
 myPlayer = videojs("example_video_1");
 startTime = 0;
-endTimer = 0;
+endTime = 0;
+haveSetStart = false;
 
-$(document)
-        .ready(
-                function() {
 
-                  $("#start-button").click(function() {
-                    // alert("start");
+//Player control
+$(function(){
+  player = videojs("example_video_1");
+  player.on("pause",function(){
+    $("#start-button").addClass("disabled");
+    $("#thumbnail").empty();
+    var id = parseInt($("video").attr("data-id"));
+    var currentTime = player.currentTime();
+    var m = $("<ul class=\"elastislide-list\"></ul>");
+    var startTime = currentTime - 0.5;
+    var endTime = currentTime + 0.5;
+    var startFrame = Math.floor(startTime * 25);
+    var endFrame = Math.floor(endTime * 25);
+    for(var i = startFrame; i < endFrame; i++){
+      var li = $("<li><img src=\"/va/resources/videoframe/"+id+"/"+i+".jpg\" data-frame=\""+i+"\" width=\"240\" height=\"240\" /><span class=\"ui left green corner label hide\"><i class=\"checkmark icon\"></i></span></li>");
+      m.append(li);
+    }
+    $("#thumbnail").append(m);
+    $(".elastislide-list").elastislide({
+      minItems: 2
+    });
+    
+    $(".elastislide-list img").each(function() {
+      $(this).click(function() {
+        if ($(this).hasClass("selected")) {
+          $(this).removeClass("selected").siblings().addClass("hide");
+          if(!haveSetStart){
+            $("#start-button").addClass("disabled");
+          }else{
+            $("#end-button").addClass("disabled");
+          }
+        } else {
+          $(".selected").removeClass("selected").siblings().addClass("hide");
+          $(this).addClass("selected").siblings().removeClass("hide");
+          if(!haveSetStart){
+            $("#start-button").removeClass("disabled");
+          }else{
+            $("#end-button").removeClass("disabled");
+          }
+        }
+      });
+    });
+    
+  });
+});
 
-                    startTime = myPlayer.currentTime();
-                    myPlayer.play();
-                    $(this).addClass("disabled");
-                    $("#end-button").removeClass("disabled");
-                  });
 
-                  $("#end-button")
-                          .click(
-                                  function() {
-                                    // alert("end");
-                                    endTime = myPlayer.currentTime();
-                                    // alert(startTime + " " + endTime);
-                                    $(this).addClass("disabled");
-                                    $("#start-button").removeClass("disabled");
-                                    $('#result')
-                                            .append(
-                                                    '<tr><td><div class="input-group spinner"><input name="va[][startTime]" class="form-control" data-seconds="'
-                                                            + startTime.toFixed(3)
-                                                            + '" value="'
-                                                            + startTime.toFixed(3).toString().toHHMMSS()
-                                                            + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><div class="input-group spinner"><input name="va[][endTime]" class="form-control"  data-seconds="'
-                                                            + endTime.toFixed(3)
-                                                            + '" value="'
-                                                            + endTime.toFixed(3).toString().toHHMMSS()
-                                                            + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><button type="button" class="play-button btn btn-primary">play</button>&nbsp;<button class="delete-button btn btn-danger">delete</button></td></tr>');
-                                    $(".timeline").timeline({
-                                      "duration":myPlayer.duration(),
-                                      "start":startTime,
-                                      "end":endTime
-                                    });
 
-                                    addButtonListener();
-                                  });
+$(function(){
+  addButtonListener();
+  $("form").find(".form-control.time").each(function(){
+    $(this).attr("data-seconds",$(this).val());
+    $(this).val($(this).val().toHHMMSS());
+  });
+});
 
-                  $("form").submit(function() {
-                    $(this).find('input[name^="va"]').removeAttr('disabled').each(function() {
-                      $(this).val($(this).attr('data-seconds'));
-                    });
-                    $('form').append('<textarea class="hidden" name="json">' + JSON.stringify($("form").serializeJSON()) + '</textarea>');
-                  });
+$(document).ready(
+ function(){
+  $("#start-button").click(function() {
+    var frame = parseInt($(".selected").attr("data-frame"));
+    startTime = (frame / 25).toFixed(3);
+    $(this).addClass("disabled");
+    haveSetStart = true;
+  });
+  
+  $("#end-button").click(
+    function() {
+      var frame = parseInt($(".selected").attr("data-frame"));
+      endTime = (frame / 25).toFixed(3);
+      $(this).addClass("disabled");
+      $("#start-button").removeClass("disabled");
+      
+      var i;
+      
+      if($("#result").has("tr").length == 0){
+        i = 0;
+      }else{
+        i = parseInt($("#result tr:last-child").attr("data-id")) + 1;
+      }
+      
+      $('#result').append(
+          '<tr data-id="'+i+'"><td><div class="input-group spinner">'
+        + '<input name="vas['+i+'].startTime" class="form-control start time" data-seconds="'
+        + startTime
+        + '" value="'
+        + startTime.toString().toHHMMSS()
+        + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><div class="input-group spinner"><input name="vas['+i+'].endTime" class="form-control end time"  data-seconds="'
+        + endTime
+        + '" value="'
+        + endTime.toString().toHHMMSS()
+        + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><input type="text" name="vas['+i+'].description" class="form-control"></td><td><button type="button" class="play-button btn btn-primary">play</button>&nbsp;<button type="button" class="delete-button btn btn-danger">delete</button></td></tr>');
 
-                  $("#prev-button").click(function() {
-                    myPlayer.currentTime(myPlayer.currentTime() - 0.04);
-                  });
+      $(".timeline").timeline({
+        "duration":myPlayer.duration(),
+        "start":startTime,
+        "end":endTime
+      });
 
-                  $("#next-button").click(function() {
-                    myPlayer.currentTime(myPlayer.currentTime() + 0.04);
-                  });
-                  
-                  myPlayer.on("timeupdate", function(){
-                    $(".vjs-current-time-display span:first")[0].nextSibling.data = myPlayer.currentTime().toString().toHHMMSS()
-                    $(".vjs-duration-display span:first")[0].nextSibling.data = myPlayer.duration().toString().toHHMMSS();
-                  });
-                });
+      addButtonListener();
+      haveSetStart = false;
+    });
+
+    $("form").submit(function(){
+      $(this).find(".form-control.time").removeAttr('disabled').each(function() {
+        $(this).val($(this).attr('data-seconds'));
+      });
+      //$('form').append('<textarea class="hidden" name="json">' + JSON.stringify($("form").serializeJSON()) + '</textarea>');
+    });
+
+    $("#prev-button").click(function() {
+      myPlayer.currentTime(myPlayer.currentTime() - 0.04);
+    });
+
+    $("#next-button").click(function() {
+      myPlayer.currentTime(myPlayer.currentTime() + 0.04);
+    });
+    
+    myPlayer.on("timeupdate", function(){
+      $(".vjs-current-time-display span:first")[0].nextSibling.data = myPlayer.currentTime().toString().toHHMMSS()
+      $(".vjs-duration-display span:first")[0].nextSibling.data = myPlayer.duration().toString().toHHMMSS();
+    });
+  });
 
 
 
 
 function addButtonListener() {
-  $('.delete-button').each(function() {
-    // alert("each");
+  $(".delete-button").each(function() {
     $(this).click(function(e) {
-      e.preventDefault();
-      // alert("delete");
-      $(this).parent().parent().remove();
+      var result = confirm("Click OK to delete selected segment");
+      var tr = $(this).closest("tr");
+      if(result){
+        if(tr.find("input[type=\"hidden\"]").length == 0){
+          tr.remove();
+        }else{
+          console.log("called");
+          var id = tr.find("input[type=\"hidden\"]").val();
+          $.ajax({
+            type: "DELETE",
+            url: "/va/annotation/"+id
+          }).done(function(){
+            tr.remove();
+          });
+        }
+      }
     });
   });
 
-  $('.play-button').each(function() {
+  $(".play-button").each(function() {
     $(this).click(function() {
-      var startAt = $(this).parent().parent().children().children("input[name='va[][startTime]']").val().toSeconds();
-      var stopAt = $(this).parent().parent().children().children("input[name='va[][endTime]']").val().toSeconds();
+      var startAt = $(this).closest("tr").find(".start.time").attr("data-seconds");
+      var stopAt = $(this).closest("tr").find(".end.time").attr("data-seconds");
       myPlayer.currentTime(startAt).play();
 
       var pausePlayer = function() {
@@ -130,14 +205,19 @@ function addButtonListener() {
 
   $(".spinner .btn:first-of-type").each(function() {
     var intervalReturn;
+    $(this).click(function(){
+      var input = $(this).parents(".spinner").children("input");
+      var seconds = parseFloat(input.attr("data-seconds"));
+      seconds += 0.04;
+      input.attr("data-seconds", seconds)
+      input.val(seconds.toString().toHHMMSS());
+    });
     $(this).mousedown(function() {
       var button = $(this);
       intervalReturn = setInterval(function() {
         var input = button.parents(".spinner").children("input");
         var seconds = parseFloat(input.attr("data-seconds"));
-        console.log("seconds:" + seconds);
         seconds += 0.04;
-        console.log("seconds:" + seconds);
         input.attr("data-seconds", seconds)
         input.val(seconds.toString().toHHMMSS());
       }, 100);
@@ -151,6 +231,13 @@ function addButtonListener() {
 
   $(".spinner .btn:last-of-type").each(function() {
     var intervalReturn;
+    $(this).click(function(){
+      var input = $(this).parents(".spinner").children("input");
+      var seconds = parseFloat(input.attr("data-seconds"));
+      seconds -= 0.04;
+      input.attr("data-seconds", seconds)
+      input.val(seconds.toString().toHHMMSS());
+    });
     $(this).mousedown(function() {
       var button = $(this);
       intervalReturn = setInterval(function() {
@@ -170,7 +257,7 @@ function addButtonListener() {
 
   });
 
-  $("#result tr").each(function() {
+/*  $("#result tr").each(function() {
     $(this).hover(function() {
       var startAt = $(this).children().children().children("input[name='va[][startTime]']").val().toSeconds();
       var endAt = $(this).children().children().children("input[name='va[][endTime]']").val().toSeconds();
@@ -192,13 +279,5 @@ function addButtonListener() {
     }, function() {
       $(".vjs-marker").remove();
     });
-  });
-}
-function addSegment(startTime,endTime){
-  var m = $("<div class=\"segment\"></div>")
-  var duration = myPlayer.duration();
-  var width = 100 * (endTime - startTime) / duration;
-  var pos = (startTime/duration)*100;
-  m.css({"margin-left":-parseFloat(m.css("width"))/2 +'px',"width":width+'%',"margin-left":pos+'%'});
-  $(".va-segment").append(m);
+  });*/
 }
