@@ -35,7 +35,7 @@ myPlayer = videojs("example_video_1");
 startTime = 0;
 endTime = 0;
 haveSetStart = false;
-
+anno.addPlugin('PolygonSelector', { activate: true });
 
 //Player control
 $(function(){
@@ -79,7 +79,6 @@ $(function(){
         }
       });
     });
-    
   });
 });
 
@@ -137,6 +136,22 @@ $(document).ready(
 
       addButtonListener();
       haveSetStart = false;
+    });
+  
+    $("#object-button").click(function(){
+
+      var video = document.getElementById("example_video_1_html5_api");
+      var canvas = document.getElementById("c");
+      var context = canvas.getContext("2d");
+      var cw = canvas.width;
+      var ch = canvas.height;
+      context.drawImage(video,0,0,cw,ch);
+
+      var url = canvas.toDataURL();
+      var m = $("<img id=\"object\"/>");
+      m.attr("src",url);
+      $("#thumbnail").empty().append(m);
+      anno.makeAnnotatable(document.getElementById('object'));
     });
 
     $("form").submit(function(){

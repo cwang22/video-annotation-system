@@ -17,6 +17,7 @@
 <link href="<c:url value="/resources/assets/css/videojs.markers.css"/>" rel="stylesheet">
 <link href="<c:url value="/resources/assets/css/jquery.timeline.css"/>" rel="stylesheet">
 <link href="<c:url value="/resources/assets/css/elastislide.css"/>" rel="stylesheet">
+<link href="<c:url value="/resources/assets/css/annotorious.css"/>" rel="stylesheet"> 
 </head>
 <body>
   <%@ include file="include/header.jsp"%>
@@ -48,7 +49,7 @@
             preload="auto" width="1140" height="460"
             poster="http://video-js.zencoder.com/oceans-clip.png"
             data-setup='{"example_option":true}' data-id="${video.id}">
-            <source src="${video.source}" type='video/mp4' />
+            <source src="<c:url value="/resources/videos/${video.source}" />" type='video/mp4' />
             <p class="vjs-no-js">
               To view this video please enable JavaScript, and consider
               upgrading to a web browser that <a
@@ -65,6 +66,7 @@
           <div class="btn-group pull-right">
           <button id="start-button" type="button" class="btn btn-theme disabled">Start</button>
           <button id="end-button" type="button" class="btn btn-theme disabled">End</button>
+          <button id="object-button" type="button" class="btn btn-theme"  data-toggle="modal" data-target="#object">Object</button>
 </div>
           <button id="prev-button" type="button" class="btn btn-theme">Previous Frame</button>
           <button id="next-button" type="button" class="btn btn-theme">Next Frame</button>
@@ -154,15 +156,18 @@
 
     </div>
   </div>
-
+  <canvas id="c" width="1140" height="460" class="hidden"></canvas>
   <%@ include file="include/sidebar.jsp"%>
   <%@ include file="include/footer.jsp"%>
+  
   <%@ include file="include/script.jsp"%>
   <script src="<c:url value="/resources/assets/js/jquery.timeline.js" />"></script>
   <script src="<c:url value="/resources/assets/js/videojs.markers.js" />"></script>
   <script src="<c:url value="/resources/assets/js/modernizr.custom.17475.js" />"></script>
   <script src="<c:url value="/resources/assets/js/jquerypp.custom.js" />"></script>
   <script src="<c:url value="/resources/assets/js/jquery.elastislide.js" />"></script>
+  <script src="<c:url value="/resources/assets/js/annotorious.min.js" />"></script>
+  <script src="<c:url value="/resources/assets/js/polygon_selector.js" />"></script>
   <script src="<c:url value="/resources/assets/js/markannotation.js" />"></script>
 
 </body>
