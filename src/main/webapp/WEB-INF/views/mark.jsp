@@ -58,7 +58,7 @@
             </p>
           </video>
           <div id="thumbnail"></div>
-          
+          <canvas id="c" width="1140" height="460" class="hidden"></canvas>
         </div>
       </div>
       <div class="row">
@@ -74,7 +74,7 @@
           <div class="timeline"></div>
         </div>
       </div>
-
+      
 
 
 
@@ -156,7 +156,7 @@
 
     </div>
   </div>
-  <canvas id="c" width="1140" height="460" class="hidden"></canvas>
+  
   <%@ include file="include/sidebar.jsp"%>
   <%@ include file="include/footer.jsp"%>
   
