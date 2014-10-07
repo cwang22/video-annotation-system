@@ -139,7 +139,6 @@ $(document).ready(
     });
   
     $("#object-button").click(function(){
-
       var video = document.getElementById("example_video_1_html5_api");
       var canvas = document.getElementById("c");
       var context = canvas.getContext("2d");
@@ -148,10 +147,45 @@ $(document).ready(
       context.drawImage(video,0,0,cw,ch);
 
       var url = canvas.toDataURL();
-      var m = $("<img id=\"object\"/>");
+      var m = $("<img id=\"anno-object\"/>");
       m.attr("src",url);
       $("#thumbnail").empty().append(m);
-      anno.makeAnnotatable(document.getElementById('object'));
+      anno.makeAnnotatable(document.getElementById('anno-object'));
+    });
+    
+    anno.addHandler('onAnnotationCreated', function(annotation) {
+      //console.log(JSON.stringify(annotation));
+      var videoid = parseInt($("video").attr("data-id"));
+      var video = {"id":videoid,"title":null,"source":null,"duration":null};
+      var text = annotation.text;
+      var time = myPlayer.currentTime();
+      var points = annotation.shapes[0].geometry.points;
+      
+
+      /**
+       * long id;
+  String text;
+  double time;
+  List<Point> points;
+       */
+      var obj = annotation;
+      var ajaxdata = {"id":0,
+              "video":video,
+              "user":null,
+              "text":text,
+              "time":time,
+              "points":points};
+      //var testjson = {"id":0,"video":null,"user":{"username":"1","password":"1","enabled":true,"accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"name":"1","institution":"1","authorities":[{"authority":"ROLE_ADMIN"}]},"text":null,"time":1.254,"points":[{"x":0.1512,"y":0.5123},{"x":0.4512,"y":0.7123}]};
+      console.log(JSON.stringify(ajaxdata));
+      $.ajax({
+        'Accept': 'application/json',
+        'url': "/va/objects/",
+        'type': "POST",
+        'contentType': "application/json;charset=UTF-8",
+        'dataType': 'json',
+        'data': JSON.stringify(ajaxdata)
+      });
+
     });
 
     $("form").submit(function(){
