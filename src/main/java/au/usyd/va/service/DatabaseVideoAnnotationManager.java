@@ -50,8 +50,8 @@ public class DatabaseVideoAnnotationManager implements VideoAnnotationManager {
   }
 
   @Override
-  public void deleteVideoAnnoation(long id) {
-    this.annotationDao.deleteVideoAnnoation(id);
+  public void deleteVideoAnnotation(long id) {
+    this.annotationDao.deleteVideoAnnotation(id);
   }
 
 }

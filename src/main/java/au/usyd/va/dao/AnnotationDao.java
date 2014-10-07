@@ -12,5 +12,5 @@ public interface AnnotationDao {
   public void addVideoAnnotation(VideoAnnotation va);
   public VideoAnnotation getVideoAnnotationById(long id);
   public void updateVideoAnnotation(VideoAnnotation va);
-  public void deleteVideoAnnoation(long id);
+  public void deleteVideoAnnotation(long id);
 }

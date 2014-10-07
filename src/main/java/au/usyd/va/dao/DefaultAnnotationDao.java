@@ -61,7 +61,7 @@ public class DefaultAnnotationDao implements AnnotationDao {
   }
 
   @Override
-  public void deleteVideoAnnoation(long id) {
+  public void deleteVideoAnnotation(long id) {
     VideoAnnotation va = this.getVideoAnnotationById(id);
     this.sessionFactory.getCurrentSession().delete(va);
   }

@@ -15,5 +15,5 @@ public interface VideoAnnotationManager {
 
   public void updateVideoAnnotation(VideoAnnotation va);
 
-  public void deleteVideoAnnoation(long id);
+  public void deleteVideoAnnotation(long id);
 }

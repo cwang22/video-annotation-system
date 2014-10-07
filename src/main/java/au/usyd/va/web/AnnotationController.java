@@ -33,7 +33,7 @@ public class AnnotationController {
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     User currentUser = (User) auth.getPrincipal();
     if (owner.equals(currentUser)) {
-      this.videoAnnotationManager.deleteVideoAnnoation(id);
+      this.videoAnnotationManager.deleteVideoAnnotation(id);
       response.setStatus(HttpServletResponse.SC_OK);
     }else{
       response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
