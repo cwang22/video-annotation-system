@@ -11,9 +11,9 @@
   <form action="add" method="post">
     Title: <input type="text" name="title" value="test1" /> Source: <input
       type="text" name="source"
-      value="http://video-js.zencoder.com/oceans-clip.mp4" /> <input
+      value="oceans-clip.mp4" /> <input
       type="submit" value="Add" />
-      <input type=text" name="duration" value="46" />
+      <input type="text" name="duration" value="46" />
   </form>
 </body>
 </html>
