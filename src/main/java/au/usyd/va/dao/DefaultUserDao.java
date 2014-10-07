@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import au.usyd.va.domain.User;
 
-@Repository(value="userDAO")
+@Repository(value="userDao")
 @Transactional
 public class DefaultUserDao implements UserDao, UserDetailsService {
   
