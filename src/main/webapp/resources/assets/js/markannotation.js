@@ -86,9 +86,30 @@ $(function(){
 
 $(function(){
   addButtonListener();
-  $("form").find(".form-control.time").each(function(){
+  var $form = $("form");
+  $form.find(".form-control.time").each(function(){
     $(this).attr("data-seconds",$(this).val());
     $(this).val($(this).val().toHHMMSS());
+  });
+  
+  myPlayer.one("play",function(){
+    var $tr = $form.find("tr[data-id]");
+
+    $tr.each(function(){
+      var seg_id = parseInt($(this).attr("data-id"));
+      var seg_start = parseFloat($(this).find(".start.time").attr("data-seconds"));
+      var seg_end = parseFloat($(this).find(".end.time").attr("data-seconds"));
+      var seg_duration = myPlayer.duration();
+      console.log("called");
+      
+      $(".timeline").timeline({
+        "id":seg_id,
+        "duration":myPlayer.duration(),
+        "start":seg_start,
+        "end":seg_end
+      });
+    });
+    addButtonListener();
   });
 });
 
@@ -129,6 +150,7 @@ $(document).ready(
         + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><input type="text" name="vas['+i+'].description" class="form-control"></td><td><button type="button" class="play-button btn btn-primary">play</button>&nbsp;<button type="button" class="delete-button btn btn-danger">delete</button></td></tr>');
 
       $(".timeline").timeline({
+        "id":i,
         "duration":myPlayer.duration(),
         "start":startTime,
         "end":endTime
@@ -216,18 +238,22 @@ function addButtonListener() {
   $(".delete-button").each(function() {
     $(this).click(function(e) {
       var result = confirm("Click OK to delete selected segment");
-      var tr = $(this).closest("tr");
+      var $tr = $(this).closest("tr");
+      var id = $tr.attr("data-id");
+      var $segment = $('.timeline .segment[data-id="'+id+'"]');
       if(result){
-        if(tr.find("input[type=\"hidden\"]").length == 0){
-          tr.remove();
+        if($tr.find("input[type=\"hidden\"]").length == 0){
+          $tr.remove();
+          $segment.remove();
         }else{
           console.log("called");
-          var id = tr.find("input[type=\"hidden\"]").val();
+          var id = $tr.find("input[type=\"hidden\"]").val();
           $.ajax({
             type: "DELETE",
             url: "/va/annotation/"+id
           }).done(function(){
-            tr.remove();
+            $tr.remove();
+            $segment.remove();
           });
         }
       }
@@ -305,28 +331,16 @@ function addButtonListener() {
     });
 
   });
-
-/*  $("#result tr").each(function() {
-    $(this).hover(function() {
-      var startAt = $(this).children().children().children("input[name='va[][startTime]']").val().toSeconds();
-      var endAt = $(this).children().children().children("input[name='va[][endTime]']").val().toSeconds();
-      console.log(startAt + "," + endAt);
-      myPlayer.markers({
-        setting: {
-          forceInitialization: true,
-          markerStyle: {
-            'width': '7px',
-            'border-radius': '0',
-            'background-color': 'white',
-            'opcity': '15%'
-          }
-        },
-
-        marker_breaks: [[startAt, endAt]],
-        marker_text: ["start", "end"]
-      });
-    }, function() {
-      $(".vjs-marker").remove();
+/*
+  $("#result tr").each(function(){
+    var id = $(this).val("data-id");
+    var $segment = $('.timeline .segment[data-id="'+id+'"]');
+    console.log($segment);
+    $(this).hover(function(){
+      $segment.css("background-color","#fff");
+    },function(){
+      $segment.css("background-color","#00b3fe");
     });
   });*/
+    
 }
