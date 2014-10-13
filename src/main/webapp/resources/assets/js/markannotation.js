@@ -209,7 +209,20 @@ $(document).ready(
         'dataType': 'json',
         'data': JSON.stringify(ajaxdata)
       });
-
+      
+      var i;
+      
+      if($("#result").has("tr").length == 0){
+        i = 0;
+      }else{
+        i = parseInt($("#result tr:last-child").attr("data-id")) + 1;
+      }
+      
+      $(".timeline").timeline({
+        "id":i,
+        "duration":myPlayer.duration(),
+        "start":myPlayer.currentTime()
+      });
     });
 
     $("form").submit(function(){
@@ -286,6 +299,7 @@ function addButtonListener() {
       var input = $(this).parents(".spinner").children("input");
       var seconds = parseFloat(input.attr("data-seconds"));
       seconds += 0.04;
+      myPlayer.currentTime(seconds);
       input.attr("data-seconds", seconds)
       input.val(seconds.toString().toHHMMSS());
     });
@@ -295,6 +309,7 @@ function addButtonListener() {
         var input = button.parents(".spinner").children("input");
         var seconds = parseFloat(input.attr("data-seconds"));
         seconds += 0.04;
+        myPlayer.currentTime(seconds);
         input.attr("data-seconds", seconds)
         input.val(seconds.toString().toHHMMSS());
       }, 100);
@@ -312,6 +327,7 @@ function addButtonListener() {
       var input = $(this).parents(".spinner").children("input");
       var seconds = parseFloat(input.attr("data-seconds"));
       seconds -= 0.04;
+      myPlayer.currentTime(seconds);
       input.attr("data-seconds", seconds)
       input.val(seconds.toString().toHHMMSS());
     });
@@ -320,9 +336,8 @@ function addButtonListener() {
       intervalReturn = setInterval(function() {
         var input = button.parents(".spinner").children("input");
         var seconds = parseFloat(input.attr("data-seconds"));
-        console.log("seconds:" + seconds);
         seconds -= 0.04;
-        console.log("seconds:" + seconds);
+        myPlayer.currentTime(seconds);
         input.attr("data-seconds", seconds)
         input.val(seconds.toString().toHHMMSS());
       }, 100);
@@ -332,6 +347,20 @@ function addButtonListener() {
       clearInterval(intervalReturn);
     });
 
+  });
+  
+  $(".segment").each(function(){
+    var segmentId = $(this).attr("data-id");
+    var $tr = $("tr[data-id=\""+segmentId+"\"]");
+    $(this).hover(function(){
+      $tr.addClass("active");
+    },function(){
+      $tr.removeClass("active");
+    });
+    
+    $(this).click(function(){
+      $tr.find(".play-button").click();
+    });
   });
 /*
   $("#result tr").each(function(){
