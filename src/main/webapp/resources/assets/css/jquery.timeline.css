@@ -10,3 +10,7 @@
 .timeline .segment:hover{
 	background-color: #fff;
 }
+
+.timeline .segment.object {
+	background-color: red;
+}
