@@ -36,14 +36,14 @@ startTime = 0;
 endTime = 0;
 haveSetStart = false;
 anno.addPlugin('PolygonSelector', { activate: true });
-
+id = 0;
 //Player control
 $(function(){
   player = videojs("example_video_1");
   player.on("pause",function(){
     $("#start-button").addClass("disabled");
     $("#thumbnail").empty();
-    var id = parseInt($("video").attr("data-id"));
+    id = parseInt($("video").attr("data-id"));
     var currentTime = player.currentTime();
     var m = $("<ul class=\"elastislide-list\"></ul>");
     var startTime = currentTime - 0.5;
@@ -71,6 +71,9 @@ $(function(){
         } else {
           $(".selected").removeClass("selected").siblings().addClass("hide");
           $(this).addClass("selected").siblings().removeClass("hide");
+          var frame = $(this).attr("data-frame");
+          var seconds = frame * 1 / 24;
+          myPlayer.currentTime(seconds);
           if(!haveSetStart){
             $("#start-button").removeClass("disabled");
           }else{
@@ -115,17 +118,18 @@ $(function(){
 
 $(document).ready(
  function(){
+   var startFrame,endFrame;
   $("#start-button").click(function() {
-    var frame = parseInt($(".selected").attr("data-frame"));
-    startTime = (frame / 25).toFixed(3);
+    startFrame = parseInt($(".selected").attr("data-frame"));
+    startTime = (startFrame / 24).toFixed(3);
     $(this).addClass("disabled");
     haveSetStart = true;
   });
   
   $("#end-button").click(
     function() {
-      var frame = parseInt($(".selected").attr("data-frame"));
-      endTime = (frame / 25).toFixed(3);
+      endFrame = parseInt($(".selected").attr("data-frame"));
+      endTime = (endFrame / 24).toFixed(3);
       $(this).addClass("disabled");
       $("#start-button").removeClass("disabled");
       
@@ -138,12 +142,12 @@ $(document).ready(
       }
       
       $('#result').append(
-          '<tr data-id="'+i+'"><td><div class="input-group spinner">'
+          '<tr data-id="'+i+'"><td style="width:7%"><img src="/va/resources/videoframe/'+id+'/'+startFrame+'.jpg" width="60" /></td><td><div class="input-group spinner">'
         + '<input name="vas['+i+'].startTime" class="form-control start time" data-seconds="'
         + startTime
         + '" value="'
         + startTime.toString().toHHMMSS()
-        + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td><div class="input-group spinner"><input name="vas['+i+'].endTime" class="form-control end time"  data-seconds="'
+        + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td style="width:7%"><img src="/va/resources/videoframe/'+id+'/'+endFrame+'.jpg" width="60"/></td><td><div class="input-group spinner"><input name="vas['+i+'].endTime" class="form-control end time"  data-seconds="'
         + endTime
         + '" value="'
         + endTime.toString().toHHMMSS()
@@ -197,8 +201,6 @@ $(document).ready(
               "text":text,
               "time":time,
               "points":points};
-      //var testjson = {"id":0,"video":null,"user":{"username":"1","password":"1","enabled":true,"accountNonExpired":true,"accountNonLocked":true,"credentialsNonExpired":true,"name":"1","institution":"1","authorities":[{"authority":"ROLE_ADMIN"}]},"text":null,"time":1.254,"points":[{"x":0.1512,"y":0.5123},{"x":0.4512,"y":0.7123}]};
-      console.log(JSON.stringify(ajaxdata));
       $.ajax({
         'Accept': 'application/json',
         'url': "/va/objects/",

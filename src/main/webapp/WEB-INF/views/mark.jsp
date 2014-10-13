@@ -66,11 +66,7 @@
           <div class="btn-group pull-right">
           <button id="start-button" type="button" class="btn btn-theme disabled">Start</button>
           <button id="end-button" type="button" class="btn btn-theme disabled">End</button>
-          <button id="object-button" type="button" class="btn btn-theme"  data-toggle="modal" data-target="#object">Object</button>
-</div>
-          <button id="prev-button" type="button" class="btn btn-theme">Previous Frame</button>
-          <button id="next-button" type="button" class="btn btn-theme">Next Frame</button>
-          <h3>result</h3>
+          <button id="object-button" type="button" class="btn btn-theme"  data-toggle="modal" data-target="#object">Object</button></div>
           <div class="timeline"></div>
         </div>
       </div>
@@ -92,8 +88,8 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th class="col-lg-3">Start</th>
-                    <th class="col-lg-3">End</th>
+                    <th class="col-lg-3" colspan="2">Start</th>
+                    <th class="col-lg-3" colspan="2">End</th>
                     <th class="col-lg-3">Description</th>
                     <th class="col-lg-3"></th>
                   </tr>
@@ -142,6 +138,8 @@
                   <tr>
                     <td><input id="id" type="hidden" name="id"
                       value="${video.id}" /></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td><input class="btn btn-theme pull-right"
