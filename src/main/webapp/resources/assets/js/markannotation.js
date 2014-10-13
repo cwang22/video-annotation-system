@@ -51,7 +51,7 @@ $(function(){
     var startFrame = Math.floor(startTime * 25);
     var endFrame = Math.floor(endTime * 25);
     for(var i = startFrame; i < endFrame; i++){
-      var li = $("<li><img src=\"/va/resources/videoframe/"+id+"/"+i+".jpg\" data-frame=\""+i+"\" width=\"240\" height=\"240\" /><span class=\"ui left green corner label hide\"><i class=\"checkmark icon\"></i></span></li>");
+      var li = $("<li><img src=\"/va/resources/videoframe/"+id+"/"+i+".jpg\" data-frame=\""+i+"\" width=\"150\" height=\"150\" /><span class=\"ui left green corner label hide\"><i class=\"checkmark icon\"></i></span></li>");
       m.append(li);
     }
     $("#thumbnail").append(m);
