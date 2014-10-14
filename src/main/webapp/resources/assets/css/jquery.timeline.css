@@ -7,7 +7,7 @@
 	box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.3);
 }
 
-.timeline .segment:hover{
+.timeline .segment:hover, .timeline .segment.object:hover{
 	background-color: #fff;
 }
 
