@@ -3,6 +3,9 @@
  */
 String.prototype.toHHMMSS = function() {
   var mills = this.match("\\.\\d{1,3}");
+  if(mills == null){
+    mills = ".000";
+  }
   var sec_num = parseInt(this, 10); // don't forget the second param
   var hours = Math.floor(sec_num / 3600);
   var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
