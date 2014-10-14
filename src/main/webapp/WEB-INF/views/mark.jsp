@@ -47,7 +47,7 @@
           <video id="example_video_1"
             class="video-js vjs-default-skin" controls
             preload="auto" width="1140" height="460"
-            poster="http://video-js.zencoder.com/oceans-clip.png"
+            
             data-setup='{"example_option":true}' data-id="${video.id}">
             <source src="<c:url value="/resources/videos/${video.source}" />" type='video/mp4' />
             <p class="vjs-no-js">

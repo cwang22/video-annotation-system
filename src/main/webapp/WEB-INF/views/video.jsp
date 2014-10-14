@@ -35,7 +35,7 @@
           <div class="col-lg-3">
             <a class="thumbnail"
               href="<c:url value="video/mark/${nvideo.id}" />"> <img
-              src="/va/resources/videoframe/v${nvideo.id}/v10100.jpg" />
+              src="/va/resources/videoframe/${nvideo.id}/100.jpg" />
             </a>
           </div>
         </c:forEach>
@@ -46,7 +46,7 @@
               <span class="ui left blue corner label">
                 <i class="exclamation icon"></i>
               </span>
-              <img src="/va/resources/videoframe/v${svideo.id}/v10100.jpg" />
+              <img src="/va/resources/videoframe/${svideo.id}/100.jpg" />
             </a>
           </div>
         </c:forEach>
@@ -58,7 +58,7 @@
               href="<c:url value="video/mark/${fvideo.id}" />"> <span
               class="ui left green corner label"> <i
                 class="checkmark icon"></i>
-            </span><img src="/va/resources/videoframe/v${fvideo.id}/v10100.jpg" />
+            </span><img src="/va/resources/videoframe/${fvideo.id}/100.jpg" />
             </a>
             </div>
           </div>

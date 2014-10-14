@@ -74,7 +74,7 @@
                                   String result = String.format("%04d", i);
                   %>
                   <li>
-                      <img src="/va/resources/videoframe/v<%=id%>/v<%=id%><%=result%>.jpg" data-frame="<%=i%>" width="240" height="240" />
+                      <img src="/va/resources/videoframe/<%=id%>/<%=result%>.jpg" data-frame="<%=i%>" width="240" height="240" />
                       <span class="ui left green corner label hide"><i
                         class="checkmark icon"></i></span>
                   </li>
