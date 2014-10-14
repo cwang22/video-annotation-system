@@ -20,7 +20,7 @@
 <div id="blue">
     <div class="container">
       <div class="row">
-        <h3><span class="glyphicon glyphicon-film"></span>Videos</h3>
+        <h3><span class="glyphicon glyphicon-film"></span> Videos</h3>
       </div>
       <!-- /row -->
     </div>
