@@ -6,3 +6,11 @@
 	background-color: #00b3fe;
 	box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.3);
 }
+
+.timeline .segment:hover{
+	background-color: #fff;
+}
+
+.timeline .segment.object {
+	background-color: red;
+}
