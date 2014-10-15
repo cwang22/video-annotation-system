@@ -189,14 +189,7 @@ $(document).ready(
       var text = annotation.text;
       var time = myPlayer.currentTime();
       var points = annotation.shapes[0].geometry.points;
-      
 
-      /**
-       * long id;
-  String text;
-  double time;
-  List<Point> points;
-       */
       var obj = annotation;
       var ajaxdata = {"id":0,
               "video":video,
@@ -223,9 +216,12 @@ $(document).ready(
       
       $(".timeline").timeline({
         "id":i,
+        "text":text,
         "duration":myPlayer.duration(),
         "start":myPlayer.currentTime()
       });
+      
+      addButtonListener();
     });
 
     $("form").submit(function(){
@@ -365,16 +361,12 @@ function addButtonListener() {
       $tr.find(".play-button").click();
     });
   });
-/*
-  $("#result tr").each(function(){
-    var id = $(this).val("data-id");
-    var $segment = $('.timeline .segment[data-id="'+id+'"]');
-    console.log($segment);
-    $(this).hover(function(){
-      $segment.css("background-color","#fff");
-    },function(){
-      $segment.css("background-color","#00b3fe");
+  
+  $(".segment.object").tooltip().each(function(){
+    var seconds = $(this).attr("data-seconds");
+    $(this).click(function(){
+      myPlayer.currentTime(seconds);
     });
-  });*/
-    
+
+  });
 }
