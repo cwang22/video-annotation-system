@@ -31,6 +31,9 @@
           <h5>Easy 3 Steps to mark Annotations</h5>
           <h5>to change the way interact with video</h5>
         </div>
+        <div class="col-lg-offset2 himg margin-bottom">
+          <img src="<c:url value="/resources/assets/img/browser.jpg"/>" />
+        </div>
 
       </div>
       <!-- /row -->
@@ -46,38 +49,25 @@
     <div class="container">
       <div class="row centered">
         <div class="col-md-4">
-          <i class="fa fa-heart-o"></i>
-          <h4>Watching</h4>
-          <p>Lorem Ipsum is simply dummy text of the printing and
-            typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a
-            type specimen book.</p>
+          <i class="fa fa-pencil"></i>
+          <h4>Marking</h4>
+          <p>Marking videos to indicate what is the most important 
+          segments and objects in a video.</p>
         </div>
         <div class="col-md-4">
-          <i class="fa fa-comment-o"></i>
-          <h4>Marking</h4>
-          <p>Lorem Ipsum is simply dummy text of the printing and
-            typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a
-            type specimen book.</p>
+          <i class="fa fa-check"></i>
+          <h4>Selecting</h4>
+          <p>Selecting from segments you have just marked to indicate what are important frames.</p>
         </div>
         <div class="col-md-4">
           <i class="fa fa-trophy"></i>
           <h4>Ranking</h4>
-          <p>Lorem Ipsum is simply dummy text of the printing and
-            typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a
-            type specimen book.</p>
+          <p>Ranking key frames to indicate the importance compare with other frames.</p>
 
         </div>
       </div>
-    </div>
-    <! --/container -->
-  </div>
-  <! --/service -->
+    </div><!-- /container -->
+  </div><!-- /service -->
   <!-- *****************************************************************************************************************
 	 TESTIMONIALS
 	 ***************************************************************************************************************** -->
@@ -99,11 +89,11 @@
           <p>WEB DESIGNER - BLACKTIE.CO</p>
         </div>
       </div>
-      <! --/row -->
+      <!-- /row -->
     </div>
-    <! --/container -->
+    <!-- /container -->
   </div>
-  <! --/twrap -->
+  <!--/twrap -->
 
   <!-- *****************************************************************************************************************
 	 OUR CLIENTS

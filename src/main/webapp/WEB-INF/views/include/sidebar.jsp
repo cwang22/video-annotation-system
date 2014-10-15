@@ -13,7 +13,7 @@
 
     <c:forEach items="${newvideos}" var="nvideo" varStatus="status">
         <a class="thumbnail" href="<c:url value="video/mark/${nvideo.id}" />">
-          <img src="/va/resources/videoframe/v${nvideo.id}/v10100.jpg" />
+          <img src="/va/resources/videoframe/${nvideo.id}/100.jpg" />
         </a>
     </c:forEach>
   </div>
