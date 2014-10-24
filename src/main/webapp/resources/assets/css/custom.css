@@ -5,11 +5,14 @@
 	color:#bfc9d3;
 }
 
+.white {
+	color:white;
+}
+
 .btn-theme{
 	margin:0;
 }
 
-/*watch page*/
 #main {
 	min-height:500px;
 }
@@ -40,7 +43,6 @@
 	width: 111px;
 }
 
-/**/
 .ui.steps.huge .step{
 	font-size: 1.5rem;
 }
@@ -49,7 +51,6 @@
 	position: relative;
 }
 
-/**/
 .elastislide-list li {
 	position: relative;
 }
