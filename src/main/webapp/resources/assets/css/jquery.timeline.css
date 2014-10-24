@@ -1,14 +1,19 @@
 @CHARSET "UTF-8";
 
+.timeline{
+	margin-top:10px;
+	background:#000 url(../images/pattern.png);
+}
 .timeline .segment {
 	height: 10px;
 	position: relative;
 	background-color: #00b3fe;
-	box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.3);
+	margin:2px;
+	transition: ease .5s;
 }
 
-.timeline .segment:hover, .timeline .segment.object:hover{
-	background-color: #fff;
+.timeline .segment.active, .timeline .segment.object.active, .timeline .segment:hover, .timeline .segment.object:hover{
+	background-color: #384452;
 }
 
 .timeline .segment.object {

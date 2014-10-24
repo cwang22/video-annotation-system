@@ -43,7 +43,11 @@ id = 0;
 //Player control
 $(function(){
   player = videojs("example_video_1");
-  player.on("pause",function(){
+  var isSeeked = true;
+  var getThumbnail = function(){
+    if(isSeeked){
+      return;
+    }
     $("#start-button").addClass("disabled");
     $("#thumbnail").empty();
     id = parseInt($("video").attr("data-id"));
@@ -85,9 +89,14 @@ $(function(){
         }
       });
     });
+  };
+  player.on("pause",function(){
+    isSeeked = false;
+    getThumbnail();
+    isSeeked = true;
   });
+  player.on("seeked",getThumbnail);
 });
-
 
 
 $(function(){
@@ -365,7 +374,7 @@ function addButtonListener() {
   $(".segment.object").tooltip().each(function(){
     var seconds = $(this).attr("data-seconds");
     $(this).click(function(){
-      myPlayer.currentTime(seconds);
+      myPlayer.currentTime(seconds).pause();
     });
 
   });
