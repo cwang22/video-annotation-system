@@ -98,32 +98,16 @@ public class VideoController {
 
   @RequestMapping(value = "/mark", method = RequestMethod.POST)
   public String addAnnotation(@ModelAttribute MarkForm markForm, HttpServletRequest httpServletRequest) {
-    /*
-    
-    String jsonString = httpServletRequest.getParameter("json");
-    System.out.println(jsonString);
-    Gson gson = new Gson();
-    JsonParser parser = new JsonParser();
 
-    
-    JsonArray array = parser.parse(jsonString).getAsJsonObject().getAsJsonArray("va");
-    System.out.println(array);
-    
-    for (int i = 0; i < array.size(); i++) {
-      VideoAnnotation va = gson.fromJson(array.get(i), VideoAnnotation.class);
-      va.setVideo(video);
-      va.setUser(user);
-      va.setFinished(false);
-      System.out.println(va);
-      this.videoAnnotationManager.addVideoAnnotation(va);
-    }
-    */
     User user = this.getCurrentUser();
     long id = Long.parseLong(httpServletRequest.getParameter("id"));
     Video video = this.videoManager.getVideoById(id);
     
     List<VideoAnnotation> vas = markForm.getVas();
-    System.out.println(vas.size());
+    
+    if(vas == null)
+      return "redirect:select/" + id;
+    
     for(int i=0; i<vas.size();i++){
       VideoAnnotation va = vas.get(i);
       va.setUser(user);
