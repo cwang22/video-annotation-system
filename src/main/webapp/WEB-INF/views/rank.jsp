@@ -65,9 +65,7 @@
                             <p>some text description could go here</p>
                           </div>
                           <div class="col-lg-6">
-                            <img
-                              src="<c:url value='/resources/videoframe/v${video.id}/v${video.id}' /><fmt:formatNumber type="number" 
-            pattern = "0000" value="${frame.sequence}" />.jpg" />
+                            <img src="<c:url value='/resources/videoframe/${video.id}/${frame.sequence}.jpg' />" />
                           </div>
                         </div>
                       </li>

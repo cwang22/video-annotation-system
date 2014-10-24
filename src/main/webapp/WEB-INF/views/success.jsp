@@ -33,7 +33,7 @@
           <div class="col-lg-3">
             <a class="thumbnail"
               href="<c:url value="video/mark/${video.id}" />"> <img
-              src="/va/resources/videoframe/v${video.id}/v10100.jpg" />
+              src="/va/resources/videoframe/${video.id}/100.jpg" />
             </a>
           </div>
         </c:forEach>
