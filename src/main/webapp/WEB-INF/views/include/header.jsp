@@ -14,9 +14,7 @@
     <div class="navbar-collapse collapse navbar-right">
       <ul class="nav navbar-nav">
         <li><a href="<c:url value="/video/all" />">VIDEO</a></li>
-        <li><a href="about.html">MY ANNOTATION</a></li>
-        <li><a href="contact.html">ABOUT</a></li>
-
+        <li><a href="<c:url value="/annotations" />">MY ANNOTATION</a></li>
         <sec:authorize access="isAuthenticated()" var="isAuthenticated">
           <sec:authentication var="user" property="principal" />
           <li class="dropdown"><a href="#" class="dropdown-toggle"
