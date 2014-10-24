@@ -105,6 +105,16 @@ $(function(){
   $form.find(".form-control.time").each(function(){
     $(this).attr("data-seconds",$(this).val());
     $(this).val($(this).val().toHHMMSS());
+    var seconds = $(this).attr("data-seconds");
+    var frame = parseInt(seconds * 24);
+    var $tr = $(this).parents("tr");
+    var id = $tr.find("input[type=\"hidden\"]").val().toString();
+    if($(this).hasClass("start")){
+      $tr.find(".start.time").attr("src","/va/resources/videoframe/"+id+"/"+frame+".jpg")
+    }
+    if($(this).hasClass("end")){
+      $tr.find(".end.time").attr("src","/va/resources/videoframe/"+id+"/"+frame+".jpg")
+    }
   });
   
   myPlayer.one("play",function(){
@@ -154,12 +164,12 @@ $(document).ready(
       }
       
       $('#result').append(
-          '<tr data-id="'+i+'"><td style="width:7%"><img src="/va/resources/videoframe/'+id+'/'+startFrame+'.jpg" width="60" /></td><td><div class="input-group spinner">'
+          '<tr data-id="'+i+'"><td style="width:7%"><img  class="start time" src="/va/resources/videoframe/'+id+'/'+startFrame+'.jpg" width="60" /></td><td><div class="input-group spinner">'
         + '<input name="vas['+i+'].startTime" class="form-control start time" data-seconds="'
         + startTime
         + '" value="'
         + startTime.toString().toHHMMSS()
-        + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td style="width:7%"><img src="/va/resources/videoframe/'+id+'/'+endFrame+'.jpg" width="60"/></td><td><div class="input-group spinner"><input name="vas['+i+'].endTime" class="form-control end time"  data-seconds="'
+        + '" disabled /><div class="input-group-btn-vertical"><button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button><button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button></div></div></td><td style="width:7%"><img class="end time" src="/va/resources/videoframe/'+id+'/'+endFrame+'.jpg" width="60"/></td><td><div class="input-group spinner"><input name="vas['+i+'].endTime" class="form-control end time"  data-seconds="'
         + endTime
         + '" value="'
         + endTime.toString().toHHMMSS()

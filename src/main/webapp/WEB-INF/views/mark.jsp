@@ -80,8 +80,9 @@
                   </tr>
                 </thead>
                 <tbody id="result">
-                <c:forEach items="${markform.vas}" var="vas" varStatus="i">
+                <c:forEach items="${markform.vas}" var="vas" varStatus="i">          
                 <tr data-id="${i.index}">
+                  <td style="width:7%"><img width="60" class="start time" /></td>
                   <td>
                     <div class="input-group spinner">
                       <form:input path="vas[${i.index}].startTime" class="form-control start time" disabled="true" />
@@ -95,6 +96,7 @@
                       </div>
                     </div>
                   </td>
+                  <td style="width:7%"><img src="" class="end time" width="60" /></td>
                   <td>
                     <div class="input-group spinner">
                       <form:input path="vas[${i.index}].endTime" class="form-control end time" disabled="true" />
