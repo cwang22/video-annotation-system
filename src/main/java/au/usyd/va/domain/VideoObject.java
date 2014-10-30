@@ -12,9 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "VideoObject")
+@XmlRootElement(name="VideoAnnotation")
 public class VideoObject {
 
   @Id
@@ -62,7 +65,8 @@ public class VideoObject {
   public User getUser() {
     return user;
   }
-
+  
+  @XmlTransient
   public void setUser(User user) {
     this.user = user;
   }

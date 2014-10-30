@@ -76,4 +76,14 @@ public class DefaultObjectDao implements ObjectDao {
             .setString("username", username).uniqueResult()).intValue();
   }
 
+  @SuppressWarnings("unchecked")
+  @Override
+  public List<VideoObject> getObjects(User user) {
+    String username = user.getUsername();
+    return this.sessionFactory.getCurrentSession()
+            .createQuery("FROM VideoObject as vo where vo.user.username = :username ")
+            .setString("username", username).list();
+    
+  }
+
 }

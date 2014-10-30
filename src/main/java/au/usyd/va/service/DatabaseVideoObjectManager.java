@@ -60,4 +60,9 @@ public class DatabaseVideoObjectManager implements VideoObjectManager {
     User user = (User) auth.getPrincipal();
     return this.objectDao.getObjectCount(user);
   }
+
+  @Override
+  public List<VideoObject> getObjects(User user) {
+    return this.objectDao.getObjects(user);
+  }
 }

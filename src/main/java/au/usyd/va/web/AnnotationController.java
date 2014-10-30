@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import au.usyd.va.domain.User;
 import au.usyd.va.domain.VideoAnnotation;
+import au.usyd.va.domain.VideoObject;
 import au.usyd.va.form.AnnotationList;
+import au.usyd.va.form.ObjectList;
 import au.usyd.va.service.VideoAnnotationManager;
 import au.usyd.va.service.VideoManager;
 import au.usyd.va.service.VideoObjectManager;
@@ -79,6 +81,15 @@ public class AnnotationController {
     List<VideoAnnotation> annotations = this.videoAnnotationManager.getAnnotations(currentUser);
     AnnotationList annotationList = new AnnotationList(annotations);
     return annotationList;
+  }
+  
+  @RequestMapping(value="/export/objects")
+  public @ResponseBody ObjectList exportObjects(){
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    User currentUser = (User) auth.getPrincipal();
+    List<VideoObject> objects = this.videoObjectManager.getObjects(currentUser);
+    ObjectList objectList = new ObjectList(objects);
+    return objectList;
   }
 
 }

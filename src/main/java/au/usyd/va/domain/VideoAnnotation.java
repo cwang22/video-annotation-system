@@ -69,7 +69,6 @@ public class VideoAnnotation {
     return endTime;
   }
   
-  @XmlElement
   public void setEndTime(double endTime) {
     this.endTime = endTime;
   }

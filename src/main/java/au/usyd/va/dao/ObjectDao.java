@@ -14,4 +14,5 @@ public interface ObjectDao {
   public void updateVideoObject(VideoObject vo);
   public void deleteVideoObject(long id);
   public int getObjectCount(User user);
+  public List<VideoObject> getObjects(User user);
 }
