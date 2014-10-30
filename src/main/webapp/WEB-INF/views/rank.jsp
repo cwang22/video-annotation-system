@@ -46,7 +46,7 @@
           <form method="post" action='<c:url value="/video/rank" />'>
             <div id="sortwarp">
               <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-8 col-lg-offset-2">
                   <ol id="sort" class="ui list-unstyled">
 
                     <c:forEach items="${frames}" var="frame"
@@ -62,7 +62,7 @@
                               <i class="time icon"></i>
                               <c:out value="${frame.sequence}" />
                             </div>
-                            <p>some text description could go here</p>
+                           
                           </div>
                           <div class="col-lg-6">
                             <img src="<c:url value='/resources/videoframe/${video.id}/${frame.sequence}.jpg' />" />
