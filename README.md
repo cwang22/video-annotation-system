@@ -1,6 +1,7 @@
 # README #
 
 Video Annotation System is a Annotation Tools to mark video segment, frame and object annotations.
+
 https://bitbucket.org/cwang22/va
 
 ### What is this repository for? ###
@@ -9,22 +10,7 @@ https://bitbucket.org/cwang22/va
 * Version
 
 
-### How do I get set up? ###
+### Setup ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* [tomcat setup](https://bitbucket.org/cwang22/va/wiki/Tomcat%20Setup)
+* [SQL](https://bitbucket.org/cwang22/va/wiki/SQL)
