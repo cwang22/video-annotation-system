@@ -3,6 +3,8 @@ package au.usyd.va.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,4 +54,10 @@ public class DatabaseVideoObjectManager implements VideoObjectManager {
     this.objectDao.deleteVideoObject(id);
   }
 
+  @Override
+  public int getObjectCount() {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    User user = (User) auth.getPrincipal();
+    return this.objectDao.getObjectCount(user);
+  }
 }

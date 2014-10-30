@@ -14,4 +14,5 @@ public interface VideoObjectManager {
   public VideoObject getVideoObjectById(long id);
   public void updateVideoObject(VideoObject vo);
   public void deleteVideoObject(long id);
+  public int getObjectCount();
 }

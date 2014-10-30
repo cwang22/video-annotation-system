@@ -3,6 +3,8 @@ package au.usyd.va.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +19,6 @@ public class DatabaseVideoAnnotationManager implements VideoAnnotationManager {
   
   @Autowired
   private AnnotationDao annotationDao;
-  
   
   public void setAnnotationDao(AnnotationDao annotationDao) {
     this.annotationDao = annotationDao;
@@ -53,5 +54,18 @@ public class DatabaseVideoAnnotationManager implements VideoAnnotationManager {
   public void deleteVideoAnnotation(long id) {
     this.annotationDao.deleteVideoAnnotation(id);
   }
+
+  @Override
+  public int getAnnotationCount() {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    User user = (User) auth.getPrincipal();
+    return this.annotationDao.getAnnotationCount(user);
+  }
+
+  @Override
+  public List<VideoAnnotation> getAnnotations(User user) {
+    return this.annotationDao.getAnnotations(user);
+  }
+
 
 }

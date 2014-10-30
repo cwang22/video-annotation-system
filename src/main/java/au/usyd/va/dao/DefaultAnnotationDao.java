@@ -66,4 +66,23 @@ public class DefaultAnnotationDao implements AnnotationDao {
     this.sessionFactory.getCurrentSession().delete(va);
   }
 
+  @Override
+  public int getAnnotationCount(User user) {
+    String username = user.getUsername();
+    return ((Number) this.sessionFactory
+            .getCurrentSession()
+            .createQuery(
+                    "SELECT count(*) FROM VideoAnnotation as va where va.user.username = :username ")
+            .setString("username", username).uniqueResult()).intValue();
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public List<VideoAnnotation> getAnnotations(User user) {
+    String username = user.getUsername();
+    return this.sessionFactory.getCurrentSession()
+            .createQuery("FROM VideoAnnotation as va where va.user.username = :username ")
+            .setString("username", username).list();
+  }
+
 }

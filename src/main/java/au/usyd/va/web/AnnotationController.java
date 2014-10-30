@@ -1,6 +1,5 @@
 package au.usyd.va.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -16,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import au.usyd.va.domain.User;
-import au.usyd.va.domain.Video;
 import au.usyd.va.domain.VideoAnnotation;
+import au.usyd.va.form.AnnotationList;
 import au.usyd.va.service.VideoAnnotationManager;
 import au.usyd.va.service.VideoManager;
+import au.usyd.va.service.VideoObjectManager;
 
 @Controller
 public class AnnotationController {
@@ -28,6 +28,20 @@ public class AnnotationController {
   private VideoManager videoManager;
   @Resource(name = "VideoAnnotationManager")
   private VideoAnnotationManager videoAnnotationManager;
+  @Resource(name ="VideoObjectManager")
+  private VideoObjectManager videoObjectManager;
+  
+  public void setVideoManager(VideoManager videoManager) {
+    this.videoManager = videoManager;
+  }
+
+  public void setVideoAnnotationManager(VideoAnnotationManager videoAnnotationManager) {
+    this.videoAnnotationManager = videoAnnotationManager;
+  }
+
+  public void setVideoObjectManager(VideoObjectManager videoObjectManager) {
+    this.videoObjectManager = videoObjectManager;
+  }
 
   @RequestMapping(value = "/annotation/{id}", method = RequestMethod.GET)
   public @ResponseBody VideoAnnotation get(@PathVariable long id) {
@@ -51,18 +65,20 @@ public class AnnotationController {
   
   @RequestMapping(value = "/annotations")
   public String annotationPage(Model model){
+    int annotationCount = this.videoAnnotationManager.getAnnotationCount();
+    int objectCount = this.videoObjectManager.getObjectCount();
+    model.addAttribute("annotationCount", annotationCount);
+    model.addAttribute("objectCount", objectCount);
+    return "annotations";
+  }
+  
+  @RequestMapping(value="/export/annotations")
+  public @ResponseBody AnnotationList exportAnnotations(){
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     User currentUser = (User) auth.getPrincipal();
-    
-    List<Video> videos = this.videoManager.getVideos();
-    List<VideoAnnotation> vas = new ArrayList<VideoAnnotation>();
-    for(Video video : videos){
-      List<VideoAnnotation> singlevas = this.videoAnnotationManager.getAnnotations(video, currentUser);
-      vas.addAll(singlevas);
-    }
-
-    model.addAttribute("vas",vas);
-    return "annotations";
+    List<VideoAnnotation> annotations = this.videoAnnotationManager.getAnnotations(currentUser);
+    AnnotationList annotationList = new AnnotationList(annotations);
+    return annotationList;
   }
 
 }

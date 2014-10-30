@@ -66,4 +66,14 @@ public class DefaultObjectDao implements ObjectDao {
     this.sessionFactory.getCurrentSession().delete(vo);
   }
 
+  @Override
+  public int getObjectCount(User user) {
+    String username = user.getUsername();
+    return ((Number) this.sessionFactory
+            .getCurrentSession()
+            .createQuery(
+                    "SELECT count(*) FROM VideoObject as vo where vo.user.username = :username ")
+            .setString("username", username).uniqueResult()).intValue();
+  }
+
 }

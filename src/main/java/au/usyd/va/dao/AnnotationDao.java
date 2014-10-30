@@ -13,4 +13,6 @@ public interface AnnotationDao {
   public VideoAnnotation getVideoAnnotationById(long id);
   public void updateVideoAnnotation(VideoAnnotation va);
   public void deleteVideoAnnotation(long id);
+  public int getAnnotationCount(User user);
+  public List<VideoAnnotation> getAnnotations(User user);
 }
