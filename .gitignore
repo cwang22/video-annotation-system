@@ -14,7 +14,6 @@ derby.log
 spring-test/test-output/
 .gradle
 argfile*
-pom.xml
 activemq-data/
 
 /build
@@ -24,8 +23,6 @@ buildSrc/build
 target/
 
 # Eclipse artifacts, including WTP generated manifests
-.classpath
-.project
 spring-*/src/main/java/META-INF/MANIFEST.MF
 
 # IDEA artifacts and output dirs
@@ -37,3 +34,6 @@ out
 test-output
 atlassian-ide-plugin.xml
 .gradletasknamecache
+/src/main/webapp/resources/videoframe
+src/main/webapp/resources/videos/
+vas.ucls
