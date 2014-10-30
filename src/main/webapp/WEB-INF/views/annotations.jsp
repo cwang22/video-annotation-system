@@ -46,7 +46,7 @@
               </div>
             </div>
           </div>
-          <a href="<c:url value="bhl"/>">
+          <a href="<c:url value="/export/annotations"/>">
             <div class="panel-footer">
               <span class="pull-left">export</span> <span
                 class="pull-right"><i
@@ -69,7 +69,7 @@
               </div>
             </div>
           </div>
-          <a href="<c:url value="/updatesteam"/>">
+          <a href="<c:url value="/export/objects"/>">
             <div class="panel-footer">
               <span class="pull-left">export</span> <span
                 class="pull-right"><i
