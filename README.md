@@ -4,7 +4,7 @@ Video Annotation System is a Annotation Tools to mark video segment, frame and o
 
 https://bitbucket.org/cwang22/va
 
-##About##
+## About ##
 This is a COMP5703 project at University of Sydney
 
 Developed by Chenggang Wang
